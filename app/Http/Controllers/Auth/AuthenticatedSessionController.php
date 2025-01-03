@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->put('periode_id', $periode_id);
 
-        
+        return redirect()->intended(RouteServiceProvider::HOME);
 
 
     }
