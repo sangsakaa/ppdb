@@ -83,7 +83,7 @@
 
                     <div class="mb-4">
                         <label for="nomor_telepon" class="block text-gray-700 font-medium">Nomor Telepon</label>
-                        <input type="text" id="nomor_telepon" value="{{ old('nomor_telepon', $formulir_ppdb_1->nomor_telepon ?? '') }}" name="nomor_telepon" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input type="number" id="nomor_telepon" value="{{ old('nomor_telepon', $formulir_ppdb_1->nomor_telepon ?? '') }}" name="nomor_telepon" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                     </div>
                     <div class="mb-4">
                         <label for="kewarganegaraan" class="block text-gray-700 font-medium capitalize">Kewarganegaraan</label>

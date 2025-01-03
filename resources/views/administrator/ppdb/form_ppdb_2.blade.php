@@ -16,7 +16,7 @@
         <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             @role('administrator')
             <x-button
-                href="/form-pendaftaran/{{$user_id}}"
+                href="/form-pendaftaran/{{$formulir_ppdb_1}}"
                 variant="purple"
                 class="items-center max-w-xs gap-2">
                 <x-icons.arrow-back class="w-6 h-6" aria-hidden="true" />
@@ -26,27 +26,28 @@
         </div>
         <div class="p-6  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             <h2 class="text-sm sm:text-2xl font-bold mb-6 text-center capitalize">keterangan tempat tinggal </h2>
-            <form action="/form-keterangan-tempat-tinggal/{{$user_id}}" method="post">
+            <form action="/form-keterangan-tempat-tinggal/{{$formulir_ppdb_1}}" method="post">
                 @csrf
-
                 <div class="mb-4">
                     <!-- user_id -->
-                    <input type="hidden" value="{{$form1->user_id}}" name="user_id" id="user_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+
                     <!-- formulir_ppdb_1 -->
-                    <input type="hidden" value="{{$form1->id}}" name="formulir_ppdb_1_id" id="formulir_ppdb_1_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="hidden" value="{{$form1->id}}" name="formulir_ppdb_1_id" id="formulir_ppdb_1_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <input type="hidden" value="{{$form1->user_id}}" name="user_id" id="user_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
                 <!-- Alamat -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="mb-4">
                         <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
-                        <input value="{{ old('alamat', $form2->alamat ?? '') }}" type="text" name="alamat" id="alamat" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input value="{{ old('alamat', $form2->alamat ?? '') }}" type="text" name="alamat" id="alamat" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
                     <!-- Kode Pos -->
                     <div class="mb-4">
                         <label for="kode_pos" class="block text-sm font-medium text-gray-700">Kode Pos</label>
-                        <input value="{{ old('kode_pos', $form2->kode_pos ?? '') }}" type="number" name="kode_pos" id="kode_pos" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input value="{{ old('kode_pos', $form2->kode_pos ?? '') }}" type="number" name="kode_pos" id="kode_pos" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
 
@@ -55,10 +56,12 @@
                     <div class="mb-4">
 
                         <label for="jenis_tinggal" class="block text-gray-700 font-medium">Jenis Tinggal</label>
-                        <select id="jenis_tinggal" name="jenis_tinggal" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <select id="jenis_tinggal" name="jenis_tinggal" class="w-full border border-gray-300 rounded-lg p-2 mt-1 capitalize">
                             <option value="">Pilih</option>
-                            <option value="orang_tua" {{ ($form2->jenis_tinggal ?? '') == 'orang_tua' ? 'selected' : '' }}>orang_tua</option>
+                            <option value="orang tua" {{ ($form2->jenis_tinggal ?? '') == 'orang tua' ? 'selected' : '' }}>orang tua</option>
                             <option value="wali" {{ ($form2->jenis_tinggal ?? '') == 'wali' ? 'selected' : '' }}>wali</option>
+                            <option value="kos" {{ ($form2->jenis_tinggal ?? '') == 'kos' ? 'selected' : '' }}>kos</option>
+                            <option value="asrama" {{ ($form2->jenis_tinggal ?? '') == 'asrama' ? 'selected' : '' }}>asrama</option>
                         </select>
                     </div>
                     <!-- Province ID -->
@@ -132,11 +135,11 @@
                     @endrole
 
                     <div class="mt-6">
-                        <x-button href="/form-pendaftaran/{{$user_id}}">
+                        <x-button href="/form-pendaftaran/{{$formulir_ppdb_1}}">
                             <span>Kembali</span>
                         </x-button>
                         <x-button>simpan</x-button>
-                        <x-button href="/form-keterangan-tempat-tinggal/{{$user_id}}">
+                        <x-button href="/form-keterangan-tempat-tinggal/{{$formulir_ppdb_1}}">
                             Lanjutkan
                         </x-button>
                     </div>

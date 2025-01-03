@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->put('periode_id', $periode_id);
 
         if (Auth::user()->hasRole('administrator')) {
-            return redirect()->intended(RouteServiceProvider::Administror);
+            return redirect()->intended(RouteServiceProvider::Administrator);
         } elseif (Auth::user()->hasRole('calon_peserta')) {
             return redirect()->intended(RouteServiceProvider::Calon_Peserta);
         }

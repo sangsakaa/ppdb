@@ -103,7 +103,7 @@ Route::get('form-pendaftaran/{formulir_ppdb_1}',[FormulirController::class,'crea
 Route::post('form-pendaftaran/{user_id}',[FormulirController::class,'store'])->name('form-pendaftaran');
 
 // form 2
-Route::get('form-keterangan-tempat-tinggal/{user_id}', [FormulirController::class, 'formulir_ppdb_2'])->name('form-keterangan-tempat-tinggal');
+Route::get('form-keterangan-tempat-tinggal/{formulir_ppdb_1}', [FormulirController::class, 'formulir_ppdb_2'])->name('form-keterangan-tempat-tinggal');
 Route::post('form-keterangan-tempat-tinggal/{calon_peserta}', [FormulirController::class, 'storeformulir_ppdb_2']);
 
 Route::post('update-registration-status',[FormulirController::class, 'updateStatus'])->name('update-registration-status');

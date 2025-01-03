@@ -12,10 +12,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public const HOME = '/dashboard';
-    public const USER = '/userdashboard';
-    public const PONDOK = '/dashboard';
-    public const GURU = '/gurudashboard';
+    public const Administrator = '/dashboard';
+    public const Calon_Peserta = '/dashboard-calon';
 
 
     public function register(): void

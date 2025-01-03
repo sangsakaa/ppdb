@@ -195,15 +195,15 @@ class FormulirController extends Controller
         return redirect()->back()->with('success', 'Data berhasil diperbarui.');
         }
 
-    
+
 
     // FORMULIR PENDAFTARAN KEDUA KETERANGAN TEMPAT TINGGAL
-    public function formulir_ppdb_2(Request $request, $user_id = null)
+    public function formulir_ppdb_2(Request $request, $formulir_ppdb_1 = null)
     {
         // Mengambil data untuk dropdown
-        
-        $form1 = Formulir_ppdb_1::where('user_id', $user_id)->first();  
-        $form2 = Formulir_ppdb_2::where('user_id', $user_id)->first();  
+        // dd($formulir_ppdb_1);
+        $form1 = Formulir_ppdb_1::where('user_id', $formulir_ppdb_1)->first();
+        $form2 = Formulir_ppdb_2::where('user_id', $formulir_ppdb_1)->first();  
         $provinces = DB::table('provinces')->get();
         $regencies = DB::table('regencies')->get();
         $districts = DB::table('districts')->get();
@@ -216,14 +216,17 @@ class FormulirController extends Controller
             'villages',
             'form1',
             'form2',
-                'user_id'
+                'formulir_ppdb_1'
         )
         );
     }
-    public function storeformulir_ppdb_2( Request $request , $user_id = null)
+    public function storeformulir_ppdb_2(Request $request, $formulir_ppdb_1 = null)
     {
-        
+
+        // dd($request);
         $request->validate([
+            'formulir_ppdb_1_id' => 'required|string|max:255',
+            'user_id' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'kode_pos' => 'required|string|max:10',
             'jenis_tinggal' => 'required|string|max:100',
@@ -242,7 +245,7 @@ class FormulirController extends Controller
 
         $registration = Formulir_ppdb_2::updateOrCreate(
             [
-                'user_id' => Auth::id(),
+                'user_id' => $formulir_ppdb_1,
             ],
             [   
                 'formulir_ppdb_1_id' => $request->formulir_ppdb_1_id,
@@ -255,7 +258,7 @@ class FormulirController extends Controller
                 'district_id' => $request->district_id,
                 'village_id' => $request->village_id,
                 'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
-                'catatan' => $request->catatan,
+                'catatan' => $request->catatan ?? 'masih dalam antrian',
             ]
         );
 
