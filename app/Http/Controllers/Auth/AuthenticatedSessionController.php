@@ -29,20 +29,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        // $request->authenticate();
-
-        // $request->session()->regenerate();
-
-        // return redirect()->intended(route('dashboard', absolute: false));
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        return redirect()->intended(route('dashboard', absolute: false));
 
         $periode_id = PeriodePendidikan::query()->latest()->value('id');
 
         $request->session()->put('periode_id', $periode_id);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
 
 
     }
