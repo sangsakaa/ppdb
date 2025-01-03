@@ -224,19 +224,19 @@ class FormulirController extends Controller
     {
 
         // dd($request);
-        $request->validate([
-            'formulir_ppdb_1_id' => 'required|string|max:255',
-            'user_id' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'kode_pos' => 'required|string|max:10',
-            'jenis_tinggal' => 'required|string|max:100',
-            'province_id' => 'required|integer|exists:provinces,id',
-            'regency_id' => 'required|integer|exists:regencies,id',
-            'district_id' => 'required|integer|exists:districts,id',
-            'village_id' => 'required|integer|exists:villages,id',
-            'status_pendaftaran' => 'required|string',
-            'catatan' => 'nullable|string',
-        ]);
+        // $request->validate([
+        //     'formulir_ppdb_1_id' => 'required|string|max:255',
+        //     'user_id' => 'required|string|max:255',
+        //     'alamat' => 'required|string|max:255',
+        //     'kode_pos' => 'required|string|max:10',
+        //     'jenis_tinggal' => 'required|string|max:100',
+        //     'province_id' => 'required|integer|exists:provinces,id',
+        //     'regency_id' => 'required|integer|exists:regencies,id',
+        //     'district_id' => 'required|integer|exists:districts,id',
+        //     'village_id' => 'required|integer|exists:villages,id',
+        //     'status_pendaftaran' => 'required|string',
+        //     'catatan' => 'nullable|string',
+        // ]);
         $existingRegistration = Formulir_ppdb_2::where('user_id', Auth::id())->first();
         if ($existingRegistration) {
             // Output existing registration data for debugging
