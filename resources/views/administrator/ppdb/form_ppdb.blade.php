@@ -30,10 +30,9 @@
 
                 @csrf
                 <!-- Kode Pendaftaran -->
-                <div class="mb-4">
-                    <label for="kode_pendaftaran" class="block text-gray-700 font-medium">Kode Pendaftaran</label>
-                    <input readonly type="text" value="{{old('kode_pendaftaran',$formulir_ppdb_1->kode_pendaftaran ?? '') }}" id="kode_pendaftaran" name="kode_pendaftaran" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                    <small>Generate Otomatis</small>
+                <div class="">
+
+                    <input hidden type="text" value="{{old('kode_pendaftaran',$formulir_ppdb_1->kode_pendaftaran ?? '') }}" id="kode_pendaftaran" name="kode_pendaftaran" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                     <input hidden readonly type="text" value="{{old('periode_pendidikan_id',$periode_pendidikan_id->id ?? '') }}" id="periode_pendidikan_id" name="periode_pendidikan_id" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
 
                     <input hidden readonly type="text" value="{{old('periode_pendidikan_id',$periode_pendidikan_id->id ?? '') }}" id="user_id" name="user_id" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
@@ -43,11 +42,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="mb-4">
                         <label for="nomor_identitas_kependudukan" class="block text-gray-700 font-medium">NIK</label>
-                        <input type="text" id="nomor_identitas_kependudukan" value="{{ old('nomor_identitas_kependudukan', $formulir_ppdb_1->nomor_identitas_kependudukan ?? '') }}" name="nomor_identitas_kependudukan" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input type="number" id="nomor_identitas_kependudukan" value="{{ old('nomor_identitas_kependudukan', $formulir_ppdb_1->nomor_identitas_kependudukan ?? '') }}" name="nomor_identitas_kependudukan" placeholder="NIK diisi sesui KTP" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                     </div>
                     <div class="mb-4">
                         <label for="nama_lengkap" class="block text-gray-700 font-medium">Nama Lengkap</label>
-                        <input type="text" id="nama_lengkap" value="{{ old('nama_lengkap', $formulir_ppdb_1->nama_lengkap ?? '') }}" name="nama_lengkap" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input type="text" id="nama_lengkap" value="{{ old('nama_lengkap', $formulir_ppdb_1->nama_lengkap ?? '') }}" name="nama_lengkap" class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="Nama Lengkap diisi sesui KTP">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
