@@ -46,7 +46,12 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(RouteServiceProvider::ADMIN);
         } elseif (Auth::user()->hasRole('calon_peserta')) {
             return redirect()->intended(RouteServiceProvider::CALON);
+        } else {
+            // Handle default case, for example:
+            return redirect()->intended(RouteServiceProvider::HOME); // Or another route
         }
+
+
     }
 
     /**
