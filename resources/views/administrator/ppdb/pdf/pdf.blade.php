@@ -431,7 +431,7 @@
       Muara Langon, {{$tanggalCetak}}
       <br>
       Yang membuat pernyataan, <br> <br><br><br> <br><br>
-      <span style="margin-top: 500px;">
+      <span style="text-transform: capitalize; ">
         {{$data->nama_lengkap}}
       </span>
     </div>
@@ -459,7 +459,7 @@
       <label for="kewarganegaraan">5. Kewarganegaraan</label>
       <span class="input">: {{$data->kewarganegaraan}}</span> <br>
 
-      <label for="anak_ke_berapa">6. Anak Ke-berapa</label>
+      <!-- <label for="anak_ke_berapa">6. Anak Ke-berapa</label>
       <span class="input">: </span> <br>
 
       <label for="jumlah_saudara_kandung">7. Jumlah Saudara Kandung</label>
@@ -475,7 +475,7 @@
       <span class="input">: </span> <br>
 
       <label for="bahasa_sehari_hari">11. Bahasa Sehari-hari</label>
-      <span class="input">: </span> <br>
+      <span class="input">: </span> <br> -->
       <h5 style="text-align: left;">
         B. KETERANGAN TEMPAT TINGGAL
       </h5>
@@ -483,13 +483,13 @@
       <span class="input">: {{$data->alamat}}</span> <br>
 
       <label for="nomor_whatsapp">14. Nomor WhatsApp</label>
-      <span class="input">: </span> <br>
+      <span class="input">: {{ implode('-', str_split($data->nomor_telepon, 4)) }}</span> <br>
 
-      <label for="status_tinggal">15. Status Tinggal</label>
-      <span class="input">: </span> <br>
+      <label for="jenis_tinggal">15. Status Tinggal</label>
+      <span class="input">: {{$data->jenis_tinggal}} </span> <br>
 
-      <label for="jarak_rumah_ke_sekolah" style="font-size: small;">16. Jarak Rumah ke Sekolah</label>
-      <span class="input">: </span> <br>
+      <!-- <label for="jarak_rumah_ke_sekolah" style="font-size: small;">16. Jarak Rumah ke Sekolah</label>
+      <span class="input">: </span> <br> -->
 
       <h5 style="text-align: left;">
         C. KETERANGAN KESEHATAN

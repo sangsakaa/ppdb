@@ -65,16 +65,23 @@
         <!-- Dummy Links -->
     </div>
     @role('calon_peserta')
-
     <x-sidebar.link
         title="Dashboard"
+        href="{{ route('dashboard') }}"
+        :isActive="request()->routeIs('dashboard')">
+        <x-slot name="icon">
+            <x-icons.dashboard class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+    <x-sidebar.link
+        title="Formulir"
         href="{{ route('dashboard-calon') }}"
         :isActive="request()->routeIs('dashboard-calon')">
         <x-slot name="icon">
             <x-icons.dashboard class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
     </x-sidebar.link>
-    
+
     @endrole
     <!-- @php
     $links = array_fill(0, 3, '');

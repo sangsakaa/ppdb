@@ -27,20 +27,5 @@
                 </div>
             </div>
         </div>
-        <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
-
-                ok gas
-
-
-
-
-
-            </div>
-
-
-
-
-        </div>
     </div>
 </x-app-layout>
