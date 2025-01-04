@@ -91,6 +91,8 @@ Route::delete('management-periode-pendidikan/{periodePendidikan}',[PeriodePendid
 
 // SET PERIODE
 Route::post('setperiode', [AuthenticatedSessionController::class, 'setPeriode'])->middleware(['auth'])->name('setperiode');
+Route::post('periode', [AuthenticatedSessionController::class, 'setPeriode'])->middleware(['auth'])->name('periode');
+
 Route::get('/navbar/periode', [PeriodePendidikanController::class, 'getPeriode']);
 
 

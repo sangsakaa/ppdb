@@ -9,9 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
-use Notifiable;
-use \Spatie\Permission\Traits\HasRoles;
+
 
 
 class AuthenticatedSessionController extends Controller
@@ -33,14 +31,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
-
         $periode_id = PeriodePendidikan::query()->latest()->value('id');
 
         $request->session()->put('periode_id', $periode_id);
 
-        
-
+        return redirect()->intended(route('dashboard', absolute: false));
 
     }
 
@@ -59,11 +54,7 @@ class AuthenticatedSessionController extends Controller
     }
     public function setPeriode(Request $request)
     {
-        // dd($request);
-        // $request->session()->put('periode_id', $request->periode_id);
-        if ($request->periode_id) {
-            $request->session()->put('periode_id', $request->periode_id);
-        }
+        $request->session()->put('periode_id', $request->periode_id);
         return redirect()->back();
     }
 }
