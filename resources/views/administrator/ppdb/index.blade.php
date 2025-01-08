@@ -18,11 +18,13 @@
                 <x-icons.add-user class="w-6 h-6" aria-hidden="true" />
                 <span>Formulir Pendaftaran</span>
             </x-button>
-            <x-button>
-                <x-icons.print class="w-6 h-6" aria-hidden="true" />
+            <a href="/data-valid-peserta">
+                <x-button>
 
-            </x-button>
+                    <x-icons.print class="w-6 h-6" aria-hidden="true" />
 
+                </x-button>
+            </a>
         </div>
         <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             <div class=" overflow-auto">

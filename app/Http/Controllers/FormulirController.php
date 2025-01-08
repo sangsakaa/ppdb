@@ -20,24 +20,6 @@ class FormulirController extends Controller
     // FORMULIR PENDAFTARAN PERTAMA DATA DIRI
     public function index(  )
     {
-        // $dataCalon = Formulir_ppdb_1::query()
-        //     ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
-        //     ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
-        //     ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
-        //     ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
-        //     ->select([
-        //         'formulir_ppdb_1.*',
-        //         'periode_pendidikan.periode',
-        //         'periode_pendidikan.semester',
-        //     // 'formulir_ppdb_1.status_pendaftaran as status_pendaftaran', // Tambahkan nama tabel di sini
-        //         'formulir_ppdb_1.created_at',
-        //         'formulir_ppdb_1.nama_lengkap',
-        //     'formulir_ppdb_1.status_pendaftaran as status_1',
-        //     'formulir_ppdb_2.status_pendaftaran as status_2',
-        //     'formulir_ppdb_3.status_pendaftaran as status_3',
-        // ])
-        //     ->paginate(3);
-
         $dataCalon = Formulir_ppdb_1::query()
             ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
             ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
@@ -403,6 +385,64 @@ class FormulirController extends Controller
         $pdf->setPaper([0, 0, 210, 330], 'portrait');
         // return $pdf->stream('contoh.pdf',$data->full_name); // Unduh file PDF
         return $pdf->stream('surat pernyataan - ' . $data->nama_lengkap . '.pdf');
+    }
+    public function DaftarCalonPesertaValid()
+    {
+        // dd($calon_peserta);
+        $periode_pendidikan_id = PeriodePendidikan::latest()->first();
+        $bulan = Carbon::now()->month;
+        $tahun = Carbon::now()->year;
+        // $tanggalCetak = Carbon::now();
+        // Case untuk bulan ke romawi
+        $bulanRomawi = match ($bulan) {
+            1 => 'I',  // Januari
+            2 => 'II', // Februari
+            3 => 'III', // Maret
+            4 => 'IV', // April
+            5 => 'V',  // Mei
+            6 => 'VI', // Juni
+            7 => 'VII', // Juli
+            8 => 'VIII', // Agustus
+            9 => 'IX',  // September
+            10 => 'X',  // Oktober
+            11 => 'XI', // November
+            12 => 'XII', // Desember
+            default => null,
+        };
+        // $user_id = Auth::id();
+        $dataCalon = Formulir_ppdb_1::query()
+            ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
+            ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
+            ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+            ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
+            ->where('formulir_ppdb_1.status_pendaftaran', '=', 'disetujui')
+            ->where('formulir_ppdb_2.status_pendaftaran', '=', 'disetujui')
+            ->where('formulir_ppdb_3.status_pendaftaran', '=', 'disetujui')
+            ->select([
+                'formulir_ppdb_1.*',
+                'periode_pendidikan.periode',
+                'periode_pendidikan.semester',
+                'formulir_ppdb_1.created_at',
+                'formulir_ppdb_1.nama_lengkap',
+                'formulir_ppdb_1.status_pendaftaran as status_1',
+                'formulir_ppdb_2.status_pendaftaran as status_2',
+                'formulir_ppdb_3.status_pendaftaran as status_3',
+            ])
+            ->get();
+
+        $pdf = Pdf::loadView('administrator.ppdb.pdf.valid', [
+            'dataCalon' => $dataCalon,
+            'bulanRomawi' => $bulanRomawi,
+            'tahun' => $tahun,
+            // 'tanggalLahir' => $tanggalLahir,
+            // 'tanggalCetak' => $tanggalCetak,
+            'periode_pendidikan_id' => $periode_pendidikan_id
+        ]);
+
+        // Set F4 paper size (210mm x 330mm) and orientation to portrait
+        $pdf->setPaper([0, 0, 210, 330], 'portrait');
+        // return $pdf->stream('contoh.pdf',$dataCalon->full_name); // Unduh file PDF
+        return $pdf->stream('surat pernyataan - '  . '.pdf');
     }
 
 

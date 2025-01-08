@@ -121,6 +121,7 @@ Route::get('/get-districts/{regencyId}', [FormulirController::class, 'getDistric
 Route::get('/get-villages/{districtId}', [FormulirController::class, 'getVillages']);
 
 Route::get('/generate-pdf/{calon_peserta}', [FormulirController::class, 'generatePdf']);
+Route::get('/data-valid-peserta/', [FormulirController::class, 'DaftarCalonPesertaValid']);
 
 
 
