@@ -27,7 +27,6 @@
                             <th class=" py-2">Periode Pendaftaran</th>
                             <th class=" py-2">Nama</th>
                             <th class=" py-2">Status </th>
-                            <th class=" py-2">Approved</th>
                             <th class=" py-2">Timeline</th>
                             <th class=" py-2">Hub</th>
                         </tr>
@@ -38,77 +37,93 @@
                             <td class="px-1 text-center">
                                 <a href="form-pendaftaran/{{$user->user_id}}">
                                     {{ $user->periode }} {{$user->semester}}
+
                                 </a>
                             </td>
                             <td class=" px-1">
                                 <a href="form-pendaftaran/{{$user->user_id}}">
                                     {{ $user->nama_lengkap }}
-
                                 </a>
                             </td>
 
                             <td class="px-1 text-center">
-                                @if ($user->status_pendaftaran == 'disetujui')
-                                <button class="  bg-green-700 px-1 rounded-md py-1 text-white" title="{{$user->status_pendaftaran}}">
-                                    <x-icons.check class="w-4 h-4" aria-hidden="true" />
-                                </button>
-                                @elseif ($user->status_pendaftaran == 'ditolak')
-                                <button class="  bg-red-700 py-1 px-1 rounded-md  text-white" title="{{$user->status_pendaftaran}}">
-                                    <x-icons.error class="w-4 h-4" aria-hidden="true" />
-                                </button>
+                                <div class=" flex grid-cols-1 gap-1">
 
-                                @elseif ($user->status_pendaftaran == 'menunggu')
-                                <button class="  bg-yellow-400  py-1 px-1 rounded-md  text-black" title="{{$user->status_pendaftaran}}">
-                                    <x-icons.loading class="w-4 h-4" aria-hidden="true" />
-                                </button>
-                                @else
-                                <p>Status Pendaftaran : Belum Terdaftar</p>
-                                @endif
-                            </td>
-                            <td class="px-1 text-center">
-                                <form action="/update-registration-status" method="POST">
-                                    @csrf
-                                    <!-- Kolom user_id atau registration_code yang sesuai, untuk mengidentifikasi record -->
-                                    <!-- <input type="hidden" name="user_id" value="{{$user->user_id}}">
-                                    <button type="submit" name="status_pendaftaran" value="disetujui" class="bg-green-600 px-1 rounded-md py-1 text-white">
-                                        <x-icons.check class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    <button type="submit" name="status_pendaftaran" value="ditolak" class="bg-red-600 px-1 rounded-md py-1 text-white">
-                                        <x-icons.error class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    <button type="submit" name="status_pendaftaran" value="menunggu" class="bg-yellow-400 px-1 rounded-md py-1">
-                                        <x-icons.loading class="w-4 h-4" aria-hidden="true" />
-                                    </button> -->
-                                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
-
-                                    @if ($user->status_pendaftaran === 'disetujui')
-                                    <!-- Tampilkan tombol "Menunggu" dan "Ditolak" -->
-                                    <button type="submit" name="status_pendaftaran" value="menunggu" class="bg-yellow-400 px-1 rounded-md py-1">
-                                        <x-icons.loading class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    <button type="submit" name="status_pendaftaran" value="ditolak" class="bg-red-600 px-1 rounded-md py-1 text-white">
-                                        <x-icons.error class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    @elseif ($user->status_pendaftaran === 'ditolak')
-                                    <!-- Tampilkan tombol "Menunggu" dan "Disetujui" -->
-                                    <button type="submit" name="status_pendaftaran" value="menunggu" class="bg-yellow-400 px-1 rounded-md py-1">
-                                        <x-icons.loading class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    <button type="submit" name="status_pendaftaran" value="disetujui" class="bg-green-600 px-1 rounded-md py-1 text-white">
-                                        <x-icons.check class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    @elseif ($user->status_pendaftaran === 'menunggu')
-                                    <!-- Tampilkan tombol "Disetujui" dan "Ditolak" -->
-                                    <button type="submit" name="status_pendaftaran" value="disetujui" class="bg-green-600 px-1 rounded-md py-1 text-white">
-                                        <x-icons.check class="w-4 h-4" aria-hidden="true" />
-                                    </button>
-                                    <button type="submit" name="status_pendaftaran" value="ditolak" class="bg-red-600 px-1 rounded-md py-1 text-white">
-                                        <x-icons.error class="w-4 h-4" aria-hidden="true" />
-                                    </button>
+                                    @if ($user->status_1)
+                                    <div class="mb-2">
+                                        @if ($user->status_1 == 'disetujui')
+                                        <button class="bg-green-700 px-2 py-1 rounded-md  text-white" title="Diterima">
+                                            1
+                                        </button>
+                                        @elseif ($user->status_1 == 'ditolak')
+                                        <button class="bg-red-700 px-2 py-1 rounded-md  text-white" title="Ditolak">
+                                            1
+                                        </button>
+                                        @elseif ($user->status_1 == 'menunggu')
+                                        <button class="bg-yellow-400 px-2 py-1 rounded-md  text-black" title="Menunggu">
+                                            1
+                                        </button>
+                                        @else
+                                        <button class=" bg-gray-300 px-2 py-1 rounded-md  text-white" title="belum mendaftar">
+                                            1
+                                        </button>
+                                        @endif
+                                    </div>
                                     @endif
 
-                                </form>
+                                    @if ($user->status_2)
+                                    <div class="mb-2">
+                                        @if ($user->status_2 == 'disetujui')
+                                        <button class="bg-green-700 px-2 py-1 rounded-md  text-white" title="Diterima">
+                                            2
+                                        </button>
+                                        @elseif ($user->status_2 == 'ditolak')
+                                        <button class="bg-red-700 px-2 py-1 rounded-md  text-white" title="Ditolak">
+                                            2
+                                        </button>
+                                        @elseif ($user->status_2 == 'menunggu')
+                                        <button class="bg-yellow-400 px-2 py-1 rounded-md  text-black" title="Menunggu">
+                                            2
+                                        </button>
+                                        @else
+                                        <button class=" bg-gray-300 px-2 py-1 rounded-md  text-white" title="belum mendaftar">
+                                            2
+                                        </button>
+                                        @endif
+                                    </div>
+                                    @endif
+
+                                    @if ($user->status_3)
+                                    <div class="mb-2">
+                                        @if ($user->status_3 == 'disetujui')
+                                        <button class="bg-green-700 px-2 rounded-md py-1  text-white" title="Diterima">
+                                            3
+                                        </button>
+                                        @elseif ($user->status_3 == 'ditolak')
+                                        <button class="bg-red-700 px-2 rounded-md py-1  text-white" title="Ditolak">
+                                            3
+                                        </button>
+                                        @elseif ($user->status_3 == 'menunggu')
+                                        <button class="bg-yellow-400 px-2 rounded-md py-1  text-black" title="Menunggu">
+                                            3
+                                        </button>
+                                        @else
+                                        <button class=" bg-green-700 px-2 rounded-md py-1  text-white" title="Diterima">
+                                            3
+                                        </button>
+                                        @endif
+                                    </div>
+                                    @endif
+                                    @if (!$user->status_1 && !$user->status_2 && !$user->status_3)
+                                    <button class=" bg-gray-300 px-1 rounded-md py-1 text-white" title="Belum Mendaftar">
+                                        3
+                                    </button>
+                                    @endif
+                                </div>
+
+
                             </td>
+
                             <td class="px-1 text-center">
                                 {{$user->created_at->diffForHumans()}}
 
