@@ -3,6 +3,7 @@
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __(' Management Calon Peserta') }}
+                @section('title', ' | User Management' )
             </h2>
 
         </div>
@@ -16,6 +17,10 @@
                 class="items-center max-w-xs gap-2">
                 <x-icons.add-user class="w-6 h-6" aria-hidden="true" />
                 <span>Formulir Pendaftaran</span>
+            </x-button>
+            <x-button>
+                <x-icons.print class="w-6 h-6" aria-hidden="true" />
+
             </x-button>
 
         </div>
@@ -53,19 +58,28 @@
                                     <div class="mb-2">
                                         @if ($user->status_1 == 'disetujui')
                                         <button class="bg-green-700 px-2 py-1 rounded-md  text-white" title="Diterima">
-                                            1
+                                            <a href="form-pendaftaran/{{$user->user_id}}">
+                                                1
+                                            </a>
                                         </button>
                                         @elseif ($user->status_1 == 'ditolak')
                                         <button class="bg-red-700 px-2 py-1 rounded-md  text-white" title="Ditolak">
-                                            1
+                                            <a href="form-pendaftaran/{{$user->user_id}}">
+                                                1
+                                            </a>
                                         </button>
                                         @elseif ($user->status_1 == 'menunggu')
                                         <button class="bg-yellow-400 px-2 py-1 rounded-md  text-black" title="Menunggu">
-                                            1
+                                            <a href="form-pendaftaran/{{$user->user_id}}">
+                                                1
+                                            </a>
                                         </button>
                                         @else
                                         <button class=" bg-gray-300 px-2 py-1 rounded-md  text-white" title="belum mendaftar">
-                                            1
+                                            <a href="form-pendaftaran/{{$user->user_id}}">
+                                                1
+                                            </a>
+
                                         </button>
                                         @endif
                                     </div>
@@ -75,15 +89,22 @@
                                     <div class="mb-2">
                                         @if ($user->status_2 == 'disetujui')
                                         <button class="bg-green-700 px-2 py-1 rounded-md  text-white" title="Diterima">
-                                            2
+                                            <a href="form-keterangan-tempat-tinggal/{{$user->user_id}}">
+                                                2
+                                            </a>
                                         </button>
                                         @elseif ($user->status_2 == 'ditolak')
                                         <button class="bg-red-700 px-2 py-1 rounded-md  text-white" title="Ditolak">
-                                            2
+                                            <a href="form-keterangan-tempat-tinggal/{{$user->user_id}}">
+                                                2
+                                            </a>
                                         </button>
                                         @elseif ($user->status_2 == 'menunggu')
                                         <button class="bg-yellow-400 px-2 py-1 rounded-md  text-black" title="Menunggu">
-                                            2
+                                            <a href="form-keterangan-tempat-tinggal/{{$user->user_id}}">
+                                                2
+                                            </a>
+
                                         </button>
                                         @else
                                         <button class=" bg-gray-300 px-2 py-1 rounded-md  text-white" title="belum mendaftar">
@@ -101,15 +122,21 @@
                                         </button>
                                         @elseif ($user->status_3 == 'ditolak')
                                         <button class="bg-red-700 px-2 rounded-md py-1  text-white" title="Ditolak">
-                                            3
+                                            <a href="form-pilih-jenjang/{{$user->user_id}}">
+                                                3
+                                            </a>
                                         </button>
                                         @elseif ($user->status_3 == 'menunggu')
                                         <button class="bg-yellow-400 px-2 rounded-md py-1  text-black" title="Menunggu">
-                                            3
+                                            <a href="form-pilih-jenjang/{{$user->user_id}}">
+                                                3
+                                            </a>
                                         </button>
                                         @else
                                         <button class=" bg-green-700 px-2 rounded-md py-1  text-white" title="Diterima">
-                                            3
+                                            <a href="form-pilih-jenjang/{{$user->user_id}}">
+                                                3
+                                            </a>
                                         </button>
                                         @endif
                                     </div>
@@ -140,9 +167,14 @@
                             </td>
                         </tr>
                         @endforeach
-
+                        <tr>
+                            <td colspan="5" class=" px-1">
+                                <p>{{ $dataCalon->links() }}</p>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
         <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">

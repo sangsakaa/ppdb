@@ -20,24 +20,45 @@ class FormulirController extends Controller
     // FORMULIR PENDAFTARAN PERTAMA DATA DIRI
     public function index(  )
     {
+        // $dataCalon = Formulir_ppdb_1::query()
+        //     ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
+        //     ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
+        //     ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+        //     ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
+        //     ->select([
+        //         'formulir_ppdb_1.*',
+        //         'periode_pendidikan.periode',
+        //         'periode_pendidikan.semester',
+        //     // 'formulir_ppdb_1.status_pendaftaran as status_pendaftaran', // Tambahkan nama tabel di sini
+        //         'formulir_ppdb_1.created_at',
+        //         'formulir_ppdb_1.nama_lengkap',
+        //     'formulir_ppdb_1.status_pendaftaran as status_1',
+        //     'formulir_ppdb_2.status_pendaftaran as status_2',
+        //     'formulir_ppdb_3.status_pendaftaran as status_3',
+        // ])
+        //     ->paginate(3);
+
         $dataCalon = Formulir_ppdb_1::query()
             ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
             ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
             ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
-            ->whereNot('formulir_ppdb_1.status_pendaftaran', 'Approved')
             ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
+            ->where(function ($query) {
+                $query->where('formulir_ppdb_1.status_pendaftaran', '!=', 'disetujui')
+                    ->orWhere('formulir_ppdb_2.status_pendaftaran', '!=', 'disetujui')
+                    ->orWhere('formulir_ppdb_3.status_pendaftaran', '!=', 'disetujui');
+            })
             ->select([
                 'formulir_ppdb_1.*',
                 'periode_pendidikan.periode',
                 'periode_pendidikan.semester',
-            // 'formulir_ppdb_1.status_pendaftaran as status_pendaftaran', // Tambahkan nama tabel di sini
-                'formulir_ppdb_1.created_at',
-                'formulir_ppdb_1.nama_lengkap',
+            'formulir_ppdb_1.created_at',
+            'formulir_ppdb_1.nama_lengkap',
             'formulir_ppdb_1.status_pendaftaran as status_1',
             'formulir_ppdb_2.status_pendaftaran as status_2',
             'formulir_ppdb_3.status_pendaftaran as status_3',
         ])
-        ->get();
+        ->paginate(3);
 
         
         return view('administrator.ppdb.index', 
