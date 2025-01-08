@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Formulir_ppdb_1;
 use App\Models\formulir_ppdb_2;
+use App\Models\Formulir_ppdb_3;
 use Barryvdh\DomPDF\Facade\Pdf;
 use function Illuminate\Log\log;
 use App\Models\PeriodePendidikan;
@@ -281,6 +282,55 @@ class FormulirController extends Controller
         $villages = DB::table('villages')->where('district_id', $districtId)->get();
         return response()->json($villages);
     }
+
+
+
+    public function formulir_ppdb_3(Request $request, $formulir_ppdb_1 = null)
+    {
+        $form1 = Formulir_ppdb_1::where(
+            'user_id',
+            $formulir_ppdb_1
+        )->first();
+        $form3 = Formulir_ppdb_3::where(
+            'user_id',
+            $formulir_ppdb_1
+        )->first();
+        return view(
+            'administrator.ppdb.form_ppdb_3',
+            [
+                'form1' => $form1,
+                'formulir_ppdb_1' => $formulir_ppdb_1,
+                'form3' => $form3,
+            ]
+        );
+    }
+    public function storeformulir_ppdb_3(Request $request, $formulir_ppdb_1)
+    {
+        $existingRegistration = Formulir_ppdb_3::where('user_id', Auth::id())->first();
+        if ($existingRegistration) {
+            // Output existing registration data for debugging
+            Log::info('Existing Registration:', ['registration' => $existingRegistration]);
+        }
+
+        $registration = Formulir_ppdb_3::updateOrCreate(
+            [
+                'user_id' => $formulir_ppdb_1,
+                'formulir_ppdb_1_id' => $request->formulir_ppdb_1_id,
+            ],
+            [
+                'jenjang' => $request->jenjang,
+                'status' => $request->status,
+                'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
+                'catatan' => $request->catatan ?? 'masih dalam antrian',
+            ]
+        );
+
+        return redirect()->back()->with(
+            'success',
+            'Pendaftaran berhasil ' . ($registration->wasRecentlyCreated ? 'dibuat.' : 'diperbarui.')
+        );
+    }
+
     public function generatePdf($calon_peserta)
     {
         // dd($calon_peserta);
@@ -307,8 +357,9 @@ class FormulirController extends Controller
         // $user_id = Auth::id();
         $data = DB::table('formulir_ppdb_1')
         ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
+            ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
         ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
-        ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'periode_pendidikan.*')
+            ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'formulir_ppdb_3.*', 'periode_pendidikan.*')
         ->where('formulir_ppdb_1.user_id', '=', $calon_peserta)
             ->first();
 
@@ -329,8 +380,6 @@ class FormulirController extends Controller
         // return $pdf->stream('contoh.pdf',$data->full_name); // Unduh file PDF
         return $pdf->stream('surat pernyataan - ' . $data->nama_lengkap . '.pdf');
     }
-
-
 
 
 

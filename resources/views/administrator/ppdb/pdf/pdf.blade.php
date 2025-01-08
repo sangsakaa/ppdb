@@ -166,6 +166,7 @@
   }
 </style>
 <div class="body">
+  @section('title', ' | User Management' )
   <div class="image-container">
     <div class="watermark">
       <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/border.png'))) }}" alt="Watermark">
@@ -241,7 +242,7 @@
         <label for="alamat">Alamat</label>
         <span class="input">: {{$data->alamat}}</span> <br>
         <label for="alamat">Program Kesetaraan</label>
-        <span class="input">: Paket </span>
+        <span class="input">: {{$data->jenjang}} </span>
       </div>
       <div>
         <div class="container">
@@ -393,7 +394,7 @@
       <label for="alamat">Alamat</label>
       <span class="input">: {{$data->alamat}}</span> <br>
       <label for="alamat">Program Kesetaraan</label>
-      <span class="input">: Paket </span>
+      <span class="input">: {{$data->jenjang}} </span>
     </div>
     <p style="font-size: 16px; text-align: justify; line-height: 1.5; margin:0; margin-top: 10px;">
       Dengan ini saya menyatakan bahwa : <br>
@@ -487,6 +488,13 @@
 
       <label for="jenis_tinggal">15. Status Tinggal</label>
       <span class="input">: {{$data->jenis_tinggal}} </span> <br>
+      <h5 style="text-align: left;">
+        C. KETERANGAN PENDAFTARAN
+      </h5>
+      <label for="alamat_lengkap">13. Status </label>
+      <span class="input">: {{$data->status}}</span> <br>
+      <label for="jenis_tinggal">15. Jenjang </label>
+      <span class="input">: {{$data->jenjang}} </span> <br>
 
       <!-- <label for="jarak_rumah_ke_sekolah" style="font-size: small;">16. Jarak Rumah ke Sekolah</label>
       <span class="input">: </span> <br> -->

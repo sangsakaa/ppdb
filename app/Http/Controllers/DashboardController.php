@@ -23,13 +23,16 @@ class DashboardController extends Controller
 
         $status_pendaftaran = DB::table('formulir_ppdb_1')
         ->rightJoin('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
+            ->rightJoin('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
         ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
         ->where('formulir_ppdb_1.user_id', Auth::id())
         ->select(
             'formulir_ppdb_1.status_pendaftaran as status_pendaftaran_1',
             'formulir_ppdb_2.status_pendaftaran as status_pendaftaran_2',
+            'formulir_ppdb_3.status_pendaftaran as status_pendaftaran_3',
             'formulir_ppdb_1.user_id as user1',
             'formulir_ppdb_2.user_id as user2',
+            'formulir_ppdb_3.user_id as user3',
         )
             ->get();
 

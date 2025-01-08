@@ -4,11 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __(' Management Calon Peserta') }}
             </h2>
-            <x-button target="_blank" href="https://github.com/kamona-wd/kui-laravel-breeze" variant="black"
-                class="justify-center max-w-xs gap-2">
-                <x-icons.github class="w-6 h-6" aria-hidden="true" />
-                <span>Star on Github</span>
-            </x-button>
+
         </div>
     </x-slot>
     <div class=" grid grid-cols-1  gap-3">
@@ -18,7 +14,7 @@
                 href="form-pendaftaran/{{Auth::id()}}"
                 variant="purple"
                 class="items-center max-w-xs gap-2">
-                <x-icons.add class="w-6 h-6" aria-hidden="true" />
+                <x-icons.add-user class="w-6 h-6" aria-hidden="true" />
                 <span>Formulir Pendaftaran</span>
             </x-button>
 
@@ -30,7 +26,6 @@
                         <tr class=" border  bg-purple-500 text-white able-auto w-full border-collapse ">
                             <th class=" py-2">Periode Pendaftaran</th>
                             <th class=" py-2">Nama</th>
-                            <th class=" py-2">Jenis Kelamin</th>
                             <th class=" py-2">Status </th>
                             <th class=" py-2">Approved</th>
                             <th class=" py-2">Timeline</th>
@@ -48,9 +43,10 @@
                             <td class=" px-1">
                                 <a href="form-pendaftaran/{{$user->user_id}}">
                                     {{ $user->nama_lengkap }}
+
                                 </a>
                             </td>
-                            <td class="px-1 text-center">{{ $user->jenis_kelamin }}</td>
+
                             <td class="px-1 text-center">
                                 @if ($user->status_pendaftaran == 'disetujui')
                                 <button class="  bg-green-700 px-1 rounded-md py-1 text-white" title="{{$user->status_pendaftaran}}">
@@ -73,7 +69,7 @@
                                 <form action="/update-registration-status" method="POST">
                                     @csrf
                                     <!-- Kolom user_id atau registration_code yang sesuai, untuk mengidentifikasi record -->
-                                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
+                                    <!-- <input type="hidden" name="user_id" value="{{$user->user_id}}">
                                     <button type="submit" name="status_pendaftaran" value="disetujui" class="bg-green-600 px-1 rounded-md py-1 text-white">
                                         <x-icons.check class="w-4 h-4" aria-hidden="true" />
                                     </button>
@@ -82,7 +78,35 @@
                                     </button>
                                     <button type="submit" name="status_pendaftaran" value="menunggu" class="bg-yellow-400 px-1 rounded-md py-1">
                                         <x-icons.loading class="w-4 h-4" aria-hidden="true" />
+                                    </button> -->
+                                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
+
+                                    @if ($user->status_pendaftaran === 'disetujui')
+                                    <!-- Tampilkan tombol "Menunggu" dan "Ditolak" -->
+                                    <button type="submit" name="status_pendaftaran" value="menunggu" class="bg-yellow-400 px-1 rounded-md py-1">
+                                        <x-icons.loading class="w-4 h-4" aria-hidden="true" />
                                     </button>
+                                    <button type="submit" name="status_pendaftaran" value="ditolak" class="bg-red-600 px-1 rounded-md py-1 text-white">
+                                        <x-icons.error class="w-4 h-4" aria-hidden="true" />
+                                    </button>
+                                    @elseif ($user->status_pendaftaran === 'ditolak')
+                                    <!-- Tampilkan tombol "Menunggu" dan "Disetujui" -->
+                                    <button type="submit" name="status_pendaftaran" value="menunggu" class="bg-yellow-400 px-1 rounded-md py-1">
+                                        <x-icons.loading class="w-4 h-4" aria-hidden="true" />
+                                    </button>
+                                    <button type="submit" name="status_pendaftaran" value="disetujui" class="bg-green-600 px-1 rounded-md py-1 text-white">
+                                        <x-icons.check class="w-4 h-4" aria-hidden="true" />
+                                    </button>
+                                    @elseif ($user->status_pendaftaran === 'menunggu')
+                                    <!-- Tampilkan tombol "Disetujui" dan "Ditolak" -->
+                                    <button type="submit" name="status_pendaftaran" value="disetujui" class="bg-green-600 px-1 rounded-md py-1 text-white">
+                                        <x-icons.check class="w-4 h-4" aria-hidden="true" />
+                                    </button>
+                                    <button type="submit" name="status_pendaftaran" value="ditolak" class="bg-red-600 px-1 rounded-md py-1 text-white">
+                                        <x-icons.error class="w-4 h-4" aria-hidden="true" />
+                                    </button>
+                                    @endif
+
                                 </form>
                             </td>
                             <td class="px-1 text-center">

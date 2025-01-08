@@ -52,13 +52,14 @@
         return collect([
         ['status' => $item->status_pendaftaran_1, 'user' => $item->user1, 'label' => 'Data Diri'],
         ['status' => $item->status_pendaftaran_2, 'user' => $item->user2, 'label' => 'Keterangan Tempat Tinggal'],
+        ['status' => $item->status_pendaftaran_3, 'user' => $item->user3, 'label' => 'Status Pendaftar'],
         ])->filter(function ($status) {
         return !is_null($status['status']);
         });
         });
         @endphp
         <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <div class="w-full grid grid-cols-1 sm:grid-cols-2  gap-4">
+            <div class="w-full grid grid-cols-1 sm:grid-cols-4  gap-4">
                 @foreach ($statuses as $status)
                 @php
                 switch ($status['status']) {
