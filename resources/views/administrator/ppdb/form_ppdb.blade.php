@@ -86,6 +86,7 @@
                     </div>
                 </div>
 
+
                 @role('administrator')
                 <div class="mb-2">
                     <label for="status_pendaftaran" class="block text-gray-700 font-medium">Status Pendaftaran</label>

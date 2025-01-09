@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Formulir_ppdb_1;
 use App\Models\formulir_ppdb_2;
 use App\Models\Formulir_ppdb_3;
+use App\Models\Formulir_ppdb_4;
 use Barryvdh\DomPDF\Facade\Pdf;
 use function Illuminate\Log\log;
 use App\Models\PeriodePendidikan;
@@ -21,26 +22,27 @@ class FormulirController extends Controller
     public function index(  )
     {
         $dataCalon = Formulir_ppdb_1::query()
-            ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
-            ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
-            ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+            ->leftjoin('users', 'formulir_ppdb_1.user_id', 'users.id')
+            ->leftjoin('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
+            ->leftjoin('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
+            ->leftjoin('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+            ->leftjoin('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
             ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
-            ->where(function ($query) {
-                $query->where('formulir_ppdb_1.status_pendaftaran', '!=', 'disetujui')
-                    ->orWhere('formulir_ppdb_2.status_pendaftaran', '!=', 'disetujui')
-                    ->orWhere('formulir_ppdb_3.status_pendaftaran', '!=', 'disetujui');
-            })
             ->select([
                 'formulir_ppdb_1.*',
-                'periode_pendidikan.periode',
-                'periode_pendidikan.semester',
+            'users.email',
+            'jenjang',
+            'periode_pendidikan.periode',
+            'periode_pendidikan.semester',
             'formulir_ppdb_1.created_at',
             'formulir_ppdb_1.nama_lengkap',
             'formulir_ppdb_1.status_pendaftaran as status_1',
             'formulir_ppdb_2.status_pendaftaran as status_2',
             'formulir_ppdb_3.status_pendaftaran as status_3',
+            'formulir_ppdb_4.status_pendaftaran as status_4',
         ])
-        ->paginate(3);
+        ->paginate(10);
+
 
         
         return view('administrator.ppdb.index', 
@@ -124,7 +126,9 @@ class FormulirController extends Controller
                 'catatan' => $request->catatan,
             ]
             
+            
         );
+        
 
         return redirect()->back()->with('success', 'Pendaftaran berhasil ' . ($registration->wasRecentlyCreated ? 'dibuat.' : 'diperbarui.'));
 
@@ -337,6 +341,61 @@ class FormulirController extends Controller
         );
     }
 
+    // formulir 4 riwayat pendidik
+    public function formulir_ppdb_4(Request $request, $formulir_ppdb_1 = null)
+    {
+        // dd($formulir_ppdb_1);
+        $form1 = Formulir_ppdb_1::where(
+            'user_id',
+            $formulir_ppdb_1
+        )->first();
+        $form4 = formulir_ppdb_4::where(
+            'user_id',
+            $formulir_ppdb_1
+        )->first();
+
+        return view(
+            'administrator.ppdb.form_ppdb_4',
+            [
+                'formulir_ppdb_1' => $formulir_ppdb_1,
+                'form1' => $form1,
+                'form4' => $form4
+            ]
+        );
+    }
+    public function storeformulir_ppdb_4(Request $request, $formulir_ppdb_1 = null)
+    {
+
+        // dd($request);
+        $existingRegistration = formulir_ppdb_4::where('user_id', $formulir_ppdb_1)->first();
+        if ($existingRegistration) {
+            // Output existing registration data for debugging
+            Log::info('Existing Registration:', ['registration' => $existingRegistration]);
+        }
+
+        $registration = Formulir_ppdb_4::updateOrCreate(
+            [
+                'user_id' => $formulir_ppdb_1,
+            ],
+            [
+                'formulir_ppdb_1_id' => $request->formulir_ppdb_1_id,
+                'alamat' => $request->alamat,
+                'nisn' => $request->nisn,
+                'npsn_sekolah' => $request->npsn_sekolah,
+                'nama_sekolah' => $request->nama_sekolah,
+                'jenjang_sekolah' => $request->jenjang_sekolah,
+                'status_sekolah' => $request->status_sekolah,
+                'tahun_lulus' => $request->tahun_lulus,
+                'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
+                'catatan' => $request->catatan ?? 'masih dalam antrian',
+            ]
+        );
+        return redirect()->back()->with(
+            'success',
+            'Pendaftaran berhasil ' . ($registration->wasRecentlyCreated ? 'dibuat.' : 'diperbarui.')
+        );
+    }
+
     public function generatePdf($calon_peserta)
     {
         // dd($calon_peserta);
@@ -386,6 +445,8 @@ class FormulirController extends Controller
         // return $pdf->stream('contoh.pdf',$data->full_name); // Unduh file PDF
         return $pdf->stream('surat pernyataan - ' . $data->nama_lengkap . '.pdf');
     }
+
+
     public function DaftarCalonPesertaValid()
     {
         // dd($calon_peserta);
@@ -427,6 +488,7 @@ class FormulirController extends Controller
                 'formulir_ppdb_1.status_pendaftaran as status_1',
                 'formulir_ppdb_2.status_pendaftaran as status_2',
                 'formulir_ppdb_3.status_pendaftaran as status_3',
+            'jenjang'
             ])
             ->get();
 

@@ -67,6 +67,9 @@
                         <span>Kembali</span>
                     </x-button>
                     <x-button>simpan</x-button>
+                    <x-button href="/form-riwayat-pendidikan/{{$formulir_ppdb_1}}">
+                        Lanjutkan
+                    </x-button>
                 </div>
         </div>
         </form>

@@ -180,15 +180,10 @@
         <span class="">Program Paket A Setara SD, Paket B Setara SMP, Dan Paket C Setara SMA</span> <br>
         Alamat: Jl. Negara Km.180 Desa Muara Langon Kecamatan Muara Komam Kabupaten Paser
         <hr class="thin-line-cover">
-
       </p>
       <p class="smaller-text">
         Program Paket A Setara SD, Paket B Setara SMP, Dan Paket C Setara SMA
         <br>
-        <span style="text-transform: uppercase; border: 1px solid black; padding: 5px;">
-          PROGRAM KESETARAAN TAHUN PELAJARAN {{$periode_pendidikan_id->periode}} {{$periode_pendidikan_id->semester}}
-        </span>
-
       </p> <br>
       <div class="full-width-border">
         <center>
@@ -234,28 +229,87 @@
     </div>
   </div>
   <div>
+    <style>
+      .text-h1 {
+        font-size: large;
+      }
+    </style>
     <div>
-      Daftar CalonPeserta Valid
+      <p style="text-align: center; margin:0; text-transform: uppercase;" class="text-h1"> Daftar Calon Peserta Valid <br>
+        <span>
+          TAHUN PELAJARAN {{$periode_pendidikan_id->periode}} {{$periode_pendidikan_id->semester}}
+        </span>
+      </p>
+      <hr class="thin-line-cover">
+
     </div>
     <table class="min-w-full table-auto border-collapse">
       <thead>
         <tr>
-          <th class="px-4 py-2 border-b">No</th>
-          <th class="px-4 py-2 border-b">Nama Lengkap</th>
-          <th class="px-4 py-2 border-b">Periode</th>
+          <th rowspan="2" class="px-4 py-2 border-b">No</th>
+          <th rowspan="2" class="px-4 py-2 border-b">Nama Lengkap</th>
+          <th rowspan="2" class="px-4 py-2 border-b"> Jenjang</th>
+          <th rowspan="2" class="px-4 py-2 border-b">Periode</th>
+          <th colspan="7" class="px-4 py-2 border-b">Status</th>
+          <th rowspan="2" class="px-4 py-2 border-b">Tanggal <br> Pendaftaran</th>
+        </tr>
+        <tr>
           <th class="px-4 py-2 border-b"> 1 </th>
           <th class="px-4 py-2 border-b"> 2 </th>
           <th class="px-4 py-2 border-b"> 3 </th>
-
-          <th class="px-4 py-2 border-b">Tanggal <br> Pendaftaran</th>
+          <th class="px-4 py-2 border-b"> 4 </th>
+          <th class="px-4 py-2 border-b"> 5 </th>
+          <th class="px-4 py-2 border-b"> 6 </th>
+          <th class="px-4 py-2 border-b"> 7 </th>
         </tr>
       </thead>
       <tbody>
         @foreach ($dataCalon as $calon)
         <tr>
           <td class="px-4 py-2 border-b" style="text-transform: capitalize; text-align: center;">{{ $loop->iteration }}</td>
-          <td class="px-4 py-2 border-b" style="text-transform: capitalize;">{{ $calon->nama_lengkap }}</td>
+          <td class="px-4 py-2 border-b" style="text-transform: capitalize; ">{{ $calon->nama_lengkap }}</td>
+          <td class="px-4 py-2 border-b" style="text-transform: capitalize; text-align: center;">{{ $calon->jenjang }}</td>
           <td class="px-4 py-2 border-b" style="text-align: center;">{{ $calon->periode }}</td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_1 == 'disetujui')
+            <img class="logo"
+              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
+              alt="Watermark"
+              style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_1 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_1 == 'disetujui')
+            <img class="logo"
+              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
+              alt="Watermark"
+              style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_1 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_1 == 'disetujui')
+            <img class="logo"
+              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
+              alt="Watermark"
+              style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_1 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_1 == 'disetujui')
+            <img class="logo"
+              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
+              alt="Watermark"
+              style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_1 }}
+            @endif
+          </td>
           <td class="px-4 py-2 border-b text-center" style="text-align: center;">
             @if($calon->status_1 == 'disetujui')
             <img class="logo"

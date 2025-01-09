@@ -31,8 +31,9 @@
                 <table class="table text-sm border w-full capitalize">
                     <thead>
                         <tr class=" border  bg-purple-500 text-white able-auto w-full border-collapse ">
-                            <th class=" py-2">Periode Pendaftaran</th>
-                            <th class=" py-2">Nama</th>
+                            <th class=" py-2">Periode</th>
+                            <th class=" py-2 text-left">Nama</th>
+                            <th class=" py-2">Jenjang</th>
                             <th class=" py-2">Status </th>
                             <th class=" py-2">Timeline</th>
                             <th class=" py-2">Hub</th>
@@ -40,122 +41,74 @@
                     </thead>
                     <tbody>
                         @foreach ($dataCalon as $user)
-                        <tr class="border py-1 hover:bg-purple-100  even:bg-gray-200">
+                        <tr class="border py-1 hover:bg-purple-100  even:bg-purple-200">
                             <td class="px-1 text-center">
                                 <a href="form-pendaftaran/{{$user->user_id}}">
                                     {{ $user->periode }} {{$user->semester}}
-
                                 </a>
                             </td>
                             <td class=" px-1">
+                                <a href="form-pendaftaran/{{$user->user_id}}" title="{{$user->email}}">
+                                    {{ $user->nama_lengkap }} <br>
+                                    <small style="margin:0;">{{$user->email}}</small>
+                                </a>
+                            </td>
+                            <td class=" px-1 text-center">
                                 <a href="form-pendaftaran/{{$user->user_id}}">
-                                    {{ $user->nama_lengkap }}
+                                    {{ $user->jenjang }}
                                 </a>
                             </td>
 
-                            <td class="px-1 text-center">
-                                <div class=" flex grid-cols-1 gap-1">
+                            <td class="px-1  text-center">
+                                <div class=" flex grid-cols-1 gap-1 justify-center">
+                                    @php
+                                    $statuses = [
+                                    1 => 'form-pendaftaran',
+                                    2 => 'form-keterangan-tempat-tinggal',
+                                    3 => 'form-pilih-jenjang',
+                                    4 => 'form-riwayat-pendidikan'
+                                    ];
+                                    @endphp
 
-                                    @if ($user->status_1)
+                                    @foreach ($statuses as $key => $route)
+                                    @php
+                                    $status = $user->{'status_'.$key} ?? null;
+                                    $colors = [
+                                    'disetujui' => 'bg-green-700 text-white',
+                                    'ditolak' => 'bg-red-700 text-white',
+                                    'menunggu' => 'bg-yellow-400 text-black',
+                                    null => 'bg-gray-200 text-white',
+                                    ];
+                                    $color = $colors[$status] ?? $colors[null];
+                                    @endphp
+
                                     <div class="mb-2">
-                                        @if ($user->status_1 == 'disetujui')
-                                        <button class="bg-green-700 px-2 py-1 rounded-md  text-white" title="Diterima">
-                                            <a href="form-pendaftaran/{{$user->user_id}}">
-                                                1
+                                        <button class="{{ $color }} w-5 h-5 rounded-full flex items-center justify-center" title="{{ ucfirst($status) ?: 'Belum Mendaftar' }}">
+                                            <!-- Tambahkan konten tombol, seperti ikon atau teks -->
+                                            @if ($status !== null && $status !== 'belum mendaftar')
+                                            <a href="{{ $route }}/{{ $user->user_id }}">
+                                                {{ $key }}
                                             </a>
-                                        </button>
-                                        @elseif ($user->status_1 == 'ditolak')
-                                        <button class="bg-red-700 px-2 py-1 rounded-md  text-white" title="Ditolak">
-                                            <a href="form-pendaftaran/{{$user->user_id}}">
-                                                1
-                                            </a>
-                                        </button>
-                                        @elseif ($user->status_1 == 'menunggu')
-                                        <button class="bg-yellow-400 px-2 py-1 rounded-md  text-black" title="Menunggu">
-                                            <a href="form-pendaftaran/{{$user->user_id}}">
-                                                1
-                                            </a>
-                                        </button>
-                                        @else
-                                        <button class=" bg-gray-300 px-2 py-1 rounded-md  text-white" title="belum mendaftar">
-                                            <a href="form-pendaftaran/{{$user->user_id}}">
-                                                1
-                                            </a>
+                                            @else
+                                            {{ $key }}
+                                            @endif
 
                                         </button>
-                                        @endif
+
+
                                     </div>
-                                    @endif
+                                    @endforeach
 
-                                    @if ($user->status_2)
-                                    <div class="mb-2">
-                                        @if ($user->status_2 == 'disetujui')
-                                        <button class="bg-green-700 px-2 py-1 rounded-md  text-white" title="Diterima">
-                                            <a href="form-keterangan-tempat-tinggal/{{$user->user_id}}">
-                                                2
-                                            </a>
-                                        </button>
-                                        @elseif ($user->status_2 == 'ditolak')
-                                        <button class="bg-red-700 px-2 py-1 rounded-md  text-white" title="Ditolak">
-                                            <a href="form-keterangan-tempat-tinggal/{{$user->user_id}}">
-                                                2
-                                            </a>
-                                        </button>
-                                        @elseif ($user->status_2 == 'menunggu')
-                                        <button class="bg-yellow-400 px-2 py-1 rounded-md  text-black" title="Menunggu">
-                                            <a href="form-keterangan-tempat-tinggal/{{$user->user_id}}">
-                                                2
-                                            </a>
-
-                                        </button>
-                                        @else
-                                        <button class=" bg-gray-300 px-2 py-1 rounded-md  text-white" title="belum mendaftar">
-                                            2
-                                        </button>
-                                        @endif
-                                    </div>
-                                    @endif
-
-                                    @if ($user->status_3)
-                                    <div class="mb-2">
-                                        @if ($user->status_3 == 'disetujui')
-                                        <button class="bg-green-700 px-2 rounded-md py-1  text-white" title="Diterima">
-                                            3
-                                        </button>
-                                        @elseif ($user->status_3 == 'ditolak')
-                                        <button class="bg-red-700 px-2 rounded-md py-1  text-white" title="Ditolak">
-                                            <a href="form-pilih-jenjang/{{$user->user_id}}">
-                                                3
-                                            </a>
-                                        </button>
-                                        @elseif ($user->status_3 == 'menunggu')
-                                        <button class="bg-yellow-400 px-2 rounded-md py-1  text-black" title="Menunggu">
-                                            <a href="form-pilih-jenjang/{{$user->user_id}}">
-                                                3
-                                            </a>
-                                        </button>
-                                        @else
-                                        <button class=" bg-green-700 px-2 rounded-md py-1  text-white" title="Diterima">
-                                            <a href="form-pilih-jenjang/{{$user->user_id}}">
-                                                3
-                                            </a>
-                                        </button>
-                                        @endif
-                                    </div>
-                                    @endif
-                                    @if (!$user->status_1 && !$user->status_2 && !$user->status_3)
-                                    <button class=" bg-gray-300 px-1 rounded-md py-1 text-white" title="Belum Mendaftar">
-                                        3
+                                    @if (!$user->status_1 && !$user->status_2 && !$user->status_3 && !$user->status_4)
+                                    <button class="bg-gray-200 px-1 py-1 rounded-md text-white" title="Belum Mendaftar">
+                                        Belum Mendaftar
                                     </button>
                                     @endif
+
                                 </div>
-
-
                             </td>
-
                             <td class="px-1 text-center">
                                 {{$user->created_at->diffForHumans()}}
-
                             </td>
                             <td class=" text-center">
                                 <div class=" flex gap-2">
