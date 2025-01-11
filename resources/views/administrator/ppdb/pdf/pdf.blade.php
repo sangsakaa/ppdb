@@ -518,11 +518,10 @@
         E. KETERANGAN AYAH
       </h5>
       <label for="nama_ayah">25. Nama</label>
-      <span class="input">: </span> <br>
+      <span class="input">: {{$data->nama_ayah}} </span> <br>
 
       <label for="tanggal_lahir_ayah">26. Tanggal Lahir</label>
-      <span class="input">: </span> <br>
-
+      <span class="input">: {{$data->agama_ayah}} </span> <br>
       <label for="agama_ayah">27. Agama</label>
       <span class="input">: </span> <br>
 
@@ -538,13 +537,13 @@
         F. KETERANGAN IBU
       </h5>
       <label for="nama_ayah">25. Nama</label>
-      <span class="input">: </span> <br>
+      <span class="input">: {{$data->nama_ibu}} </span> <br>
 
       <label for="tanggal_lahir_ibu">26. Tanggal Lahir</label>
       <span class="input">: </span> <br>
 
       <label for="agama_ibu">27. Agama</label>
-      <span class="input">: </span> <br>
+      <span class="input">: {{$data->agama_ibu}} </span> <br>
 
       <label for="kewarganegaraan_ibu">28. Kewarganegaraan</label>
       <span class="input">: </span> <br>

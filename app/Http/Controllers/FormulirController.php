@@ -434,6 +434,8 @@ class FormulirController extends Controller
                 'formulir_ppdb_1_id' => $request->formulir_ppdb_1_id,
                 'nama_ayah' => $request->nama_ayah,
                 'nama_ibu' => $request->nama_ibu,
+                'agama_ibu' => $request->agama_ibu,
+                'agama_ayah' => $request->agama_ayah,
                 'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
                 'catatan' => $request->catatan ?? 'masih dalam antrian',
             ]
@@ -473,8 +475,9 @@ class FormulirController extends Controller
         ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
             ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
             ->join('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
+            ->join('formulir_ppdb_5', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_5.user_id')
         ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
-            ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'formulir_ppdb_3.*', 'formulir_ppdb_4.*', 'periode_pendidikan.*')
+            ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'formulir_ppdb_3.*', 'formulir_ppdb_4.*', 'formulir_ppdb_5.*', 'periode_pendidikan.*')
         ->where('formulir_ppdb_1.user_id', '=', $calon_peserta)
             ->first();
 
