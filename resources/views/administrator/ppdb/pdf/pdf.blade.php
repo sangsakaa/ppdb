@@ -480,91 +480,40 @@
       <h5 style="text-align: left;">
         B. KETERANGAN TEMPAT TINGGAL
       </h5>
-      <label for="alamat_lengkap">13. Alamat Lengkap</label>
+      <label for="alamat_lengkap">6. Alamat Lengkap</label>
       <span class="input">: {{$data->alamat}}</span> <br>
 
-      <label for="nomor_whatsapp">14. Nomor WhatsApp</label>
+      <label for="nomor_whatsapp">7. Nomor WhatsApp</label>
       <span class="input">: {{ implode('-', str_split($data->nomor_telepon, 4)) }}</span> <br>
 
-      <label for="jenis_tinggal">15. Status Tinggal</label>
+      <label for="jenis_tinggal">8. Status Tinggal</label>
       <span class="input">: {{$data->jenis_tinggal}} </span> <br>
       <h5 style="text-align: left;">
         C. KETERANGAN PENDAFTARAN
       </h5>
-      <label for="alamat_lengkap">13. Status </label>
+      <label for="alamat_lengkap">9. Status </label>
       <span class="input">: {{$data->status}}</span> <br>
-      <label for="jenis_tinggal">15. Jenjang </label>
+      <label for="jenis_tinggal">10. Jenjang </label>
       <span class="input">: {{$data->jenjang}} </span> <br>
+      <h5 style="text-align: left;">
+        D. RIWAYAT PENDIDIKAN
+      </h5>
+      <label for="alamat_lengkap">11. NISN </label>
+      <span class="input">: {{$data->nisn}}</span> <br>
+      <label for="alamat_lengkap">12. NPSN </label>
+      <span class="input">: {{$data->npsn_sekolah}}</span> <br>
+      <label for="jenis_tinggal">13. Nama Sekolah </label>
+      <span style="text-transform: uppercase;" class="input">: {{$data->nama_sekolah}} </span> <br>
+      <label for="jenis_tinggal">14. Jenjang </label>
+      <span style="text-transform: uppercase;" class="input">: {{$data->jenjang_sekolah}} </span> <br>
+      <label for="jenis_tinggal">15. Status Sekolah </label>
+      <span style="text-transform: uppercase;" class="input">: {{$data->status_sekolah}} </span> <br>
+      <label for="jenis_tinggal">16. Tahun Lulus </label>
+      <span style="text-transform: uppercase;" class="input">: {{$data->tahun_lulus}} </span> <br>
 
       <!-- <label for="jarak_rumah_ke_sekolah" style="font-size: small;">16. Jarak Rumah ke Sekolah</label>
       <span class="input">: </span> <br> -->
 
-      <h5 style="text-align: left;">
-        C. KETERANGAN KESEHATAN
-      </h5>
-      <label for="golongan_darah">17. Golongan Darah</label>
-      <span class="input">: </span> <br>
-
-      <label for="riwayat_penyakit">18. Riwayat Penyakit</label>
-      <span class="input">: </span> <br>
-
-      <label for="kelainan_jasmani">19. Kelainan Jasmani</label>
-      <span class="input">: </span> <br>
-
-      <label for="tinggi_badan">20. Tinggi Badan</label>
-      <span class="input">: </span> <br>
-
-      <label for="berat_badan">21. Berat Badan</label>
-      <span class="input">: </span> <br>
-      <h5 style="text-align: left;">
-        D. KETERANGAN PENDIDIKAN
-      </h5>
-      <label for="pendidikan_sebelumnya">
-        <span class="">22. Pendidikan Sebelumnya</span>
-      </label>
-      <span class="input">: </span> <br>
-      <label for="lulusan_dari">
-        <span class="sub">a. Lulusan Dari</span>
-      </label>
-      <span class="input">: </span> <br>
-
-      <label for="lama_belajar">
-        <span class="sub">b. Lama Belajar</span>
-      </label>
-      <span class="input">: </span> <br>
-      <span class="">
-        <label for="pindahan_dari">23. Pindahan Dari</label>
-        <span class="input">: </span> <br>
-      </span>
-      <label for="alasan_pindah">
-        <span class="sub">
-          a. Alasan Pindah
-        </span>
-      </label>
-      <span class="input">: </span> <br>
-
-      <label for="diterima_di_kelas" class="sub">
-        24. Diterima di Sekolah
-      </label>
-      <span class="input ">: </span> <br>
-      <label for="diterima_di_kelas" class="sub">
-        <span class="sub">
-          a. Diterima di Kelas
-        </span>
-      </label>
-      <span class="input ">: </span> <br>
-      <label for="program">
-        <span class="sub">
-          b. Program
-        </span>
-      </label>
-      <span class="input">: </span> <br>
-      <label for="tanggal_diterima">
-        <span class="sub">
-          c. Tanggal Diterima
-        </span>
-      </label>
-      <span class="input">: </span> <br>
       <h5 style="text-align: left;">
         E. KETERANGAN AYAH
       </h5>
@@ -606,3 +555,69 @@
       <label for="pekerjaan_ibu">30. Pekerjaan</label>
       <span class="input">: </span> <br>
     </div>
+    <!-- <h5 style="text-align: left;">
+      D. KETERANGAN KESEHATAN
+    </h5>
+    <label for="golongan_darah">17. Golongan Darah</label>
+    <span class="input">: </span> <br>
+
+    <label for="riwayat_penyakit">18. Riwayat Penyakit</label>
+    <span class="input">: </span> <br>
+
+    <label for="kelainan_jasmani">19. Kelainan Jasmani</label>
+    <span class="input">: </span> <br>
+
+    <label for="tinggi_badan">20. Tinggi Badan</label>
+    <span class="input">: </span> <br>
+
+    <label for="berat_badan">21. Berat Badan</label>
+    <span class="input">: </span> <br>
+    <h5 style="text-align: left;">
+      D. KETERANGAN PENDIDIKAN
+    </h5> -->
+    <!-- <label for="pendidikan_sebelumnya">
+      <span class="">22. Pendidikan Sebelumnya</span>
+    </label>
+    <span class="input">: </span> <br>
+    <label for="lulusan_dari">
+      <span class="sub">a. Lulusan Dari</span>
+    </label>
+    <span class="input">: </span> <br>
+
+    <label for="lama_belajar">
+      <span class="sub">b. Lama Belajar</span>
+    </label>
+    <span class="input">: </span> <br>
+    <span class="">
+      <label for="pindahan_dari">23. Pindahan Dari</label>
+      <span class="input">: </span> <br>
+    </span>
+    <label for="alasan_pindah">
+      <span class="sub">
+        a. Alasan Pindah
+      </span>
+    </label>
+    <span class="input">: </span> <br>
+
+    <label for="diterima_di_kelas" class="sub">
+      24. Diterima di Sekolah
+    </label>
+    <span class="input ">: </span> <br>
+    <label for="diterima_di_kelas" class="sub">
+      <span class="sub">
+        a. Diterima di Kelas
+      </span>
+    </label>
+    <span class="input ">: </span> <br>
+    <label for="program">
+      <span class="sub">
+        b. Program
+      </span>
+    </label>
+    <span class="input">: </span> <br>
+    <label for="tanggal_diterima">
+      <span class="sub">
+        c. Tanggal Diterima
+      </span>
+    </label>
+    <span class="input">: </span> <br> -->

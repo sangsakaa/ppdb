@@ -50,12 +50,12 @@
                             <td class=" px-1">
                                 <a href="form-pendaftaran/{{$user->user_id}}" title="{{$user->email}}">
                                     {{ $user->nama_lengkap }} <br>
-                                    <small style="margin:0;">{{$user->email}}</small>
+                                    <!-- <small style="margin:0;">{{$user->email}}</small> -->
                                 </a>
                             </td>
                             <td class=" px-1 text-center">
                                 <a href="form-pendaftaran/{{$user->user_id}}">
-                                    {{ $user->jenjang }}
+                                    {{ $user->jenjang ??'-' }}
                                 </a>
                             </td>
 
@@ -66,7 +66,8 @@
                                     1 => 'form-pendaftaran',
                                     2 => 'form-keterangan-tempat-tinggal',
                                     3 => 'form-pilih-jenjang',
-                                    4 => 'form-riwayat-pendidikan'
+                                    4 => 'form-riwayat-pendidikan',
+                                    5 => 'form-keterangan-orang-tua',
                                     ];
                                     @endphp
 

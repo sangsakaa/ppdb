@@ -9,6 +9,7 @@ use App\Models\Formulir_ppdb_1;
 use App\Models\formulir_ppdb_2;
 use App\Models\Formulir_ppdb_3;
 use App\Models\Formulir_ppdb_4;
+use App\Models\Formulir_ppdb_5;
 use Barryvdh\DomPDF\Facade\Pdf;
 use function Illuminate\Log\log;
 use App\Models\PeriodePendidikan;
@@ -27,6 +28,7 @@ class FormulirController extends Controller
             ->leftjoin('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
             ->leftjoin('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
             ->leftjoin('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
+            ->leftjoin('formulir_ppdb_5', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_5.user_id')
             ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
             ->select([
                 'formulir_ppdb_1.*',
@@ -40,11 +42,9 @@ class FormulirController extends Controller
             'formulir_ppdb_2.status_pendaftaran as status_2',
             'formulir_ppdb_3.status_pendaftaran as status_3',
             'formulir_ppdb_4.status_pendaftaran as status_4',
+            'formulir_ppdb_5.status_pendaftaran as status_5',
         ])
         ->paginate(10);
-
-
-        
         return view('administrator.ppdb.index', 
         [   
             'dataCalon' => $dataCalon,
@@ -54,7 +54,7 @@ class FormulirController extends Controller
     public function create( $formulir_ppdb_1)
     {   
         $formulir_ppdb_1 = Formulir_ppdb_1::where('user_id', $formulir_ppdb_1)->first();
-        return view('administrator.ppdb.form_ppdb', [
+        return view('administrator.ppdb.form_ppdb_1', [
             'formulir_ppdb_1' => $formulir_ppdb_1,
         ]);
 
@@ -395,6 +395,55 @@ class FormulirController extends Controller
             'Pendaftaran berhasil ' . ($registration->wasRecentlyCreated ? 'dibuat.' : 'diperbarui.')
         );
     }
+    public function formulir_ppdb_5(Request $request, $formulir_ppdb_1 = null)
+    {
+        // dd($formulir_ppdb_1);
+        $form1 = Formulir_ppdb_1::where(
+            'user_id',
+            $formulir_ppdb_1
+        )->first();
+        $form5 = formulir_ppdb_5::where(
+            'user_id',
+            $formulir_ppdb_1
+        )->first();
+
+        return view(
+            'administrator.ppdb.form_ppdb_5',
+            [
+                'formulir_ppdb_1' => $formulir_ppdb_1,
+                'form1' => $form1,
+                'form5' => $form5
+            ]
+        );
+    }
+    public function storeformulir_ppdb_5(Request $request, $formulir_ppdb_1 = null)
+    {
+
+        // dd($request);
+        $existingRegistration = Formulir_ppdb_5::where('user_id', $formulir_ppdb_1)->first();
+        if ($existingRegistration) {
+            // Output existing registration data for debugging
+            Log::info('Existing Registration:', ['registration' => $existingRegistration]);
+        }
+
+        $registration = Formulir_ppdb_5::updateOrCreate(
+            [
+                'user_id' => $formulir_ppdb_1,
+            ],
+            [
+                'formulir_ppdb_1_id' => $request->formulir_ppdb_1_id,
+                'nama_ayah' => $request->nama_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
+                'catatan' => $request->catatan ?? 'masih dalam antrian',
+            ]
+        );
+        return redirect()->back()->with(
+            'success',
+            'Pendaftaran berhasil ' . ($registration->wasRecentlyCreated ? 'dibuat.' : 'diperbarui.')
+        );
+    }
+    
 
     public function generatePdf($calon_peserta)
     {
@@ -423,8 +472,9 @@ class FormulirController extends Controller
         $data = DB::table('formulir_ppdb_1')
         ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
             ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+            ->join('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
         ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
-            ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'formulir_ppdb_3.*', 'periode_pendidikan.*')
+            ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'formulir_ppdb_3.*', 'formulir_ppdb_4.*', 'periode_pendidikan.*')
         ->where('formulir_ppdb_1.user_id', '=', $calon_peserta)
             ->first();
 

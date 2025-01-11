@@ -17,6 +17,10 @@
                 <x-icons.arrow-back class="w-6 h-6" aria-hidden="true" />
                 <span>Back</span>
             </x-button>
+            <x-button>
+                <x-icons.user-circle class="w-6 h-6" aria-hidden="true" />
+                <span> | Data Diri</span>
+            </x-button>
             @endrole
         </div>
         <div class="px-4 py-2  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">

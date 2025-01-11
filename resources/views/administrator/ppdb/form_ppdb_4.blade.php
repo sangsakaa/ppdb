@@ -89,7 +89,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="alamat" class="block text-gray-700 font-medium">Alamat Sekolah</label>
-                    <textarea id="alamat" name="alamat" class="w-full border border-gray-300 rounded-lg p-2 mt-1" rows="3">{{ old('alamat', $form4->alamat ?? '') }}</textarea>
+                    <textarea id="alamat" name="alamat" class="w-full border border-gray-300 rounded-lg p-2 mt-1" rows="3" required>{{ old('alamat', $form4->alamat ?? '') }}</textarea>
                 </div>
 
                 @role('administrator')
@@ -112,6 +112,9 @@
                         <span>Kembali</span>
                     </x-button>
                     <x-button>simpan</x-button>
+                    <x-button href="/form-keterangan-orang-tua/{{$formulir_ppdb_1}}">
+                        Lanjutkan
+                    </x-button>
                 </div>
         </div>
         </form>

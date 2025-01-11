@@ -17,6 +17,10 @@
                 <x-icons.arrow-back class="w-6 h-6" aria-hidden="true" />
                 <span>Back</span>
             </x-button>
+            <x-button>
+                <x-icons.sarjana class="w-6 h-6" aria-hidden="true" />
+                <span> | Jenjang Pendidikan</span>
+            </x-button>
             @endrole
         </div>
         <div class="p-2  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">

@@ -117,6 +117,9 @@ Route::post('form-pilih-jenjang/{formulir_ppdb_1}', [FormulirController::class, 
 Route::get('form-riwayat-pendidikan/{formulir_ppdb_1}', [FormulirController::class, 'formulir_ppdb_4'])->name('form-riwayat-pendidikan');
 Route::post('form-riwayat-pendidikan/{formulir_ppdb_1}', [FormulirController::class, 'storeformulir_ppdb_4']);
 
+// form 5
+Route::get('form-keterangan-orang-tua/{formulir_ppdb_1}', [FormulirController::class, 'formulir_ppdb_5'])->name('form-keterangan-orang-tua');
+Route::post('form-keterangan-orang-tua/{formulir_ppdb_1}', [FormulirController::class, 'storeformulir_ppdb_5']);
 
 Route::post('update-registration-status',[FormulirController::class, 'updateStatus'])->name('update-registration-status');
 Route::get('validasi-calon-peserta/{calon_peserta}',[FormulirController::class, 'ValidasCalonPeserta'])->name('validasi-calon-peserta');
