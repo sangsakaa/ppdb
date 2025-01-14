@@ -14,7 +14,6 @@ class UploudFileController extends Controller
         $fileType = ['kk', 'ktp', 'akte', 'ijazah', 'ktp_ibu'];
         $dataDokument = Uploud_File::where('user_id', $formulir_ppdb_1)->get();
         $form1 = Formulir_ppdb_1::where('user_id', $formulir_ppdb_1)->first();
-
         return view(
             'administrator.ppdb.uploud_file',
             [
@@ -73,40 +72,6 @@ class UploudFileController extends Controller
     }
     public function updateStatusDokumen(Request $request, $formulir_ppdb_1 = null)
     {
-
-        // $validated = $request->validate([
-        //     'status_pendaftaran' => 'required|in:disetujui,ditolak,menunggu',  // Validasi status yang diizinkan
-        //     'user_id' => 'required|integer|exists:formulir_ppdb_1,user_id',  // Pastikan user_id ada di database
-        // ]);
-
-        // // Ambil nilai status dan user_id dari form
-        // $status_pendaftaran = $validated['status_pendaftaran'];
-        // $user_id = $validated['user_id'];
-
-        // // Query untuk memperbarui status
-        // $ppdbForm = Uploud_File::where('user_id', $user_id)->first();
-
-        // // Jika data ditemukan, update status
-        // if ($ppdbForm) {
-        //     $ppdbForm->status_pendaftaran = $status_pendaftaran;
-
-        //     // Jika status_pendaftaran adalah "Approved", isi kolom tambahan
-        //     if (strtolower($status_pendaftaran) === 'disetujui') {
-        //         $ppdbForm->catatan = 'ok sudah valid'; // Ganti "additional_column" dengan nama kolom sebenarnya
-        //         $ppdbForm->save();  // Simpan perubahan
-        //         return redirect()->back()->with('success', 'Status berhasil diperbarui!');
-        //     }
-        //     if (strtolower($status_pendaftaran) === 'ditolak') {
-        //         $ppdbForm->catatan = 'Masih ada Kesalahan'; // Ganti "additional_column" dengan nama kolom sebenarnya
-        //         $ppdbForm->save();  // Simpan perubahan
-        //         return redirect()->back()->with('danger', 'Status berhasil diperbarui!');
-        //     }
-        //     if (strtolower($status_pendaftaran) === 'menunggu') {
-        //         $ppdbForm->catatan = 'Masih Dalam antrian'; // Ganti "additional_column" dengan nama kolom sebenarnya
-        //         $ppdbForm->save();  // Simpan perubahan
-        //         return redirect()->back()->with('warning', 'Status berhasil diperbarui!');
-        //     }
-        // }
         $validated = $request->validate([
             'status_pendaftaran' => 'required|in:disetujui,ditolak,menunggu', // Validasi status yang diizinkan
             'user_id' => 'required|integer|exists:formulir_ppdb_1,user_id', // Pastikan user_id ada di database

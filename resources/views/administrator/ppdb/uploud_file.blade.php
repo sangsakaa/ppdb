@@ -53,15 +53,7 @@
                                         class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                                     <div>
                                         <label for="file_type" class="block text-sm font-medium text-gray-700">File Type</label>
-                                        <!-- <select
-                                            id="file_type"
-                                            name="file_type"
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
-                                            <option value="kk">Kartu Keluarga</option>
-                                            <option value="ktp">Kartu Tanda Kependudukan</option>
-                                            <option value="ijazah">Ijazah</option>
-                                            <option value="akte">Akte Kelahiran</option>
-                                        </select> -->
+
                                         @php
                                         $usedFileTypes = $dataDokument->pluck('file_type')->toArray(); // Mengambil daftar file_type yang sudah ada
                                         @endphp
