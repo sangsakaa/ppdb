@@ -29,7 +29,7 @@ class UploudFileController extends Controller
         $form1 = Formulir_ppdb_1::where('user_id', $formulir_ppdb_1)->first(); // Ensure you have the correct user ID
 
         $validated = $request->validate([
-            'file_path' => 'required|file', // Make sure a file is uploaded
+            'file_path' => 'required|mimes:jpg,jpeg,png,pdf|max:2048', // Make sure a file is uploaded
             'file_type' => 'required|string', // File type should be provided
             'formulir_ppdb_1_id' => 'required|exists:formulir_ppdb_1,id', // Ensure formulir_ppdb_1_id exists in the database
         ]);
