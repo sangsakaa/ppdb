@@ -436,6 +436,8 @@ class FormulirController extends Controller
                 'nama_ibu' => $request->nama_ibu,
                 'agama_ibu' => $request->agama_ibu,
                 'agama_ayah' => $request->agama_ayah,
+                'pendidikan_ayah' => $request->pendidikan_ayah,
+                'pendidikan_ibu' => $request->pendidikan_ibu,
                 'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
                 'catatan' => $request->catatan ?? 'masih dalam antrian',
             ]
@@ -528,10 +530,14 @@ class FormulirController extends Controller
             ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
             ->join('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
             ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+            ->join('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
+            ->join('formulir_ppdb_5', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_5.user_id')
             ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
             ->where('formulir_ppdb_1.status_pendaftaran', '=', 'disetujui')
             ->where('formulir_ppdb_2.status_pendaftaran', '=', 'disetujui')
             ->where('formulir_ppdb_3.status_pendaftaran', '=', 'disetujui')
+            ->where('formulir_ppdb_4.status_pendaftaran', '=', 'disetujui')
+            ->where('formulir_ppdb_5.status_pendaftaran', '=', 'disetujui')
             ->select([
                 'formulir_ppdb_1.*',
                 'periode_pendidikan.periode',
@@ -541,6 +547,8 @@ class FormulirController extends Controller
                 'formulir_ppdb_1.status_pendaftaran as status_1',
                 'formulir_ppdb_2.status_pendaftaran as status_2',
                 'formulir_ppdb_3.status_pendaftaran as status_3',
+            'formulir_ppdb_4.status_pendaftaran as status_4',
+            'formulir_ppdb_5.status_pendaftaran as status_5',
             'jenjang'
             ])
             ->get();

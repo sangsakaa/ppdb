@@ -236,21 +236,18 @@
     </style>
     <div>
       <p style="text-align: center; margin:0; text-transform: uppercase;" class="text-h1"> Daftar Calon Peserta Valid <br>
-        <span>
-          TAHUN PELAJARAN {{$periode_pendidikan_id->periode}} {{$periode_pendidikan_id->semester}}
-        </span>
+        TAHUN PELAJARAN {{$periode_pendidikan_id->periode}} {{$periode_pendidikan_id->semester}}
       </p>
       <hr class="thin-line-cover">
-
     </div>
-    <table class="min-w-full table-auto border-collapse">
+    <!-- <table class="min-w-full table-auto border-collapse">
       <thead>
         <tr>
           <th rowspan="2" class="px-4 py-2 border-b">No</th>
           <th rowspan="2" class="px-4 py-2 border-b">Nama Lengkap</th>
           <th rowspan="2" class="px-4 py-2 border-b"> Jenjang</th>
           <th rowspan="2" class="px-4 py-2 border-b">Periode</th>
-          <th colspan="7" class="px-4 py-2 border-b">Status</th>
+          <th colspan="5" class="px-4 py-2 border-b">Status</th>
           <th rowspan="2" class="px-4 py-2 border-b">Tanggal <br> Pendaftaran</th>
         </tr>
         <tr>
@@ -259,8 +256,6 @@
           <th class="px-4 py-2 border-b"> 3 </th>
           <th class="px-4 py-2 border-b"> 4 </th>
           <th class="px-4 py-2 border-b"> 5 </th>
-          <th class="px-4 py-2 border-b"> 6 </th>
-          <th class="px-4 py-2 border-b"> 7 </th>
         </tr>
       </thead>
       <tbody>
@@ -281,46 +276,6 @@
             @endif
           </td>
           <td class="px-4 py-2 border-b text-center" style="text-align: center;">
-            @if($calon->status_1 == 'disetujui')
-            <img class="logo"
-              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
-              alt="Watermark"
-              style="width: 20px; height: 20px;">
-            @else
-            {{ $calon->status_1 }}
-            @endif
-          </td>
-          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
-            @if($calon->status_1 == 'disetujui')
-            <img class="logo"
-              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
-              alt="Watermark"
-              style="width: 20px; height: 20px;">
-            @else
-            {{ $calon->status_1 }}
-            @endif
-          </td>
-          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
-            @if($calon->status_1 == 'disetujui')
-            <img class="logo"
-              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
-              alt="Watermark"
-              style="width: 20px; height: 20px;">
-            @else
-            {{ $calon->status_1 }}
-            @endif
-          </td>
-          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
-            @if($calon->status_1 == 'disetujui')
-            <img class="logo"
-              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
-              alt="Watermark"
-              style="width: 20px; height: 20px;">
-            @else
-            {{ $calon->status_1 }}
-            @endif
-          </td>
-          <td class="px-4 py-2 border-b" style="text-align: center;">
             @if($calon->status_2 == 'disetujui')
             <img class="logo"
               src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
@@ -330,7 +285,7 @@
             {{ $calon->status_2 }}
             @endif
           </td>
-          <td class="px-4 py-2 border-b" style="text-align: center;">
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
             @if($calon->status_3 == 'disetujui')
             <img class="logo"
               src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
@@ -340,12 +295,110 @@
             {{ $calon->status_3 }}
             @endif
           </td>
-
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_4 == 'disetujui')
+            <img class="logo"
+              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
+              alt="Watermark"
+              style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_4 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_5 == 'disetujui')
+            <img class="logo"
+              src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}"
+              alt="Watermark"
+              style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_5 }}
+            @endif
+          </td>
           <td class="px-4 py-2 border-b" style="text-align: center;">{{ $calon->created_at->format('d-m-Y') }}</td>
         </tr>
         @endforeach
       </tbody>
+    </table> -->
+    <table class="min-w-full table-auto border-collapse">
+      <thead>
+        <tr>
+          <th rowspan="2" class="px-4 py-2 border-b">No</th>
+          <th rowspan="2" class="px-4 py-2 border-b">Nama Lengkap</th>
+          <th rowspan="2" class="px-4 py-2 border-b"> Jenjang</th>
+          <th rowspan="2" class="px-4 py-2 border-b">Periode</th>
+          <th colspan="5" class="px-4 py-2 border-b">Status</th>
+          <th rowspan="2" class="px-4 py-2 border-b">Tanggal <br> Pendaftaran</th>
+        </tr>
+        <tr>
+          <th class="px-4 py-2 border-b"> 1 </th>
+          <th class="px-4 py-2 border-b"> 2 </th>
+          <th class="px-4 py-2 border-b"> 3 </th>
+          <th class="px-4 py-2 border-b"> 4 </th>
+          <th class="px-4 py-2 border-b"> 5 </th>
+        </tr>
+      </thead>
+      <tbody>
+        @php
+        $groups = [
+        'Paket A Setara SD' => $dataCalon->where('jenjang', 'Paket A'),
+        'Paket B Setara SMP' => $dataCalon->where('jenjang', 'Paket B'),
+        'Paket C Setara SMA' => $dataCalon->where('jenjang', 'Paket C'),
+        ];
+        @endphp
+
+        @foreach ($groups as $jenjang => $group)
+        <tr>
+          <td colspan="10" class="px-4 py-2 border-b font-bold text-left bg-gray-200">{{ $jenjang }}</td>
+        </tr>
+        @foreach ($group as $calon)
+        <tr>
+          <td class="px-4 py-2 border-b" style="text-transform: capitalize; text-align: center;">{{ $loop->iteration }}</td>
+          <td class="px-4 py-2 border-b" style="text-transform: capitalize;">{{ $calon->nama_lengkap }}</td>
+          <td class="px-4 py-2 border-b" style="text-transform: capitalize; text-align: center;">{{ $calon->jenjang }}</td>
+          <td class="px-4 py-2 border-b" style="text-align: center;">{{ $calon->periode }}</td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_1 == 'disetujui')
+            <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_1 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_2 == 'disetujui')
+            <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_2 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_3 == 'disetujui')
+            <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_3 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_4 == 'disetujui')
+            <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_4 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+            @if($calon->status_5 == 'disetujui')
+            <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+            @else
+            {{ $calon->status_5 }}
+            @endif
+          </td>
+          <td class="px-4 py-2 border-b" style="text-align: center;">{{ $calon->created_at->format('d-m-Y') }}</td>
+        </tr>
+        @endforeach
+        @endforeach
+      </tbody>
     </table>
+
 
     <!-- Pagination -->
 

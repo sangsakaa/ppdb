@@ -43,12 +43,12 @@
             @endif
             <table class="table border w-full">
                 <thead>
-                    <tr class=" border  bg-purple-500 text-white able-auto w-full border-collapse ">
+                    <tr class=" border  text-sm bg-purple-500 text-white able-auto w-full border-collapse ">
                         <th class=" py-2">Nama</th>
                         <th>Email</th>
                         <th>Role Management</th>
                         <th>Approve Role</th>
-                        <th>Reset Password</th>
+                        <th>Reset <br> Password</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,18 +68,18 @@
                                         <option value="administrator" {{ $user->hasRole('administrator') ? 'selected' : '' }}>Administrator</option>
                                         <option value="calon_peserta" {{ $user->hasRole('calon_peserta') ? 'selected' : '' }}>Calon Peserta</option>
                                     </select> -->
-                                    <select name="role" class="py-1">
+                                    <select name="role" class="py-1 text-sm">
                                         <option value="" {{ !$user->roles->isEmpty() ? '' : 'selected' }}>Select Role</option>
                                         @foreach ($roles as $role)
-                                        <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                        <option class=" py-1" value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
                                             {{ ucfirst($role->name) }}
                                         </option>
                                         @endforeach
                                     </select>
                             </td>
                             <td class=" px-1 text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    Assign Role
+                                <button type="submit" class=" bg-green-700 text-white px-2 py-1 rounded-md text-xs">
+                                    Assign
                                 </button>
                             </td>
 
@@ -89,16 +89,19 @@
                                 @csrf
                                 <input type="hidden" name="email" value="{{$user->email}}">
                                 <input type="hidden" name="password" value="{{$user->password}}">
-                                <button class=" bg-slate-500 hover:bg-slate-300 px-2 py-1 text-white" type="submit" class="btn btn-primary">
+                                <button class=" bg-slate-500 hover:bg-slate-300 px-2 py-1 text-xs rounded-md text-white" type="submit" class="btn btn-primary">
                                     Reset Password
                                 </button>
                             </form>
                         </td>
 
                     </tr>
-
-
                     @endforeach
+                    <tr>
+                        <td colspan="5">
+                            {{$dataUser->links()}}
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>

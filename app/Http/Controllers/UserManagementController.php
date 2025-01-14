@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserManagementController extends Controller
 {
     public function index(){
-        $dataUser = User::all();
+        $dataUser = User::paginate(5);
         $roles = Role::all();
         return view('administrator.usermanagement.usermanagement',compact('dataUser', 'roles'));
     }
@@ -29,7 +29,9 @@ class UserManagementController extends Controller
             // Set password default menjadi '12345678'
             $user->password = Hash::make('12345678');
             $user->save();
-            return redirect()->route('user-management')->with('success', 'Password berhasil direset!');
+            // return redirect()->route('user-management')->with('success', 'Password berhasil direset!');
+            session()->flash('success', 'Password berhasil direset!');
+            return redirect()->back();
             // return response()->json([
             //     'message' => 'Password berhasil direset!',
             //     'user' => $user

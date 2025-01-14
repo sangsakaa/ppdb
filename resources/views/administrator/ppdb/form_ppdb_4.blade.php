@@ -67,14 +67,14 @@
                     </div>
                     <div class=" grid grid-cols-2 gap-1">
                         <div class="mb-2">
-                            <label for="jenjang_sekolah" class="block text-gray-700 font-medium">Status Pendaftaran</label>
+                            <label for="jenjang_sekolah" class="block text-gray-700 font-medium">Jenjang Sekolah</label>
                             <select id="jenjang_sekolah" name="jenjang_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                                 <option value="sd" {{ ($form4->jenjang_sekolah ?? '') == 'sd' ? 'selected' : '' }}>SD</option>
                                 <option value="smp" {{ ($form4->jenjang_sekolah ?? '') == 'smp' ? 'selected' : '' }}>SMP</option>
                             </select>
                         </div>
                         <div class="mb-2">
-                            <label for="status_sekolah" class="block text-gray-700 font-medium">Status Pendaftaran</label>
+                            <label for="status_sekolah" class="block text-gray-700 font-medium">Status Sekolah</label>
                             <select id="status_sekolah" name="status_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                                 <option value="negeri" {{ ($form4->status_sekolah ?? '') == 'negeri' ? 'selected' : '' }}>Negeri</option>
                                 <option value="swasta" {{ ($form4->status_sekolah ?? '') == 'swasta' ? 'selected' : '' }}>Swasta</option>

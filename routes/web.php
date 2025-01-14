@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormulirController;
 use App\Http\Controllers\TemplateSuratController;
+use App\Http\Controllers\UploudFileController;
 use App\Http\Livewire\LocationSelector;
 
 /*
@@ -120,6 +121,10 @@ Route::post('form-riwayat-pendidikan/{formulir_ppdb_1}', [FormulirController::cl
 // form 5
 Route::get('form-keterangan-orang-tua/{formulir_ppdb_1}', [FormulirController::class, 'formulir_ppdb_5'])->name('form-keterangan-orang-tua');
 Route::post('form-keterangan-orang-tua/{formulir_ppdb_1}', [FormulirController::class, 'storeformulir_ppdb_5']);
+// uploud dokument
+Route::get('uploud-file/{formulir_ppdb_1}', [UploudFileController::class, 'Uploud_File'])->name('uploud-file');
+Route::post('uploud-file/{formulir_ppdb_1}', [UploudFileController::class, 'store']);
+Route::post('uploud-file-status/{formulir_ppdb_1}', [UploudFileController::class, 'updateStatusDokumen']);
 
 Route::post('update-registration-status',[FormulirController::class, 'updateStatus'])->name('update-registration-status');
 Route::get('validasi-calon-peserta/{calon_peserta}',[FormulirController::class, 'ValidasCalonPeserta'])->name('validasi-calon-peserta');

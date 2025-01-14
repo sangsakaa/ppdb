@@ -521,15 +521,15 @@
       <span class="input">: {{$data->nama_ayah}} </span> <br>
 
       <label for="tanggal_lahir_ayah">26. Tanggal Lahir</label>
-      <span class="input">: {{$data->agama_ayah}} </span> <br>
-      <label for="agama_ayah">27. Agama</label>
       <span class="input">: </span> <br>
+      <label for="agama_ayah">27. Agama</label>
+      <span class="input">: {{$data->agama_ayah}}</span> <br>
 
       <label for="kewarganegaraan_ayah">28. Kewarganegaraan</label>
       <span class="input">: </span> <br>
 
       <label for="pendidikan_ayah">29. Pendidikan</label>
-      <span class="input">: </span> <br>
+      <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ayah}}</span> <br>
 
       <label for="pekerjaan_ayah">30. Pekerjaan</label>
       <span class="input">: </span> <br>
@@ -549,7 +549,7 @@
       <span class="input">: </span> <br>
 
       <label for="pendidikan_ibu">29. Pendidikan</label>
-      <span class="input">: </span> <br>
+      <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ibu}} </span> <br>
 
       <label for="pekerjaan_ibu">30. Pekerjaan</label>
       <span class="input">: </span> <br>

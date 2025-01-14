@@ -69,11 +69,11 @@
                         <div class="mb-2">
                             <label for="pendidikan_ibu" class="block text-gray-700 font-medium">Pendidikan Ayah</label>
                             <select id="pendidikan_ibu" name="pendidikan_ibu" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                                <option value="sd" {{ ($form5->pendidikan_ayah ?? '') == 'sd' ? 'selected' : '' }}>SD</option>
-                                <option value="smp" {{ ($form5->pendidikan_ayah ?? '') == 'smp' ? 'selected' : '' }}>SMP</option>
-                                <option value="sma" {{ ($form5->pendidikan_ayah ?? '') == 'sma' ? 'selected' : '' }}>SMA</option>
-                                <option value="s1" {{ ($form5->pendidikan_ayah ?? '') == 's1' ? 'selected' : '' }}>S1</option>
-                                <option value="s2" {{ ($form5->pendidikan_ayah ?? '') == 's2' ? 'selected' : '' }}>S2</option>
+                                <option value="sd" {{ ($form5->pendidikan_ibu ?? '') == 'sd' ? 'selected' : '' }}>SD</option>
+                                <option value="smp" {{ ($form5->pendidikan_ibu ?? '') == 'smp' ? 'selected' : '' }}>SMP</option>
+                                <option value="sma" {{ ($form5->pendidikan_ibu ?? '') == 'sma' ? 'selected' : '' }}>SMA</option>
+                                <option value="s1" {{ ($form5->pendidikan_ibu ?? '') == 's1' ? 'selected' : '' }}>S1</option>
+                                <option value="s2" {{ ($form5->pendidikan_ibu ?? '') == 's2' ? 'selected' : '' }}>S2</option>
                             </select>
                         </div>
                     </div>
@@ -100,6 +100,9 @@
                         <span>Kembali</span>
                     </x-button>
                     <x-button>simpan</x-button>
+                    <x-button href="/uploud-file/{{$formulir_ppdb_1}}">
+                        Lanjutkan
+                    </x-button>
                 </div>
         </div>
         </form>
