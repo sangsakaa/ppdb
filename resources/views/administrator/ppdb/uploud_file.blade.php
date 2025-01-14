@@ -123,17 +123,17 @@
                                     <!-- Assuming the file is stored in the 'public/uploads' folder -->
                                     <a href="{{ Storage::url($file->file_path) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                                 </td>
-                                <td>
+                                <td class="">
                                     <!-- Pastikan Anda sudah mengatur route untuk fungsi updateStatus -->
 
-                                    <form action="/uploud-file-status/{{$formulir_ppdb_1}}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                                    <form action="/uploud-file-status/{{$formulir_ppdb_1}}" method="POST" enctype="multipart/form-data" class="">
                                         @csrf
                                         <!-- Input untuk user_id -->
                                         <input type="hidden" name="user_id" value="{{ $file->user_id }}">
                                         <input type="hidden" name="file_type" value="{{ $file->file_type }}">
                                         <!-- Tombol untuk setujui -->
-                                        <x-button
-                                            class=" text-sm"
+                                        <button
+                                            class=" bg-green-800  text-white px-2 py-1  rounded-md"
                                             variant="success"
                                             type="submit"
                                             name="status_pendaftaran"
@@ -141,28 +141,27 @@
                                             <span>
                                                 <x-icons.check class="h-4 w-4"></x-icons.check>
                                             </span>
-                                        </x-button>
-
+                                        </button>
 
                                         <!-- Tombol untuk tolak -->
-                                        <x-button
-                                            class=" "
+                                        <button
+                                            class=" bg-red-500  text-white px-2 py-1  rounded-md"
                                             variant="danger"
                                             type="submit" name="status_pendaftaran" value="ditolak" class="">
                                             <span>
-                                                <x-icons.error></x-icons.error>
+                                                <x-icons.error class="h-4 w-4"></x-icons.error>
                                             </span>
-                                        </x-button>
+                                        </button>
 
                                         <!-- Tombol untuk menunggu -->
-                                        <x-button
-                                            class=""
+                                        <button
+                                            class=" bg-yellow-400   px-2 py-1  rounded-md"
                                             variant="warning"
                                             type="submit" name="status_pendaftaran" value="menunggu" class="">
                                             <span>
-                                                <x-icons.check></x-icons.check>
+                                                <x-icons.arrow-circle class="h-4 w-4"></x-icons.arrow-circle>
                                             </span>
-                                        </x-button>
+                                        </button>
                                     </form>
 
 
