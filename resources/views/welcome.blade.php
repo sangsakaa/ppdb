@@ -1,132 +1,166 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DAPOMEET </title>
-    <link rel="shortcut icon" href="https://ula.smedi.my.id/asset/images/logo.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="preload" as="style" href="https://ula.smedi.my.id/build/assets/app.f573eb26.css" />
-    <link rel="modulepreload" href="https://ula.smedi.my.id/build/assets/app.964ce7c9.js" />
-    <link rel="stylesheet" href="https://ula.smedi.my.id/build/assets/app.f573eb26.css" />
-    <script type="module" src="https://ula.smedi.my.id/build/assets/app.964ce7c9.js"></script>
-    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<style>
-    .jumbotron {
-        padding-top: 6rem;
-        background-color: #e2edff;
-        padding-bottom: 0%;
-    }
 
-    #project {
-        background-color: #e2edff;
-    }
+<body>
+    <nav class="bg-blue-600 fixed top-0 left-0 w-full z-50 shadow-lg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-white text-lg font-bold">
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10 h-10">
+                    </a>
 
-    .card {
-        margin-bottom: 0.5rem;
-    }
+                </div>
 
-    .footer {
-        padding-bottom: 0%;
-    }
+                <!-- Menu toggle for mobile -->
+                <div class="flex lg:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
 
-    section {
-        padding-top: 4rem;
-    }
+                <!-- Navigation Links -->
+                <div class="hidden lg:flex space-x-4">
+                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
 
-    .p {
-        font-family: bold;
-    }
-</style>
-
-<body id="home">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
-        <div class="container sm:text-xs">
-            <a class="navbar-brand uppercase text-sm  " href="/">KARYA MANDIRI</a>
-            <div :class="navClasses   hover:hover:bg-sky-300">
-                <ul class="navbar-nav ml-auto text-white">
-                    @if (Route::has('login'))
-                    <div class="  right-0 px-6  sm:block">
-                        @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm  text-white px-2 dark:text-gray-900 ">BERANDA</a>
-                        @else
-                        <a href="{{ route('login') }}" class="text-sm  text-white px-2 dark:text-gray-900 ">MASUK</a>
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="text-sm  text-white px-2 dark:text-gray-900 ">DAFTAR</a>
-                        @endif
-                        @endauth
-                    </div>
-                    @endif
-                </ul>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Home</a>
+                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">About</a>
+                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Services</a>
+                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Contact</a>
             </div>
         </div>
     </nav>
-    <script>
-        export default {
-            data() {
-                return {
-                    isOpen: false,
-                };
-            },
-            computed: {
-                navClasses() {
-                    return {
-                        'collapse navbar-collapse': !this.isOpen,
-                        'navbar-collapse': this.isOpen,
-                    };
-                },
-            },
-            methods: {
-                toggleNav() {
-                    this.isOpen = !this.isOpen;
-                },
-            },
-        };
-    </script>
-    <style scoped>
-        /* Tambahkan gaya CSS khusus di sini jika diperlukan */
-    </style>
-    <section class="jumbotron jumbotron-fluid text-center">
-        <center>
-            <img src="images/logo.png" alt="" width="200px">
-            <h2 class=" ">Pusat Kegiatan Belajar Masyarakat </h2>
-            <p class=" uppercase sm:text-3xl text-xs">KARYA MANDIRI</p>
-        </center>
-    </section>
-    <div class=" sm:grid-cols-2 grid grid-cols-1">
-        <section class="jumbotron grid justify-items-center ">
-            <lord-icon src="https://cdn.lordicon.com/amjaykqd.json" trigger="hover" style="width:223px;height:205px">
-            </lord-icon>
-            <span>Consultation</span>
-        </section>
-        <section class="jumbotron  grid justify-items-center     ">
-            <lord-icon src="https://cdn.lordicon.com/yypubrzc.json" trigger="hover" style="width:223px;height:205px">
-            </lord-icon>
-            <span>Development</span>
-        </section>
+
+    <!-- Slider Section -->
+    <div class="relative w-full mt-16 overflow-hidden">
+        <!-- Slider Container -->
+        <div id="slider" class="flex transition-transform duration-700 ease-in-out">
+            <!-- Slide 1 -->
+            <div class="w-full flex-shrink-0">
+                <img src="{{ asset('images/image3.png') }}" alt="Slide 1" class="w-full h-auto">
+            </div>
+            <!-- Slide 2 -->
+            <div class="w-full flex-shrink-0">
+                <img src="{{ asset('images/image2.png') }}" alt="Slide 2" class="w-full h-auto">
+            </div>
+            <!-- Slide 3 -->
+            <div class="w-full flex-shrink-0">
+                <img src="{{ asset('images/image1.png') }}" alt="Slide 3" class="w-full h-auto">
+            </div>
+        </div>
+        <!-- Navigation Buttons -->
+        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-md focus:outline-none">
+            &larr;
+        </button>
+        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-md focus:outline-none">
+            &rarr;
+        </button>
     </div>
-    <!-- endfooter -->
-    <script src="https://cdn.lordicon.com/lordicon-1.3.0.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
-    </script>
-    <footer class="jumbotron jumbotron-fluid text-center">
-        <div class=" bg-blue-600 h-10">
-            <div class=" py-2 text-white   text-xs">
-                &copy 2024 sangsaka
+
+    <!-- Content Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to Our Website</h2>
+            <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis augue id fermentum facilisis.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-white shadow rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Feature 1</h3>
+                    <p class="text-gray-600">Description of feature 1.</p>
+                </div>
+                <div class="p-6 bg-white shadow rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Feature 2</h3>
+                    <p class="text-gray-600">Description of feature 2.</p>
+                </div>
+                <div class="p-6 bg-white shadow rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Feature 3</h3>
+                    <p class="text-gray-600">Description of feature 3.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-blue-600 text-white py-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">&copy; 2025 Your Company. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Slider functionality
+        const slider = document.getElementById('slider');
+        const slides = slider.children;
+        const totalSlides = slides.length;
+        let index = 0;
+
+        // Function to update the slider position
+        const updateSlider = () => {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        };
+
+        // Manual navigation buttons
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        prevButton.addEventListener('click', () => {
+            index = (index === 0) ? totalSlides - 1 : index - 1;
+            updateSlider();
+            resetAutoSlide();
+        });
+
+        nextButton.addEventListener('click', () => {
+            index = (index === totalSlides - 1) ? 0 : index + 1;
+            updateSlider();
+            resetAutoSlide();
+        });
+
+        // Auto-slide functionality
+        let autoSlideInterval = setInterval(() => {
+            index = (index === totalSlides - 1) ? 0 : index + 1;
+            updateSlider();
+        }, 5000); // Change slide every 5 seconds
+
+        // Reset auto-slide interval when user interacts with navigation
+        const resetAutoSlide = () => {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => {
+                index = (index === totalSlides - 1) ? 0 : index + 1;
+                updateSlider();
+            }, 5000);
+        };
+
+        // Toggle mobile menu visibility
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 
 </html>

@@ -108,9 +108,11 @@
 
                 <!-- Submit Button -->
                 <div class="mt-2 text-center">
+                    @role('administrator')
                     <x-button href="/daftar-calon-peserta">
                         Kembali
                     </x-button>
+                    @endrole
                     <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded-lg">Submit</button>
                     @if($formulir_ppdb_1 ?? '')
                     <x-button href="/form-keterangan-tempat-tinggal/{{$formulir_ppdb_1->user_id ?? Auth::id()}}">

@@ -21,23 +21,40 @@ class DashboardController extends Controller
         $jumlahUser = $user->count();
 
 
-        $status_pendaftaran = DB::table('formulir_ppdb_1')
-        ->rightJoin('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
-            ->rightJoin('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
-        ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
-        ->where('formulir_ppdb_1.user_id', Auth::id())
-        ->select(
-            'formulir_ppdb_1.status_pendaftaran as status_pendaftaran_1',
-            'formulir_ppdb_2.status_pendaftaran as status_pendaftaran_2',
-            'formulir_ppdb_3.status_pendaftaran as status_pendaftaran_3',
-            'formulir_ppdb_1.user_id as user1',
-            'formulir_ppdb_2.user_id as user2',
-            'formulir_ppdb_3.user_id as user3',
-        )
+        $StatusPendaftaran = Formulir_ppdb_1::query()
+            ->leftjoin('users', 'formulir_ppdb_1.user_id', 'users.id')
+            ->leftjoin('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
+            ->leftjoin('formulir_ppdb_2', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_2.user_id')
+            ->leftjoin('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
+            ->leftjoin('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
+            ->leftjoin('formulir_ppdb_5', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_5.user_id')
+            ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
+            ->select([
+                'formulir_ppdb_1.*',
+                'users.email',
+                'jenjang',
+                'periode_pendidikan.periode',
+                'periode_pendidikan.semester',
+                'formulir_ppdb_1.created_at',
+                'formulir_ppdb_1.nama_lengkap',
+                'formulir_ppdb_1.status_pendaftaran as status_1',
+                'formulir_ppdb_2.status_pendaftaran as status_2',
+                'formulir_ppdb_3.status_pendaftaran as status_3',
+                'formulir_ppdb_4.status_pendaftaran as status_4',
+                'formulir_ppdb_5.status_pendaftaran as status_5',
+            ])
             ->get();
 
 
-        return view('dashboard', compact('user', 'dataCalon', 'jumlahUser', 'status_pendaftaran'));
+        return view(
+            'dashboard',
+            [
+                'user' => $user,
+                'StatusPendaftaran' => $StatusPendaftaran,
+                'dataCalon' => $dataCalon,
+                'jumlahUser' => $jumlahUser
+            ]
+        );
     }
 
 

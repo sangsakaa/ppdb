@@ -47,47 +47,54 @@
     @endrole
     @role('calon_peserta')
     <div class="">
-        @php
-        $statuses = collect($status_pendaftaran)->flatMap(function ($item) {
-        return collect([
-        ['status' => $item->status_pendaftaran_1, 'user' => $item->user1, 'label' => 'Data Diri'],
-        ['status' => $item->status_pendaftaran_2, 'user' => $item->user2, 'label' => 'Keterangan Tempat Tinggal'],
-        ['status' => $item->status_pendaftaran_3, 'user' => $item->user3, 'label' => 'Status Pendaftar'],
-        ])->filter(function ($status) {
-        return !is_null($status['status']);
-        });
-        });
-        @endphp
         <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <div class="w-full grid grid-cols-1 sm:grid-cols-4  gap-4">
-                @foreach ($statuses as $status)
+
+            <div class="mb-2 w-full grid grid-cols-2 gap-2">
+                @foreach ($StatusPendaftaran as $user)
+                <!-- Kolom Periode dan Semester -->
                 @php
-                switch ($status['status']) {
-                case 'menunggu':
-                $color = 'bg-yellow-500';
-                $statusText = 'Menunggu';
-                break;
-                case 'disetujui':
-                $color = 'bg-green-500';
-                $statusText = 'Diterima';
-                break;
-                case 'ditolak':
-                $color = 'bg-red-700';
-                $statusText = 'Ditolak';
-                break;
-                default:
-                $color = 'bg-blue-500';
-                $statusText = 'Belum Ada Status';
-                break;
-                }
+                $statuses = [
+                1 => 'form-pendaftaran',
+                2 => 'form-keterangan-tempat-tinggal',
+                3 => 'form-pilih-jenjang',
+                4 => 'form-riwayat-pendidikan',
+                5 => 'form-keterangan-orang-tua',
+                ];
+
+                $statusColors = [
+                'disetujui' => 'bg-green-700 text-white',
+                'ditolak' => 'bg-red-700 text-white',
+                'menunggu' => 'bg-yellow-400 text-black',
+                null => 'bg-gray-200 text-white',
+                ];
                 @endphp
-                <div class="card {{ $color }} text-white p-4 rounded shadow">
-                    <p class="text-xs font-bold">{{ $status['label'] }}</p>
-                    <p class="text-sm">{{ $statusText }}</p>
-                </div>
+
+                @foreach ($statuses as $key => $route)
+                @php
+                $status = $user->{'status_'.$key} ?? null;
+                $color = $statusColors[$status] ?? $statusColors[null];
+                @endphp
+
+                <span class="{{ $color }} px-2 capitalize " title="{{ ucfirst($status) ?: 'Belum Mendaftar' }}">
+                    @if ($status !== null && $status !== 'belum mendaftar')
+                    <a href="{{ $route }}/{{ $user->user_id }}">
+                        {{ $key }} {{$route}}
+                    </a>
+                    @else
+                    {{ $key }}
+                    @endif
+                </span>
                 @endforeach
+                <!-- Tombol Jika Semua Status Kosong -->
+                @if (!$user->status_1 && !$user->status_2 && !$user->status_3 && !$user->status_4)
+                <button class="bg-gray-200 px-1 py-1 rounded-md text-white" title="Belum Mendaftar">
+                    Belum Mendaftar
+                </button>
+                @endif
             </div>
         </div>
+    </div>
+    @endforeach
     </div>
     @endrole
 </x-app-layout>
