@@ -50,10 +50,19 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Home</a>
-                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">About</a>
-                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Services</a>
-                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Contact</a>
+                @if (Route::has('login'))
+
+                @auth
+                <a href="{{ url('/dashboard') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Log in</a>
+
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Register</a>
+                @endif
+                @endauth
+
+                @endif
             </div>
         </div>
     </nav>
