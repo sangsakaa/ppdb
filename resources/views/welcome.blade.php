@@ -30,10 +30,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden lg:flex space-x-4">
-                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                    <a href="#" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    @if (Route::has('login'))
+
+                    @auth
+                    <a href="{{ url('/dashboard') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                    @else
+                    <a href="{{ route('login') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Log in</a>
+
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Register</a>
+                    @endif
+                    @endauth
+
+                    @endif
                 </div>
             </div>
         </div>
