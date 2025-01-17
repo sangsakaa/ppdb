@@ -110,7 +110,9 @@
                                 <th class="px-4 py-2 text-left">File Type</th>
                                 <th class="px-4 py-2 text-left">Status <br>Dokument</th>
                                 <th class="px-4 py-2 text-left">Action</th>
+                                @role('administrasi')
                                 <th class="px-4 py-2 text-left">Action</th>
+                                @role('administrasi')
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +125,8 @@
                                     <!-- Assuming the file is stored in the 'public/uploads' folder -->
                                     <a href="{{ Storage::url($file->file_path) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                                 </td>
+
+                                @role('administrasi')
                                 <td class="">
                                     <!-- Pastikan Anda sudah mengatur route untuk fungsi updateStatus -->
 
@@ -163,9 +167,8 @@
                                             </span>
                                         </button>
                                     </form>
-
-
                                 </td>
+                                @endrole
                             </tr>
                             @endforeach
                         </tbody>
