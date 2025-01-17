@@ -107,16 +107,16 @@
             <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis augue id fermentum facilisis.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket A</h3>
-                    <p class="text-gray-600">Description of Paket A.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket A Setara SD</h3>
+                    <p class="text-gray-600">Description of Paket A Setara SD.</p>
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket B</h3>
-                    <p class="text-gray-600">Description of Paket B.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket B Setara SMP</h3>
+                    <p class="text-gray-600">Description of Paket B Setara SMP.</p>
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C</h3>
-                    <p class="text-gray-600">Description of Paket C.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C Setara SMA</h3>
+                    <p class="text-gray-600">Description of Paket C Setara SMA.</p>
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@
             <p class="text-gray-600 mb-6">Persyaratan Pendaftaran yang wajib di penuhi.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket A</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket A Setara SD</h3>
                     Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
                     <span class=" font-semibold">1. Formulir Pendaftaran <br></span>
                     <div class=" px-4">
@@ -165,7 +165,7 @@
                     </div>
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket B</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket B Setara SMP</h3>
                     Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
                     <span class=" font-semibold">1. Formulir Pendaftaran <br></span>
                     <div class=" px-4">
@@ -204,7 +204,7 @@
 
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C Setara SMA</h3>
                     Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
                     <span class=" font-semibold">1. Formulir Pendaftaran <br></span>
                     <div class=" px-4">
