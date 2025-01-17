@@ -75,7 +75,6 @@
             </div>
         </div>
     </nav>
-
     <!-- Slider Section -->
     <div class="relative w-full mt-16 overflow-hidden">
         <!-- Slider Container -->
@@ -101,11 +100,10 @@
             &rarr;
         </button>
     </div>
-
     <!-- Content Section -->
-    <section class="py-12 bg-gray-100" id="home">
+    <section class="py-2 bg-gray-100" id="home">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-10">Welcome to Our Website</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-20 ">Welcome to Our Website</h2>
             <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis augue id fermentum facilisis.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 bg-white shadow rounded-lg">
@@ -123,9 +121,9 @@
             </div>
         </div>
     </section>
-    <section class="py-12 bg-gray-100" id="persyaratan">
+    <section class="py-2 bg-gray-100" id="persyaratan">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-10">Persyaratan Pendaftaran</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-20 ">Persyaratan Pendaftaran</h2>
             <p class="text-gray-600 mb-6">Persyaratan Pendaftaran yang wajib di penuhi.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 bg-white shadow rounded-lg">
