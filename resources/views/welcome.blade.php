@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>DAPOMEET @yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -31,14 +33,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden lg:flex space-x-4">
                     @if (Route::has('login'))
-
+                    <a href="#home" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#persyaratan" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Persyaratan</a>
                     @auth
                     <a href="{{ url('/dashboard') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                     @else
                     <a href="{{ route('login') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Log in</a>
 
                     @if (Route::has('register'))
+
                     <a href="{{ route('register') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Register</a>
+
                     @endif
                     @endauth
 
@@ -54,6 +59,7 @@
 
                 @auth
                 <a href="{{ url('/dashboard') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Dashboard</a>
+
                 @else
                 <a href="{{ route('login') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Log in</a>
 
@@ -61,6 +67,7 @@
                 <a href="{{ route('register') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Register</a>
                 @endif
                 @endauth
+
 
                 @endif
             </div>
@@ -94,22 +101,145 @@
     </div>
 
     <!-- Content Section -->
-    <section class="py-12 bg-gray-100">
+    <section class="py-12 bg-gray-100" id="home">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to Our Website</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-10">Welcome to Our Website</h2>
             <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis augue id fermentum facilisis.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Feature 1</h3>
-                    <p class="text-gray-600">Description of feature 1.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket A</h3>
+                    <p class="text-gray-600">Description of Paket A.</p>
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Feature 2</h3>
-                    <p class="text-gray-600">Description of feature 2.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket B</h3>
+                    <p class="text-gray-600">Description of Paket B.</p>
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Feature 3</h3>
-                    <p class="text-gray-600">Description of feature 3.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C</h3>
+                    <p class="text-gray-600">Description of Paket C.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-gray-100" id="persyaratan">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-10">Persyaratan Pendaftaran</h2>
+            <p class="text-gray-600 mb-6">Persyaratan Pendaftaran yang wajib di penuhi.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-white shadow rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket A</h3>
+                    Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
+                    <span class=" font-semibold">1. Formulir Pendaftaran <br></span>
+                    <div class=" px-4">
+                        <span class="  ">
+                            <p class=" ">
+                                Mengisi formulir pendaftaran yang disediakan oleh institusi secara lengkap dan benar,sesuai dokumen administrasi
+                            </p>
+                        </span>
+                    </div>
+                    <span class="font-semibold"> 2. Fotokopi Kartu Tanda Penduduk (KTP) <br></span>
+                    <span class="font-semibold">3. Kartu Keluarga (KK) 2 lembar. <br></span>
+                    <span class="font-semibold">4. Fotokopi Akta Kelahiran 2 lembar. <br></span>
+                    <span class="font-semibold">6. Pas foto ukuran 3x4 4 lembar <br></span>
+                    <div class=" px-4">
+                        <span class=""> background merah. </span> <br>
+                    </div>
+                    <span class="font-semibold"> 7. Fotokopi Ijazah terakhir <br></span>
+                    <div class=" px-4">
+                        <span class=" font-semibold text-sm"> Wajib dilegalisir 2 lembar.</span>
+                    </div>
+                    <span class="font-semibold">8. Fotokopi rapor (untuk mutasi). <br></span>
+                    <span class="font-semibold">9. Biaya Pendaftaran <br></span>
+                    <div class=" px-4">
+                        Membayar biaya pendaftaran sesuai ketentuan yang berlaku. Bukti pembayaran dilampirkan. <br>
+                    </div>
+                    <span class="font-semibold">10. Surat Pernyataan <br></span>
+                    <div class=" px-4">
+                        Menandatangani surat pernyataan yang berisi:
+                        Kesediaan mematuhi peraturan dan tata tertib.
+                        Persetujuan orang tua/wali (jika diperlukan).
+                    </div>
+                    <span class="font-semibold">11. Surat Mutasi <br></span>
+                    <div class=" px-4">
+                        Wajib melampirkan surat mutasi bagi calon peserta didik yang melakukan pendaftaran bukan sebagai peserta didik baru melaikan pindahan / pindah sekolah
+                    </div>
+                </div>
+                <div class="p-6 bg-white shadow rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket B</h3>
+                    Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
+                    <span class=" font-semibold">1. Formulir Pendaftaran <br></span>
+                    <div class=" px-4">
+                        <span class="  ">
+                            <p class=" ">
+                                Mengisi formulir pendaftaran yang disediakan oleh institusi secara lengkap dan benar,sesuai dokumen administrasi
+                            </p>
+                        </span>
+                    </div>
+                    <span class="font-semibold"> 2. Fotokopi Kartu Tanda Penduduk (KTP) <br></span>
+                    <span class="font-semibold">3. Kartu Keluarga (KK) 2 lembar. <br></span>
+                    <span class="font-semibold">4. Fotokopi Akta Kelahiran 2 lembar. <br></span>
+                    <span class="font-semibold">6. Pas foto ukuran 3x4 4 lembar <br></span>
+                    <div class=" px-4">
+                        <span class=""> background merah. </span> <br>
+                    </div>
+                    <span class="font-semibold"> 7. Fotokopi Ijazah terakhir <br></span>
+                    <div class=" px-4">
+                        <span class=" font-semibold text-sm"> Wajib dilegalisir 2 lembar.</span>
+                    </div>
+                    <span class="font-semibold">8. Fotokopi rapor (untuk mutasi). <br></span>
+                    <span class="font-semibold">9. Biaya Pendaftaran <br></span>
+                    <div class=" px-4">
+                        Membayar biaya pendaftaran sesuai ketentuan yang berlaku. Bukti pembayaran dilampirkan. <br>
+                    </div>
+                    <span class="font-semibold">10. Surat Pernyataan <br></span>
+                    <div class=" px-4">
+                        Menandatangani surat pernyataan yang berisi:
+                        Kesediaan mematuhi peraturan dan tata tertib.
+                        Persetujuan orang tua/wali (jika diperlukan).
+                    </div>
+                    <span class="font-semibold">11. Surat Mutasi <br></span>
+                    <div class=" px-4">
+                        Wajib melampirkan surat mutasi bagi calon peserta didik yang melakukan pendaftaran bukan sebagai peserta didik baru melaikan pindahan / pindah sekolah
+                    </div>
+
+                </div>
+                <div class="p-6 bg-white shadow rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C</h3>
+                    Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
+                    <span class=" font-semibold">1. Formulir Pendaftaran <br></span>
+                    <div class=" px-4">
+                        <span class="  ">
+                            <p class=" ">
+                                Mengisi formulir pendaftaran yang disediakan oleh institusi secara lengkap dan benar,sesuai dokumen administrasi
+                            </p>
+                        </span>
+                    </div>
+                    <span class="font-semibold"> 2. Fotokopi Kartu Tanda Penduduk (KTP) <br></span>
+                    <span class="font-semibold">3. Kartu Keluarga (KK) 2 lembar. <br></span>
+                    <span class="font-semibold">4. Fotokopi Akta Kelahiran 2 lembar. <br></span>
+                    <span class="font-semibold">6. Pas foto ukuran 3x4 4 lembar <br></span>
+                    <div class=" px-4">
+                        <span class=""> background merah. </span> <br>
+                    </div>
+                    <span class="font-semibold"> 7. Fotokopi Ijazah terakhir <br></span>
+                    <div class=" px-4">
+                        <span class=" font-semibold text-sm"> Wajib dilegalisir 2 lembar.</span>
+                    </div>
+                    <span class="font-semibold">8. Fotokopi rapor (untuk mutasi). <br></span>
+                    <span class="font-semibold">9. Biaya Pendaftaran <br></span>
+                    <div class=" px-4">
+                        Membayar biaya pendaftaran sesuai ketentuan yang berlaku. Bukti pembayaran dilampirkan. <br>
+                    </div>
+                    <span class="font-semibold">10. Surat Pernyataan <br></span>
+                    <div class=" px-4">
+                        Menandatangani surat pernyataan yang berisi:
+                        Kesediaan mematuhi peraturan dan tata tertib.
+                        Persetujuan orang tua/wali (jika diperlukan).
+                    </div>
+                    <span class="font-semibold">11. Surat Mutasi <br></span>
+                    <div class=" px-4">
+                        Wajib melampirkan surat mutasi bagi calon peserta didik yang melakukan pendaftaran bukan sebagai peserta didik baru melaikan pindahan / pindah sekolah
+                    </div>
                 </div>
             </div>
         </div>
