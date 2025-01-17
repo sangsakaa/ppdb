@@ -110,9 +110,9 @@
                                 <th class="px-4 py-2 text-left">File Type</th>
                                 <th class="px-4 py-2 text-left">Status <br>Dokument</th>
                                 <th class="px-4 py-2 text-left">Action</th>
-                                @role('administrasi')
+                                @role('administrator')
                                 <th class="px-4 py-2 text-left">Action</th>
-                                @endrole('administrasi')
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -126,7 +126,7 @@
                                     <a href="{{ Storage::url($file->file_path) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                                 </td>
 
-                                @role('administrasi')
+                                @role('administrator')
                                 <td class="">
                                     <!-- Pastikan Anda sudah mengatur route untuk fungsi updateStatus -->
 
