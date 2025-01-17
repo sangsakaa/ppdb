@@ -112,7 +112,7 @@
                                 <th class="px-4 py-2 text-left">Action</th>
                                 @role('administrasi')
                                 <th class="px-4 py-2 text-left">Action</th>
-                                @role('administrasi')
+                                @endrole('administrasi')
                             </tr>
                         </thead>
                         <tbody>
