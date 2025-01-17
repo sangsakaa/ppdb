@@ -56,7 +56,8 @@
         <div id="mobile-menu" class="lg:hidden hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 @if (Route::has('login'))
-
+                <a href="#home" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Home</a>
+                <a href="#persyaratan" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Persyaratan</a>
                 @auth
                 <a href="{{ url('/dashboard') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Dashboard</a>
 
@@ -65,6 +66,7 @@
 
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Register</a>
+
                 @endif
                 @endauth
 
@@ -140,28 +142,19 @@
                     <span class="font-semibold"> 2. Fotokopi Kartu Tanda Penduduk (KTP) <br></span>
                     <span class="font-semibold">3. Kartu Keluarga (KK) 2 lembar. <br></span>
                     <span class="font-semibold">4. Fotokopi Akta Kelahiran 2 lembar. <br></span>
-                    <span class="font-semibold">6. Pas foto ukuran 3x4 4 lembar <br></span>
+                    <span class="font-semibold">5. Pas foto ukuran 3x4 4 lembar <br></span>
                     <div class=" px-4">
                         <span class=""> background merah. </span> <br>
                     </div>
-                    <span class="font-semibold"> 7. Fotokopi Ijazah terakhir <br></span>
-                    <div class=" px-4">
-                        <span class=" font-semibold text-sm"> Wajib dilegalisir 2 lembar.</span>
-                    </div>
-                    <span class="font-semibold">8. Fotokopi rapor (untuk mutasi). <br></span>
-                    <span class="font-semibold">9. Biaya Pendaftaran <br></span>
+                    <span class="font-semibold">6. Biaya Pendaftaran <br></span>
                     <div class=" px-4">
                         Membayar biaya pendaftaran sesuai ketentuan yang berlaku. Bukti pembayaran dilampirkan. <br>
                     </div>
-                    <span class="font-semibold">10. Surat Pernyataan <br></span>
+                    <span class="font-semibold">7. Surat Pernyataan <br></span>
                     <div class=" px-4">
                         Menandatangani surat pernyataan yang berisi:
                         Kesediaan mematuhi peraturan dan tata tertib.
                         Persetujuan orang tua/wali (jika diperlukan).
-                    </div>
-                    <span class="font-semibold">11. Surat Mutasi <br></span>
-                    <div class=" px-4">
-                        Wajib melampirkan surat mutasi bagi calon peserta didik yang melakukan pendaftaran bukan sebagai peserta didik baru melaikan pindahan / pindah sekolah
                     </div>
                 </div>
                 <div class="p-6 bg-white shadow rounded-lg">
