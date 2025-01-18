@@ -35,6 +35,7 @@
                     @if (Route::has('login'))
                     <a href="#home" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">About</a>
                     <a href="#persyaratan" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Persyaratan</a>
+                    <a href="#brosur" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Brosur</a>
                     @auth
                     <a href="{{ url('/dashboard') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                     @else
@@ -100,6 +101,7 @@
             &rarr;
         </button>
     </div>
+
     <!-- Content Section -->
     <section class="py-2 bg-gray-100" id="home">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,6 +120,21 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Paket C Setara SMA</h3>
                     <p class="text-gray-600">Description of Paket C Setara SMA.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section id="brosur" class="py-2 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-20 ">Brosur Pendaftaran</h2>
+            <p class="text-gray-600 mb-6">Persyaratan Pendaftaran yang wajib di penuhi.</p>
+            <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div>
+                    <img src="images/front.jpg" alt="">
+                </div>
+                <div>
+                    <img src="images/back.jpg" alt="">
+                </div>
+
             </div>
         </div>
     </section>
@@ -235,7 +252,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer Section -->
     <footer class="bg-blue-600 text-white py-6">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
