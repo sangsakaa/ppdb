@@ -13,6 +13,7 @@ use App\Models\Formulir_ppdb_5;
 use Barryvdh\DomPDF\Facade\Pdf;
 use function Illuminate\Log\log;
 use App\Models\PeriodePendidikan;
+use App\Models\Uploud_File;
 use Doctrine\DBAL\Query\From;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -478,16 +479,35 @@ class FormulirController extends Controller
             ->join('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
             ->join('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
             ->join('formulir_ppdb_5', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_5.user_id')
+            
         ->join('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')
             ->select('formulir_ppdb_1.*', 'formulir_ppdb_2.*', 'formulir_ppdb_3.*', 'formulir_ppdb_4.*', 'formulir_ppdb_5.*', 'periode_pendidikan.*')
         ->where('formulir_ppdb_1.user_id', '=', $calon_peserta)
             ->first();
+        $file = Uploud_File::where('user_id', '=', $calon_peserta)
+        ->select('user_id', 'file_type', 'status_pendaftaran', 'catatan', 'file_path')
+        ->get();
+        $filefoto = Uploud_File::where('user_id', '=', $calon_peserta)
+        ->select('user_id', 'file_type', 'status_pendaftaran', 'catatan', 'file_path')
+        ->first(); // Use first() if only one result is expected
+        $imagePath = storage_path('app/public/' . $filefoto->file_path);
+
+        // Ensure that the file was found
+        if (!$filefoto) {
+            return response()->json(['error' => 'File not found'], 404);
+        }
+
+        // Get the image path from the file's file_path column
+        $imagePath = storage_path('app/public/' . $filefoto->file_path);
+
 
         \Carbon\Carbon::setLocale('id');
         $tanggalLahir = Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y');
         $tanggalCetak = Carbon::parse(now())->translatedFormat('d F Y');
         $pdf = Pdf::loadView('administrator.ppdb.pdf.pdf', [
             'data' => $data,
+            'file' => $file,
+            'imagePath' => $imagePath,
             'bulanRomawi' => $bulanRomawi,
             'tahun' => $tahun,
             'tanggalLahir' => $tanggalLahir,
@@ -505,7 +525,7 @@ class FormulirController extends Controller
     public function DaftarCalonPesertaValid()
     {
         // dd($calon_peserta);
-        $periode_pendidikan_id = PeriodePendidikan::latest()->first();
+        
         $bulan = Carbon::now()->month;
         $tahun = Carbon::now()->year;
         // $tanggalCetak = Carbon::now();
@@ -559,7 +579,7 @@ class FormulirController extends Controller
             'tahun' => $tahun,
             // 'tanggalLahir' => $tanggalLahir,
             // 'tanggalCetak' => $tanggalCetak,
-            'periode_pendidikan_id' => $periode_pendidikan_id
+            
         ]);
 
         // Set F4 paper size (210mm x 330mm) and orientation to portrait

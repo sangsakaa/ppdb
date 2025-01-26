@@ -12,6 +12,8 @@ class Uploud_File extends Model
         'file_type',
         'file_path',
         'file_name',
-        'formulir_ppdb_1_id'
+        'formulir_ppdb_1_id',
+        'status_pendaftaran',
+        'catatan'
     ];
 }

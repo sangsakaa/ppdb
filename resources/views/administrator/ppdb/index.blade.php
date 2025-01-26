@@ -28,6 +28,46 @@
         </div>
         <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             <div class=" overflow-auto">
+                <form action="" method="get" class="">
+                    <div class=" flex gap-2 mb-2">
+                        <input type="search" name="search" placeholder="cari kata kunci" id="search" class=" rounded-md  px-2 py-1 w-1/4">
+                    </div>
+                </form>
+                <script>
+                    document.getElementById('search').addEventListener('input', function() {
+                        const searchValue = this.value.toLowerCase();
+                        const rows = document.querySelectorAll('#data-table tr');
+                        let hasVisibleRow = false;
+
+                        rows.forEach(row => {
+                            const cells = Array.from(row.getElementsByTagName('td'));
+                            const text = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                            if (text.includes(searchValue)) {
+                                row.style.display = '';
+                                hasVisibleRow = true;
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+
+                        // Menampilkan pesan jika tidak ada data yang cocok
+                        let noDataRow = document.getElementById('no-data-row');
+                        if (!hasVisibleRow) {
+                            if (!noDataRow) {
+                                noDataRow = document.createElement('tr');
+                                noDataRow.id = 'no-data-row';
+                                noDataRow.innerHTML = `
+                    <td colspan="6" class="text-center text-gray-500">Data tidak ditemukan</td>
+                `;
+                                document.getElementById('data-table').appendChild(noDataRow);
+                            }
+                        } else if (noDataRow) {
+                            noDataRow.remove();
+                        }
+                    });
+                </script>
+
                 <table class="table text-sm border w-full capitalize">
                     <thead>
                         <tr class=" border  bg-purple-500 text-white able-auto w-full border-collapse ">
@@ -39,7 +79,9 @@
                             <th class=" py-2">Hub</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="data-table">
+
+                        @if($dataCalon != null && $dataCalon->isNotEmpty())
                         @foreach ($dataCalon as $user)
                         <tr class="border py-1 hover:bg-purple-100  even:bg-purple-200">
                             <td class="px-1 text-center">
@@ -119,10 +161,21 @@
                                     <a target="_blank" href="/generate-pdf/{{$user->user_id}}" class=" text-center" title="cetak Formulir">
                                         <x-icons.print class="w-4 h-4" aria-hidden="true" />
                                     </a>
+                                    <a target="_blank" href="/generate-pdf/{{$user->user_id}}" class=" text-center" title="cetak Formulir">
+                                        <x-icons.trash class="w-4 h-4" aria-hidden="true" />
+                                    </a>
                                 </div>
                             </td>
                         </tr>
+
                         @endforeach
+                        @else
+                        <tr>
+                            <td>
+                                d
+                            </td>
+                        </tr>
+                        @endif
                         <tr>
                             <td colspan="5" class=" px-1">
                                 <p>{{ $dataCalon->links() }}</p>

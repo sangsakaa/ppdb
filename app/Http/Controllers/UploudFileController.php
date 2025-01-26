@@ -58,6 +58,8 @@ class UploudFileController extends Controller
             'file_type' => $fileType,
             'file_path' => $filePath,
             'file_name' => $file->getClientOriginalName(), // Original file name
+            'status_pendaftaran' => $request->status_pendaftaran ?? 'menunggu',
+            'catatan' => $request->catatan ?? 'Masih dalam antrian',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

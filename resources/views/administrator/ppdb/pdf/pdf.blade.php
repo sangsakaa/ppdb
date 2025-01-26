@@ -187,7 +187,7 @@
         Program Paket A Setara SD, Paket B Setara SMP, Dan Paket C Setara SMA
         <br>
         <span style="text-transform: uppercase; border: 1px solid black; padding: 5px;">
-          PROGRAM KESETARAAN TAHUN PELAJARAN {{$periode_pendidikan_id->periode}} {{$periode_pendidikan_id->semester}}
+          PROGRAM KESETARAAN TAHUN PELAJARAN {{$data->periode}} {{$data->semester}}
         </span>
 
       </p> <br>
@@ -244,6 +244,7 @@
         <label for="alamat">Program Kesetaraan</label>
         <span class="input">: {{$data->jenjang}} </span>
       </div>
+
       <div>
         <div class="container">
           <table>
@@ -260,47 +261,51 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($file as $item)
               <tr>
-                <td>1.</td>
-                <td>Fotokopi KTP</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  {{$loop->iteration}}
+                </td>
+                <td>
+                  @if($item->file_type === 'kk')
+                  Kartu Keluarga
+                  @elseif($item->file_type === 'ktp')
+                  Kartu Tanda Kependudukan
+                  @elseif($item->file_type === 'ijazah')
+                  Ijazah Terakhir
+                  @elseif($item->file_type === 'foto')
+                  Foto 3x4 background Merah
+                  @elseif($item->file_type === 'akte')
+                  Akte Kelahiran
+                  @elseif($item->file_type === 'ktp_ibu')
+                  Kartu Tanda Kependudukan Ibu Kandung
+                  @elseif($item->file_type === 'ket_mutasi')
+                  Keterangan Surat mutasi
+                  @else
+                  File tidak dikenal
+                  @endif
+
+                </td>
+                <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+                  @if($item->status_pendaftaran === 'disetujui')
+                  <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/check.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+                  @else
+                  -
+                  @endif
+                </td>
+                <td class="px-4 py-2 border-b text-center" style="text-align: center;">
+                  @if($item->status_pendaftaran === 'disetujui')
+                  -
+                  @else
+                  <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/error.png'))) }}" alt="Check" style="width: 20px; height: 20px;">
+                  @endif
+                </td>
+                <td>
+                  {{$item->catatan}}
+                </td>
+
               </tr>
-              <tr>
-                <td>2.</td>
-                <td>Fotokopi Akta Kelahiran</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3.</td>
-                <td>Fotokopi Kartu Keluarga</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>4.</td>
-                <td>Fotokopi Ijazah dan SKHUN</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>5. </td>
-                <td>Surat Keterangan Pindah (Mutasi)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>6. </td>
-                <td>Rapot (Mutasi)</td>
-                <td></td>
-                <td></td>
-                <td></td>
+              @endforeach
               </tr>
             </tbody>
           </table>
@@ -428,6 +433,7 @@
         padding: 0;
       }
     </style>
+
     <div class="rata-kanan">
       Muara Langon, {{$tanggalCetak}}
       <br>
@@ -438,10 +444,22 @@
     </div>
     <div class="page-break"></div>
     <!-- SURAT PERNYATANN -->
-    <h5 style="text-align: center;">
-      FORMULIR PENDAFTARAN PESERTA DIDIK BARU <br>
-      <span style="font-size:  16px; text-transform: uppercase;">Kode Pendaftaran: {{$data->kode_pendaftaran}}</span>
-    </h5>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <h5 style="text-align: left;">
+              FORMULIR PENDAFTARAN <br> PESERTA DIDIK BARU <br>
+              <span style="font-size:  16px; text-transform: uppercase;"></span>
+            </h5>
+          </td>
+          <td style="text-align: center ;  width: 200px; font-size:  16px; text-transform: uppercase;">
+            Kode Pendaftaran <br>
+            {{$data->kode_pendaftaran}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <div class="info">
       <h5 style="text-align: left;">
         A. IDENTITAS PESERTA DIDIK
@@ -550,73 +568,16 @@
 
       <label for="pendidikan_ibu">29. Pendidikan</label>
       <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ibu}} </span> <br>
-
-      <label for="pekerjaan_ibu">30. Pekerjaan</label>
-      <span class="input">: </span> <br>
     </div>
-    <!-- <h5 style="text-align: left;">
-      D. KETERANGAN KESEHATAN
-    </h5>
-    <label for="golongan_darah">17. Golongan Darah</label>
-    <span class="input">: </span> <br>
-
-    <label for="riwayat_penyakit">18. Riwayat Penyakit</label>
-    <span class="input">: </span> <br>
-
-    <label for="kelainan_jasmani">19. Kelainan Jasmani</label>
-    <span class="input">: </span> <br>
-
-    <label for="tinggi_badan">20. Tinggi Badan</label>
-    <span class="input">: </span> <br>
-
-    <label for="berat_badan">21. Berat Badan</label>
-    <span class="input">: </span> <br>
-    <h5 style="text-align: left;">
-      D. KETERANGAN PENDIDIKAN
-    </h5> -->
-    <!-- <label for="pendidikan_sebelumnya">
-      <span class="">22. Pendidikan Sebelumnya</span>
-    </label>
-    <span class="input">: </span> <br>
-    <label for="lulusan_dari">
-      <span class="sub">a. Lulusan Dari</span>
-    </label>
-    <span class="input">: </span> <br>
-
-    <label for="lama_belajar">
-      <span class="sub">b. Lama Belajar</span>
-    </label>
-    <span class="input">: </span> <br>
-    <span class="">
-      <label for="pindahan_dari">23. Pindahan Dari</label>
-      <span class="input">: </span> <br>
-    </span>
-    <label for="alasan_pindah">
-      <span class="sub">
-        a. Alasan Pindah
-      </span>
-    </label>
-    <span class="input">: </span> <br>
-
-    <label for="diterima_di_kelas" class="sub">
-      24. Diterima di Sekolah
-    </label>
-    <span class="input ">: </span> <br>
-    <label for="diterima_di_kelas" class="sub">
-      <span class="sub">
-        a. Diterima di Kelas
-      </span>
-    </label>
-    <span class="input ">: </span> <br>
-    <label for="program">
-      <span class="sub">
-        b. Program
-      </span>
-    </label>
-    <span class="input">: </span> <br>
-    <label for="tanggal_diterima">
-      <span class="sub">
-        c. Tanggal Diterima
-      </span>
-    </label>
-    <span class="input">: </span> <br> -->
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            Tanda Tangan
+          </td>
+          <td style="text-align: right ;  width: 150px;">
+            <img src="file://{{ $imagePath }}" alt="Image" style="width: 150px; height: 200px; text-align:right;">
+          </td>
+        </tr>
+      </tbody>
+    </table>

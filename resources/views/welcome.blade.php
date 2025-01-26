@@ -8,6 +8,11 @@
     <title>DAPOMEET @yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 </head>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
 <body>
     <nav class="bg-blue-600 fixed top-0 left-0 w-full z-50 shadow-lg">
@@ -23,7 +28,7 @@
 
                 <!-- Menu toggle for mobile -->
                 <div class="flex lg:hidden">
-                    <button id="menu-toggle" class="text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <button id="menu-toggle" class="text-white focus:outline-none focus:ring-2 focus:ring-white ">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -33,17 +38,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden lg:flex space-x-4">
                     @if (Route::has('login'))
+                    <a href="/" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Home</a>
                     <a href="#home" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                    <a href="#persyaratan" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Persyaratan</a>
                     <a href="#brosur" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Brosur</a>
+                    <a href="#persyaratan" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Persyaratan</a>
                     @auth
                     <a href="{{ url('/dashboard') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                     @else
-                    <a href="{{ route('login') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Log in</a>
-
+                    <a href="{{ route('login') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Masuk</a>
                     @if (Route::has('register'))
-
-                    <a href="{{ route('register') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Register</a>
+                    <a href="{{ route('register') }}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium">Daftar</a>
 
                     @endif
                     @endauth
@@ -94,13 +98,14 @@
             </div>
         </div>
         <!-- Navigation Buttons -->
-        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-md focus:outline-none">
+        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full shadow-md focus:outline-none">
             &larr;
         </button>
-        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-md focus:outline-none">
+        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full shadow-md focus:outline-none">
             &rarr;
         </button>
     </div>
+
 
     <!-- Content Section -->
     <section class="py-2 bg-gray-100" id="home">

@@ -4,11 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Dashboard') }}
             </h2>
-            <x-button variant="purple"
-                class="justify-center max-w-xs gap-2">
-                <x-icons.github class="w-6 h-6" aria-hidden="true" />
-                <span>{{$user->name}}</span>
-            </x-button>
+
         </div>
     </x-slot>
     @role('administrator')
@@ -46,10 +42,18 @@
     </div>
     @endrole
     @role('calon_peserta')
-    <div class="">
+    <div class="py-2">
         <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+            <div class="mb-2 w-full grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <x-button></x-button>
+            </div>
+        </div>
+    </div>
+    <div class="">
 
-            <div class="mb-2 w-full grid grid-cols-2 gap-2">
+        <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+            <h6 class=" text-center">Tahan Pengisian Formulir <br>Status Formulir</h6>
+            <div class="mb-2 w-full grid grid-cols-1 sm:grid-cols-2 gap-2">
                 @foreach ($StatusPendaftaran as $user)
                 <!-- Kolom Periode dan Semester -->
                 @php
@@ -65,7 +69,7 @@
                 'disetujui' => 'bg-green-700 text-white',
                 'ditolak' => 'bg-red-700 text-white',
                 'menunggu' => 'bg-yellow-400 text-black',
-                null => 'bg-gray-200 text-white',
+                null => 'bg-gray-200 text-black',
                 ];
                 @endphp
 
@@ -78,10 +82,10 @@
                 <span class="{{ $color }} px-2 capitalize " title="{{ ucfirst($status) ?: 'Belum Mendaftar' }}">
                     @if ($status !== null && $status !== 'belum mendaftar')
                     <a href="{{ $route }}/{{ $user->user_id }}">
-                        {{ $key }} {{$route}}
+                        {{ $key }} {{ str_replace('-', ' ', $route) }}
                     </a>
                     @else
-                    {{ $key }}
+                    {{ $key }} {{ str_replace('-', ' ', $route) }}
                     @endif
                 </span>
                 @endforeach

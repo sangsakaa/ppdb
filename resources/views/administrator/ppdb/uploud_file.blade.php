@@ -62,7 +62,7 @@
                                             id="file_type"
                                             name="file_type"
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
-                                            @foreach (['kk' => 'Kartu Keluarga', 'ktp' => 'Kartu Tanda Penduduk', 'ijazah' => 'Ijazah', 'akte' => 'Akte Kelahiran','ktp_ibu'=>'KTP Ibu'] as $key => $label)
+                                            @foreach (['kk' => 'Kartu Keluarga', 'ktp' => 'Kartu Tanda Penduduk', 'ijazah' => 'Ijazah', 'akte' => 'Akte Kelahiran','ktp_ibu'=>'KTP Ibu','foto'=>'Foto | Wajib jpeg','ket_mutasi'=>'Surat keterangan Mutasi'] as $key => $label)
                                             @if (!in_array($key, $usedFileTypes)) <!-- Sembunyikan opsi jika file_type sudah digunakan -->
                                             <option value="{{ $key }}">{{ $label }}</option>
                                             @endif
