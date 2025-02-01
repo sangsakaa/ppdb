@@ -126,6 +126,8 @@ Route::get('uploud-file/{formulir_ppdb_1}', [UploudFileController::class, 'Uplou
 Route::post('uploud-file/{formulir_ppdb_1}', [UploudFileController::class, 'store']);
 Route::post('uploud-file-status/{formulir_ppdb_1}', [UploudFileController::class, 'updateStatusDokumen']);
 
+Route::delete('delete-formulir/{formulir_ppdb_1}', [FormulirController::class, 'HapusFormulir']);
+
 Route::post('update-registration-status',[FormulirController::class, 'updateStatus'])->name('update-registration-status');
 Route::get('validasi-calon-peserta/{calon_peserta}',[FormulirController::class, 'ValidasCalonPeserta'])->name('validasi-calon-peserta');
 Route::put('validasi-calon-peserta/{calon_peserta}',[FormulirController::class, 'UpdateValidasiCalonPeserta']);

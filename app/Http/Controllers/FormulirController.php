@@ -587,6 +587,35 @@ class FormulirController extends Controller
         // return $pdf->stream('contoh.pdf',$dataCalon->full_name); // Unduh file PDF
         return $pdf->stream('surat pernyataan - '  . '.pdf');
     }
+    public function HapusFormulir($user_id = null)
+    {
+        // Retrieve records based on the provided user_id
+        $formulir1 = Formulir_ppdb_1::where('user_id', $user_id)->first();
+        $formulir2 = Formulir_ppdb_2::where('user_id', $user_id)->first();
+        $formulir3 = Formulir_ppdb_3::where('user_id', $user_id)->first();
+        $formulir4 = Formulir_ppdb_4::where('user_id', $user_id)->first();
+        $formulir5 = Formulir_ppdb_5::where('user_id', $user_id)->first();
+        // Check if each record exists before attempting to delete
+        if ($formulir1) {
+            $formulir1->delete();
+        }
+        if ($formulir2) {
+            $formulir2->delete();
+        }
+        if ($formulir3) {
+            $formulir3->delete();
+        }
+        if ($formulir4) {
+            $formulir4->delete();
+        }
+        if ($formulir5) {
+            $formulir5->delete();
+        }
+
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
+    }
+
 
 
 

@@ -161,8 +161,37 @@
                                     <a target="_blank" href="/generate-pdf/{{$user->user_id}}" class=" text-center" title="cetak Formulir">
                                         <x-icons.print class="w-4 h-4" aria-hidden="true" />
                                     </a>
-                                    <a target="_blank" href="/generate-pdf/{{$user->user_id}}" class=" text-center" title="cetak Formulir">
-                                        <x-icons.trash class="w-4 h-4" aria-hidden="true" />
+                                    <!-- Pastikan SweetAlert2 sudah terinclude -->
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                    <!-- Form Delete -->
+                                    <form id="deleteForm-{{ $user->user_id }}" action="/delete-formulir/{{ $user->user_id }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" onclick="confirmDelete({{ $user->user_id }})">
+                                            <x-icons.trash class="w-4 h-4" aria-hidden="true" />
+                                        </button>
+                                    </form>
+                                    <script>
+                                        function confirmDelete(userId) {
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin?',
+                                                text: "Data yang dihapus tidak dapat dikembalikan!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Ya, hapus!',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Submit form jika pengguna mengkonfirmasi penghapusan
+                                                    document.getElementById('deleteForm-' + userId).submit();
+                                                }
+                                            });
+                                        }
+                                    </script>
+
                                     </a>
                                 </div>
                             </td>
@@ -171,8 +200,8 @@
                         @endforeach
                         @else
                         <tr>
-                            <td>
-                                d
+                            <td colspan="6" class=" text-center">
+                                tidak ada data ditemukan pada periode ini
                             </td>
                         </tr>
                         @endif
