@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserManagementController extends Controller
 {
     public function index(){
-        $dataUser = User::paginate(5);
+        $dataUser = User::paginate(10);
         $roles = Role::all();
         return view('administrator.usermanagement.usermanagement',compact('dataUser', 'roles'));
     }

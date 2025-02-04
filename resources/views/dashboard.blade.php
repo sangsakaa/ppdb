@@ -7,58 +7,21 @@
 
         </div>
     </x-slot>
-    @role('administrator')
     <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
-            <div class=" w-full  grid grid-cols-1">
-                <div class="flex grid-cols-2 bg-blue-100 px-2 py-1 gap-2 rounded-md shadow-lg">
-                    <!-- Icon User Circle Section -->
-                    <div class=" grid place-items-center ">
-                        <x-icons.user-circle class="w-20 h-20 text-blue-800" aria-hidden="true" />
-                    </div>
-                    <!-- User Information Section -->
-                    <div class="w-full flex justify-end px-4">
-                        <div class="grid grid-cols-1">
-                            <div class=" grid place-items-center ">
-                                <span class="text-blue-800" style="font-size: 50px;">{{$jumlahUser}}</span>
-                            </div>
-                            <!-- <div class="">
-                                <span class="text-blue-800" style="font-size: 10px;">Usermanagement</span>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Link to User Management Page -->
-                <a href="/user-management">
-                    <div class="grid grid-cols-2 justify-end  bg-blue-400">
-                        <span class=" px-4 text-white text-sm">View Details</span>
-                        <span class=" flex justify-end bg-red-100">
-                            <x-icons.arrow-right class=" h-5 text-blue-800 justify-end flex w-full" aria-hidden="true" />
-                        </span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    @endrole
-    @role('calon_peserta')
-    <div class="py-2">
-        <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <div class="mb-2 w-full grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <x-button></x-button>
-            </div>
-        </div>
-    </div>
-    <div class="">
 
-        <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <h6 class=" text-center">Tahan Pengisian Formulir <br>Status Formulir</h6>
-            <div class="mb-2 w-full grid grid-cols-1 sm:grid-cols-2 gap-2">
+        @role('administrator')
+        <!-- Konten untuk administrator -->
+        @elserole('guru')
+        <!-- Konten untuk guru -->
+        @elserole('calon_peserta')
+        <div class="">
+            <h6 class=" text-center">Tahan Pengisian Formulir </h6>
+            <div class="mb-2 w-full grid ">
                 @foreach ($StatusPendaftaran as $user)
                 <!-- Kolom Periode dan Semester -->
                 @php
                 $statuses = [
-                1 => 'form-pendaftaran',
+                1 => 'form-data-diri',
                 2 => 'form-keterangan-tempat-tinggal',
                 3 => 'form-pilih-jenjang',
                 4 => 'form-riwayat-pendidikan',
@@ -72,13 +35,11 @@
                 null => 'bg-gray-200 text-black',
                 ];
                 @endphp
-
                 @foreach ($statuses as $key => $route)
                 @php
                 $status = $user->{'status_'.$key} ?? null;
                 $color = $statusColors[$status] ?? $statusColors[null];
                 @endphp
-
                 <span class="{{ $color }} px-2 capitalize " title="{{ ucfirst($status) ?: 'Belum Mendaftar' }}">
                     @if ($status !== null && $status !== 'belum mendaftar')
                     <a href="{{ $route }}/{{ $user->user_id }}">
@@ -99,6 +60,19 @@
         </div>
     </div>
     @endforeach
+    @else
+    <div class="py-2">
+        Selamat Datang : {{Auth::user()->name}} <br>
+        Join Saluran Whatsapp : <br>
+
+        <a class=" sm:text-center bg-green-500 px-2 py-1 rounded-full text-white" href="https://whatsapp.com/channel/0029Vaz9EHo4tRrqJxfYFJ1U">
+            PKBM KARYA MANDIRI
+        </a>
+
     </div>
     @endrole
+
+    </div>
+    </div>
+
 </x-app-layout>

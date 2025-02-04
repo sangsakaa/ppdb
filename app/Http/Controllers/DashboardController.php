@@ -28,11 +28,13 @@ class DashboardController extends Controller
             ->leftjoin('formulir_ppdb_3', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_3.user_id')
             ->leftjoin('formulir_ppdb_4', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_4.user_id')
             ->leftjoin('formulir_ppdb_5', 'formulir_ppdb_1.user_id', '=', 'formulir_ppdb_5.user_id')
-            ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
+            // ->where('formulir_ppdb_1.periode_pendidikan_id', session('periode_id'))
+            ->where('formulir_ppdb_1.user_id', auth()->id())
             ->select([
                 'formulir_ppdb_1.*',
                 'users.email',
                 'jenjang',
+            'periode_pendidikan_id',
                 'periode_pendidikan.periode',
                 'periode_pendidikan.semester',
                 'formulir_ppdb_1.created_at',
@@ -43,7 +45,10 @@ class DashboardController extends Controller
                 'formulir_ppdb_4.status_pendaftaran as status_4',
                 'formulir_ppdb_5.status_pendaftaran as status_5',
             ])
-            ->get();
+
+            ->get()
+            // ->dd()
+        ;
 
 
         return view(
