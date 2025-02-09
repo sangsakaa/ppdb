@@ -80,7 +80,6 @@
                         </tr>
                     </thead>
                     <tbody id="data-table">
-
                         @if($dataCalon != null && $dataCalon->isNotEmpty())
                         @foreach ($dataCalon as $user)
                         <tr class="border py-1 hover:bg-purple-100  even:bg-purple-200">
@@ -155,7 +154,7 @@
                             </td>
                             <td class=" text-center">
                                 <div class=" flex gap-2">
-                                    <a target="_blank" href="https://wa.me/{{$user->phone_number}}" class=" text-center">
+                                    <a target="_blank" href="https://wa.me/{{$user->nomor_telepon}}" class=" text-center">
                                         <x-icons.telp class="w-4 h-4" aria-hidden="true" />
                                     </a>
                                     <a target="_blank" href="/generate-pdf/{{$user->user_id}}" class=" text-center" title="cetak Formulir">
