@@ -489,6 +489,7 @@ class FormulirController extends Controller
         ->get();
         $filefoto = Uploud_File::where('user_id', '=', $calon_peserta)
         ->select('user_id', 'file_type', 'status_pendaftaran', 'catatan', 'file_path')
+            ->where('file_type', 'foto')
         ->first(); // Use first() if only one result is expected
         $imagePath = storage_path('app/public/' . $filefoto->file_path);
 
