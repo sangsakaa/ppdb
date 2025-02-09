@@ -240,8 +240,7 @@
         <label for="alamat">Nomor WhatsApp</label>
         <span class="input">
           : {{ $data && $data->nomor_telepon ? implode(str_split($data->nomor_telepon, 4)) : '-' }}
-        </span>
-
+        </span> <br>
         <label for="alamat">Alamat</label>
         <span class="input">: {{$data->alamat ?? '-'}}</span> <br>
         <label for="alamat">Program Kesetaraan</label>
