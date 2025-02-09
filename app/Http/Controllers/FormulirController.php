@@ -499,10 +499,12 @@ class FormulirController extends Controller
 
         // Get the image path from the file's file_path column
         $imagePath = storage_path('app/public/' . $filefoto->file_path);
-
-
         \Carbon\Carbon::setLocale('id');
-        $tanggalLahir = Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y');
+        // $tanggalLahir = Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y');
+        $tanggalLahir = optional($data)->tanggal_lahir
+        ? Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y')
+        : 'Tanggal lahir tidak tersedia';
+
         $tanggalCetak = Carbon::parse(now())->translatedFormat('d F Y');
         $pdf = Pdf::loadView('administrator.ppdb.pdf.pdf', [
             'data' => $data,
@@ -518,7 +520,8 @@ class FormulirController extends Controller
         // Set F4 paper size (210mm x 330mm) and orientation to portrait
         $pdf->setPaper([0, 0, 210, 330], 'portrait');
         // return $pdf->stream('contoh.pdf',$data->full_name); // Unduh file PDF
-        return $pdf->stream('surat pernyataan - ' . $data->nama_lengkap . '.pdf');
+        return $pdf->stream('surat pernyataan - ' . ($data ? $data->nama_lengkap : 'Tanpa Nama') . '.pdf');
+
     }
 
 

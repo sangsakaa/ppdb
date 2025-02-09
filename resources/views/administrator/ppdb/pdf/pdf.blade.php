@@ -187,7 +187,7 @@
         Program Paket A Setara SD, Paket B Setara SMP, Dan Paket C Setara SMA
         <br>
         <span style="text-transform: uppercase; border: 1px solid black; padding: 5px;">
-          PROGRAM KESETARAAN TAHUN PELAJARAN {{$data->periode}} {{$data->semester}}
+          PROGRAM KESETARAAN TAHUN PELAJARAN {{$data->periode??'-'}} {{$data->semester??'-'}}
         </span>
 
       </p> <br>
@@ -200,7 +200,7 @@
         </center>
       </div> <!-- Full width border below the text -->
 
-      <p style="text-transform: uppercase;" class="highlighted-text">Formulir Pendaftaran Peserta Didik Baru <br>Kode Pendaftaran: {{$data->kode_pendaftaran}}</p>
+      <p style="text-transform: uppercase;" class="highlighted-text">Formulir Pendaftaran Peserta Didik Baru <br>Kode Pendaftaran: {{$data->kode_pendaftaran?? '-'}}</p>
       <style>
         .info-cover {
           display: flex;
@@ -234,15 +234,18 @@
       </style>
       <div class="info-cover">
         <label for="nama">Nama</label>
-        <span class="input">: {{$data->nama_lengkap}}</span> <br>
+        <span class="input">: {{$data->nama_lengkap ?? '-'}}</span> <br>
         <label for="nama">Tempat,Tanggal Lahir</label>
-        <span class="input">: {{$data->tempat_lahir}} , {{$tanggalLahir}}</span> <br>
+        <span class="input">: {{$data->tempat_lahir ?? '-'}} , {{$tanggalLahir ?? '-'}}</span> <br>
         <label for="alamat">Nomor WhatsApp</label>
-        <span class="input">: {{ implode('-', str_split($data->nomor_telepon, 4)) }}</span> <br>
+        <span class="input">
+          : {{ $data && $data->nomor_telepon ? implode(str_split($data->nomor_telepon, 4)) : '-' }}
+        </span>
+
         <label for="alamat">Alamat</label>
-        <span class="input">: {{$data->alamat}}</span> <br>
+        <span class="input">: {{$data->alamat ?? '-'}}</span> <br>
         <label for="alamat">Program Kesetaraan</label>
-        <span class="input">: {{$data->jenjang}} </span>
+        <span class="input">: {{$data->jenjang ?? '-'}} </span>
       </div>
 
       <div>
@@ -350,8 +353,11 @@
 
 <p style="text-align: center; margin:0">
   SURAT PERNYATAAN <br>
-  Nomor: {{ substr($data->kode_pendaftaran, -3) }}/PPDB-KM/{{$bulanRomawi}}/{{$tahun}}
+
+  Nomor: {{ isset($data->kode_pendaftaran) ? substr($data->kode_pendaftaran, -3) : '000' }}/PPDB-KM/{{$bulanRomawi}}/{{$tahun}}
+
 </p>
+
 </div>
 <div class="mt-6">
   <p style="text-align: left; margin:0">Yang bertanda tangan di bawah ini:</p>
@@ -389,17 +395,17 @@
   <div class="form-container">
     <div class="info" style="font-size: 16px;">
       <label for="nama">Nama</label>
-      <span class="input">: {{$data->nama_lengkap}}</span> <br>
+      <span class="input">: {{$data->nama_lengkap ?? '-'}}</span> <br>
       <label for="nama">NIK</label>
-      <span class="input">: {{$data->nomor_identitas_kependudukan}}</span> <br>
+      <span class="input">: {{$data->nomor_identitas_kependudukan ?? '-'}}</span> <br>
       <label for="nama">Tempat,Tanggal Lahir</label>
-      <span class="input">: {{$data->tempat_lahir}} , {{$tanggalLahir}}</span> <br>
+      <span class="input">: {{$data->tempat_lahir ?? '-'}} , {{$tanggalLahir ?? '-'}}</span> <br>
       <label for="alamat">Nomor WhatsApp</label>
-      <span class="input">: {{ implode('-', str_split($data->nomor_telepon, 4)) }}</span> <br>
+      <span class="input">: {{ $data && $data->nomor_telepon ? implode(str_split($data->nomor_telepon, 4)) : '-' }}</span> <br>
       <label for="alamat">Alamat</label>
-      <span class="input">: {{$data->alamat}}</span> <br>
+      <span class="input">: {{$data->alamat ?? '-'}}</span> <br>
       <label for="alamat">Program Kesetaraan</label>
-      <span class="input">: {{$data->jenjang}} </span>
+      <span class="input">: {{$data->jenjang ??'-'}} </span>
     </div>
     <p style="font-size: 16px; text-align: justify; line-height: 1.5; margin:0; margin-top: 10px;">
       Dengan ini saya menyatakan bahwa : <br>
@@ -439,7 +445,7 @@
       <br>
       Yang membuat pernyataan, <br> <br><br><br> <br><br>
       <span style="text-transform: capitalize; ">
-        {{$data->nama_lengkap}}
+        {{$data->nama_lengkap ?? '-'}}
       </span>
     </div>
     <div class="page-break"></div>
@@ -455,7 +461,7 @@
           </td>
           <td style="text-align: center ;  width: 200px; font-size:  16px; text-transform: uppercase;">
             Kode Pendaftaran <br>
-            {{$data->kode_pendaftaran}}
+            {{$data->kode_pendaftaran ?? '-'}}
           </td>
         </tr>
       </tbody>
@@ -465,18 +471,18 @@
         A. IDENTITAS PESERTA DIDIK
       </h5>
       <label for="nama_lengkap">1. Nama Lengkap</label>
-      <span class="input">: {{$data->nama_lengkap}}</span> <br>
+      <span class="input">: {{$data->nama_lengkap ?? '-'}}</span> <br>
       <label for="jenis_kelamin">2. Jenis Kelamin</label>
-      <span class="input">: {{$data->jenis_kelamin}}</span> <br>
+      <span class="input">: {{$data->jenis_kelamin ?? '-'}}</span> <br>
 
       <label for="tanggal_lahir">3. Tanggal Lahir</label>
-      <span class="input">: {{$data->tempat_lahir}} {{$tanggalLahir}}</span> <br>
+      <span class="input">: {{$data->tempat_lahir ?? '-'}} {{$tanggalLahir ?? '-'}}</span> <br>
 
       <label for="agama">4. Agama</label>
-      <span class="input">: {{$data->agama}}</span> <br>
+      <span class="input">: {{$data->agama ?? '-'}}</span> <br>
 
       <label for="kewarganegaraan">5. Kewarganegaraan</label>
-      <span class="input">: {{$data->kewarganegaraan}}</span> <br>
+      <span class="input">: {{$data->kewarganegaraan ?? '-'}}</span> <br>
 
       <!-- <label for="anak_ke_berapa">6. Anak Ke-berapa</label>
       <span class="input">: </span> <br>
@@ -499,35 +505,36 @@
         B. KETERANGAN TEMPAT TINGGAL
       </h5>
       <label for="alamat_lengkap">6. Alamat Lengkap</label>
-      <span class="input">: {{$data->alamat}}</span> <br>
+      <span class="input">: {{$data->alamat ??'-'}}</span> <br>
 
       <label for="nomor_whatsapp">7. Nomor WhatsApp</label>
-      <span class="input">: {{ implode('-', str_split($data->nomor_telepon, 4)) }}</span> <br>
+      <span class="input">: {{ $data && $data->nomor_telepon ? implode(str_split($data->nomor_telepon, 4)) : '-' }}</span> <br>
+
 
       <label for="jenis_tinggal">8. Status Tinggal</label>
-      <span class="input">: {{$data->jenis_tinggal}} </span> <br>
+      <span class="input">: {{$data->jenis_tinggal ??'-'}} </span> <br>
       <h5 style="text-align: left;">
         C. KETERANGAN PENDAFTARAN
       </h5>
       <label for="alamat_lengkap">9. Status </label>
-      <span class="input">: {{$data->status}}</span> <br>
+      <span class="input">: {{$data->status ??'-'}}</span> <br>
       <label for="jenis_tinggal">10. Jenjang </label>
-      <span class="input">: {{$data->jenjang}} </span> <br>
+      <span class="input">: {{$data->jenjang ??'-'}} </span> <br>
       <h5 style="text-align: left;">
         D. RIWAYAT PENDIDIKAN
       </h5>
       <label for="alamat_lengkap">11. NISN </label>
-      <span class="input">: {{$data->nisn}}</span> <br>
+      <span class="input">: {{$data->nisn ??'-'}}</span> <br>
       <label for="alamat_lengkap">12. NPSN </label>
-      <span class="input">: {{$data->npsn_sekolah}}</span> <br>
+      <span class="input">: {{$data->npsn_sekolah ??'-'}}</span> <br>
       <label for="jenis_tinggal">13. Nama Sekolah </label>
-      <span style="text-transform: uppercase;" class="input">: {{$data->nama_sekolah}} </span> <br>
+      <span style="text-transform: uppercase;" class="input">: {{$data->nama_sekolah ??'-'}} </span> <br>
       <label for="jenis_tinggal">14. Jenjang </label>
-      <span style="text-transform: uppercase;" class="input">: {{$data->jenjang_sekolah}} </span> <br>
+      <span style="text-transform: uppercase;" class="input">: {{$data->jenjang_sekolah ??'-'}} </span> <br>
       <label for="jenis_tinggal">15. Status Sekolah </label>
-      <span style="text-transform: uppercase;" class="input">: {{$data->status_sekolah}} </span> <br>
+      <span style="text-transform: uppercase;" class="input">: {{$data->status_sekolah ??'-'}} </span> <br>
       <label for="jenis_tinggal">16. Tahun Lulus </label>
-      <span style="text-transform: uppercase;" class="input">: {{$data->tahun_lulus}} </span> <br>
+      <span style="text-transform: uppercase;" class="input">: {{$data->tahun_lulus ??'-'}} </span> <br>
 
       <!-- <label for="jarak_rumah_ke_sekolah" style="font-size: small;">16. Jarak Rumah ke Sekolah</label>
       <span class="input">: </span> <br> -->
@@ -536,18 +543,18 @@
         E. KETERANGAN AYAH
       </h5>
       <label for="nama_ayah">25. Nama</label>
-      <span class="input">: {{$data->nama_ayah}} </span> <br>
+      <span class="input">: {{$data->nama_ayah ??'-'}} </span> <br>
 
       <label for="tanggal_lahir_ayah">26. Tanggal Lahir</label>
       <span class="input">: </span> <br>
       <label for="agama_ayah">27. Agama</label>
-      <span class="input">: {{$data->agama_ayah}}</span> <br>
+      <span class="input">: {{$data->agama_ayah ??'-'}}</span> <br>
 
       <label for="kewarganegaraan_ayah">28. Kewarganegaraan</label>
       <span class="input">: </span> <br>
 
       <label for="pendidikan_ayah">29. Pendidikan</label>
-      <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ayah}}</span> <br>
+      <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ayah ??'-'}}</span> <br>
 
       <label for="pekerjaan_ayah">30. Pekerjaan</label>
       <span class="input">: </span> <br>
@@ -555,28 +562,28 @@
         F. KETERANGAN IBU
       </h5>
       <label for="nama_ayah">25. Nama</label>
-      <span class="input">: {{$data->nama_ibu}} </span> <br>
+      <span class="input">: {{$data->nama_ibu ??'-'}} </span> <br>
 
       <label for="tanggal_lahir_ibu">26. Tanggal Lahir</label>
       <span class="input">: </span> <br>
 
       <label for="agama_ibu">27. Agama</label>
-      <span class="input">: {{$data->agama_ibu}} </span> <br>
+      <span class="input">: {{$data->agama_ibu ??'-'}} </span> <br>
 
       <label for="kewarganegaraan_ibu">28. Kewarganegaraan</label>
       <span class="input">: </span> <br>
 
       <label for="pendidikan_ibu">29. Pendidikan</label>
-      <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ibu}} </span> <br>
+      <span class="input" style="text-transform: uppercase;">: {{$data->pendidikan_ibu ??'-'}} </span> <br>
     </div>
-    <table>
+    <table style="border: none;">
       <tbody>
         <tr>
-          <td>
+          <td style="border: none;">
             Tanda Tangan
           </td>
-          <td style="text-align: right ;  width: 150px;">
-            <img src="file://{{ $imagePath }}" alt="Image" style="width: 150px; height: 200px; text-align:right;">
+          <td style="text-align: right ;  width: 150px; border: none; ">
+            <img src="file://{{ $imagePath  }}" alt="Image" style="width: 150px; height: 200px; text-align:right;">
           </td>
         </tr>
       </tbody>
