@@ -116,4 +116,10 @@ class UploudFileController extends Controller
         }
         return redirect()->back()->with('error', 'User tidak ditemukan.');
     }
+    public function destroy($uploud_file)
+    {
+        $file = Uploud_File::find($uploud_file);
+        $file->delete();
+        return redirect()->back()->with('success', 'File berhasil dihapus.');
+    }
 }

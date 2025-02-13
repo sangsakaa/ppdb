@@ -4,11 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Dokument') }}
             </h2>
-            <x-button target="_blank" href="https://github.com/kamona-wd/kui-laravel-breeze" variant="black"
-                class="justify-center max-w-xs gap-2">
-                <x-icons.github class="w-6 h-6" aria-hidden="true" />
-                <span>Star on Github</span>
-            </x-button>
+
         </div>
     </x-slot>
 
@@ -17,18 +13,31 @@
             <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
                 <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div>
-                        <x-button
-                            href="form-pendaftaran/"
-                            variant="purple"
-                            class="items-center max-w-xs gap-2">
-                            <x-icons.add class="w-6 h-6" aria-hidden="true" />
-                            <span>Formulir Pendaftaran</span>
-                        </x-button>
+                        @role('administrator')
+                        <div class=" flex grid-cols-1   gap-2">
+                            <x-button
+                                href="/form-pendaftaran/{{$formulir_ppdb_1}}"
+                                variant="purple"
+                                class="items-center max-w-xs gap-2">
+                                <x-icons.arrow-back class="w-6 h-6" aria-hidden="true" />
+                                <span>Back</span>
+                            </x-button>
+                            <x-button>
+                                <!-- <x-icons.sarjana class="w-6 h-6 text-xs" aria-hidden="true" /> -->
+                                <span> | Upload Dokumen Pendaftaran</span>
+                            </x-button>
+                            @elserole('calon_peserta')
+                            <x-button>
+                                <!-- <x-icons.sarjana class="w-6 h-6 text-xs" aria-hidden="true" /> -->
+                                <span> | Upload Dokumen Pendaftaran</span>
+                            </x-button>
+                        </div>
+                        @endrole
                     </div>
                 </div>
             </div>
         </div>
-        <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
             <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
                 <div class=" grid grid-cols-1 sm:grid-cols-1 gap-2 w-full">
                     <div class=" w-full">
@@ -79,6 +88,7 @@
                                     </div>
                             </form>
 
+
                             @if (session('success'))
                             <div class="mt-4 p-4 bg-green-100 text-green-800 rounded-lg">
                                 {{ session('success') }}
@@ -102,77 +112,96 @@
         <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             <div class=" grid grid-cols-1 sm:grid-cols-1 gap-2">
                 <div>
-
-                    <!-- In your blade view (your-blade-view.blade.php) -->
                     <table class="w-full table-auto border-collapse text-xs">
                         <thead>
                             <tr class="bg-gray-100">
                                 <th class="px-4 py-2 text-left">File Type</th>
                                 <th class="px-4 py-2 text-left">Status <br>Dokument</th>
+                                <th class="px-4 py-2 text-left">Preview</th>
                                 <th class="px-4 py-2 text-left">Action</th>
-                                @role('administrator')
-                                <th class="px-4 py-2 text-left">Action</th>
-                                @endrole
+                                <th class="px-4 py-2 text-left">
+                                    @role('administrator')
+                                    Action
+                                    @elserole('calon_peserta')
+                                    Action
+                                    @endrole
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($dataDokument as $file)
                             <tr class="border-t hover:bg-gray-50">
-
                                 <td class="px-4 py-2 uppercase text-xs">{{ $file->file_type }}</td>
                                 <td class="px-4 py-2 uppercase text-xs">{{ $file->status_pendaftaran }}</td>
+                                <td class="px-4 py-2 relative">
+                                    @if(in_array(pathinfo($file->file_path, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
+                                    <div class="relative">
+                                        <img id="preview-{{ $file->id }}" src="{{ Storage::url($file->file_path) }}" alt="Preview" class="w-16 h-16 object-cover transition-transform">
+                                        <div class="mt-1 flex space-x-2 ">
+
+                                        </div>
+                                    </div>
+                                    @else
+                                    <img src="/path/to/default-icon.png" alt="No Preview" class="w-16 h-16 object-cover">
+                                    @endif
+                                </td>
                                 <td class="px-4 py-2">
-                                    <!-- Assuming the file is stored in the 'public/uploads' folder -->
                                     <a href="{{ Storage::url($file->file_path) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                                 </td>
-
-                                @role('administrator')
                                 <td class="">
-                                    <!-- Pastikan Anda sudah mengatur route untuk fungsi updateStatus -->
-
+                                    @role('administrator')
                                     <form action="/uploud-file-status/{{$formulir_ppdb_1}}" method="POST" enctype="multipart/form-data" class="">
                                         @csrf
-                                        <!-- Input untuk user_id -->
                                         <input type="hidden" name="user_id" value="{{ $file->user_id }}">
                                         <input type="hidden" name="file_type" value="{{ $file->file_type }}">
-                                        <!-- Tombol untuk setujui -->
-                                        <button
-                                            class=" bg-green-800  text-white px-2 py-1  rounded-md"
-                                            variant="success"
-                                            type="submit"
-                                            name="status_pendaftaran"
-                                            value="disetujui">
-                                            <span>
-                                                <x-icons.check class="h-4 w-4"></x-icons.check>
-                                            </span>
+                                        <button class="bg-green-800 text-white px-2 py-1 rounded-md" type="submit" name="status_pendaftaran" value="disetujui">
+                                            <x-icons.check class="h-4 w-4"></x-icons.check>
                                         </button>
-
-                                        <!-- Tombol untuk tolak -->
-                                        <button
-                                            class=" bg-red-500  text-white px-2 py-1  rounded-md"
-                                            variant="danger"
-                                            type="submit" name="status_pendaftaran" value="ditolak" class="">
-                                            <span>
-                                                <x-icons.error class="h-4 w-4"></x-icons.error>
-                                            </span>
+                                        <button class="bg-red-500 text-white px-2 py-1 rounded-md" type="submit" name="status_pendaftaran" value="ditolak">
+                                            <x-icons.error class="h-4 w-4"></x-icons.error>
                                         </button>
-
-                                        <!-- Tombol untuk menunggu -->
-                                        <button
-                                            class=" bg-yellow-400   px-2 py-1  rounded-md"
-                                            variant="warning"
-                                            type="submit" name="status_pendaftaran" value="menunggu" class="">
-                                            <span>
-                                                <x-icons.arrow-circle class="h-4 w-4"></x-icons.arrow-circle>
-                                            </span>
+                                        <button class="bg-yellow-400 px-2 py-1 rounded-md" type="submit" name="status_pendaftaran" value="menunggu">
+                                            <x-icons.arrow-circle class="h-4 w-4"></x-icons.arrow-circle>
                                         </button>
                                     </form>
+                                    @elserole('calon_peserta')
+                                    <form action="/delete-file/{{$file->id}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="bg-red-700 text-white px-2 py-1 rounded-md" type="submit">
+                                            <x-icons.trash class="h-4 w-4"></x-icons.trash>
+                                        </button>
+                                    </form>
+                                    <button onclick="rotateImage('{{ $file->id }}')" class=" bg-blue-500 text-white  rounded-md">
+                                        <x-icons.rotasi class=" h-4 w-4  "></x-icons.rotasi>
+                                    </button>
+                                    <button onclick="flipImage('{{ $file->id }}')" class="bg-gray-500 text-white  rounded-md  ">
+                                        <x-icons.flip class=""></x-icons.flip>
+                                    </button>
+                                    @endrole
                                 </td>
-                                @endrole
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <script>
+                        function rotateImage(id) {
+                            let img = document.getElementById(`preview-${id}`);
+                            let currentRotation = img.style.transform.match(/rotate\((\d+)deg\)/);
+                            let newRotation = currentRotation ? (parseInt(currentRotation[1]) + 90) % 360 : 90;
+                            img.style.transform = `rotate(${newRotation}deg)`;
+                        }
+
+                        function flipImage(id) {
+                            let img = document.getElementById(`preview-${id}`);
+                            let currentScale = img.style.transform.match(/scaleX\((-?\d+)\)/);
+                            let newScale = currentScale ? -parseInt(currentScale[1]) : -1;
+                            img.style.transform = `scaleX(${newScale})`;
+                        }
+                    </script>
+
+
 
                 </div>
             </div>

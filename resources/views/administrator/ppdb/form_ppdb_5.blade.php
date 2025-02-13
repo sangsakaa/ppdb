@@ -22,6 +22,11 @@
                     <!-- <x-icons.sarjana class="w-6 h-6 text-xs" aria-hidden="true" /> -->
                     <span> | Keterangan Orang Tua</span>
                 </x-button>
+                @elserole('calon_peserta')
+                <x-button>
+                    <!-- <x-icons.sarjana class="w-6 h-6 text-xs" aria-hidden="true" /> -->
+                    <span> | Keterangan Orang Tua</span>
+                </x-button>
             </div>
             @endrole
         </div>

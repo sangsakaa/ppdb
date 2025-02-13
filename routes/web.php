@@ -125,6 +125,7 @@ Route::post('form-keterangan-orang-tua/{formulir_ppdb_1}', [FormulirController::
 Route::get('uploud-file/{formulir_ppdb_1}', [UploudFileController::class, 'Uploud_File'])->name('uploud-file');
 Route::post('uploud-file/{formulir_ppdb_1}', [UploudFileController::class, 'store']);
 Route::post('uploud-file-status/{formulir_ppdb_1}', [UploudFileController::class, 'updateStatusDokumen']);
+Route::delete('delete-file/{uploud_file}', [UploudFileController::class, 'destroy']);
 
 Route::delete('delete-formulir/{formulir_ppdb_1}', [FormulirController::class, 'HapusFormulir']);
 

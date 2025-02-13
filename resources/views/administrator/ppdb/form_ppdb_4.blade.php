@@ -22,6 +22,11 @@
                     <x-icons.sarjana class="w-6 h-6" aria-hidden="true" />
                     <span> | Riwayat Pendidikan</span>
                 </x-button>
+                @elserole('calon_peserta')
+                <x-button>
+                    <x-icons.sarjana class="w-6 h-6" aria-hidden="true" />
+                    <span> | Riwayat Pendidikan</span>
+                </x-button>
             </div>
             @endrole
         </div>
@@ -69,8 +74,8 @@
                         <div class="mb-2">
                             <label for="jenjang_sekolah" class="block text-gray-700 font-medium">Jenjang Sekolah</label>
                             <select id="jenjang_sekolah" name="jenjang_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                                <option value="sd" {{ ($form4->jenjang_sekolah ?? '') == 'sd' ? 'selected' : '' }}>SD</option>
-                                <option value="smp" {{ ($form4->jenjang_sekolah ?? '') == 'smp' ? 'selected' : '' }}>SMP</option>
+                                <option value="sd" {{ ($form4->jenjang_sekolah ?? '') == 'sd' ? 'selected' : '' }}>SD/MI</option>
+                                <option value="smp" {{ ($form4->jenjang_sekolah ?? '') == 'smp' ? 'selected' : '' }}>SMP/MTS</option>
                             </select>
                         </div>
                         <div class="mb-2">
