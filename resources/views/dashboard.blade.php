@@ -97,5 +97,52 @@
         </div>
     </div>
     <!-- bawah -->
+    @else
+    <!-- Konten untuk calon peserta -->
+    <div class=" grid grid-cols-1 gap-2">
+        <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+            <div class="">
+                <div>
+                    <div class="justify-center text-center ">
+                        Join Saluran WhatsApp <br>
+                        <a class="sm:text-center bg-green-500 px-2 py-1 rounded-full text-white" href="https://whatsapp.com/channel/0029Vaz9EHo4tRrqJxfYFJ1U">
+                            PKBM KARYA MANDIRI
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+                <div class="">
+                    <h6 class="text-center  font-semibold capitalize">dokumen yang harus di persiapkan</h6>
+                    <p class=" px-2 text-justify">
+                        Paket A,B dan C
+                        Persyaratan Pendaftaran Wajib dipernuhi !!! <br>
+                        1. Formulir Pendaftaran <br>
+                        2. Fotokopi Kartu Tanda Penduduk (KTP) <br>
+                        3. Kartu Keluarga (KK) 2 lembar. <br>
+                        4. Fotokopi Akta Kelahiran 2 lembar. <br>
+                        6. Pas foto ukuran 3x4 4 lembar background merah.<br>
+                        7. Fotokopi Ijazah terakhir Wajib dilegalisir 2 lembar.<br>
+                        8. Fotokopi rapor (untuk mutasi). <br>
+                        9. Biaya Pendaftaran <br>
+                        10. Surat Pernyataan <br>
+                        11. Surat Mutasi <br>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" mt-2">
+        <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+            <div class="">
+                <p>keterangan</p>
+                <p class=" capitalize text-xs sm:text-sm">1. jika ada formulir yang kurang dimengerti bisa join dan follow hubungi nomor yang tertera di saluran </p>
+            </div>
+        </div>
+    </div>
+    </div>
     @endrole
 </x-app-layout>
