@@ -20,7 +20,7 @@
             </x-button>
             <x-button>
                 <x-icons.home class="w-6 h-6" aria-hidden="true" />
-                <span> | Tempat Tinggal</span>
+                <span> |2.Tempat Tinggal</span>
             </x-button>
             @elserole('calon_peserta')
             <x-button>
@@ -144,9 +144,11 @@
                             <span>Kembali</span>
                         </x-button>
                         <x-button>simpan</x-button>
+                        @if($form2 ?? '')
                         <x-button href="/form-pilih-jenjang/{{$formulir_ppdb_1}}">
                             Lanjutkan
                         </x-button>
+                        @endif
                     </div>
 
             </form>

@@ -105,9 +105,11 @@
                         <span>Kembali</span>
                     </x-button>
                     <x-button>simpan</x-button>
+                    @if($form5 ?? '')
                     <x-button href="/uploud-file/{{$formulir_ppdb_1}}">
                         Lanjutkan
                     </x-button>
+                    @endif
                 </div>
         </div>
         </form>

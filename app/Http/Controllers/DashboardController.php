@@ -19,8 +19,6 @@ class DashboardController extends Controller
         ->where('user_id', Auth::id())
         ->first();
         $jumlahUser = $user->count();
-
-
         $StatusPendaftaran = Formulir_ppdb_1::query()
             ->leftjoin('users', 'formulir_ppdb_1.user_id', 'users.id')
             ->leftjoin('periode_pendidikan', 'formulir_ppdb_1.periode_pendidikan_id', '=', 'periode_pendidikan.id')

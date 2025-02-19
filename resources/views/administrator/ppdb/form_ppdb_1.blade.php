@@ -19,12 +19,12 @@
             </x-button>
             <x-button>
                 <x-icons.user-circle class="w-6 h-6" aria-hidden="true" />
-                <span> | Data Diri</span>
+                <span> |1.Data Diri</span>
             </x-button>
             @elserole('calon_peserta')
             <x-button>
                 <x-icons.user-circle class="w-6 h-6" aria-hidden="true" />
-                <span> | Data Diri</span>
+                <span> |1.Data Diri</span>
             </x-button>
             @endrole
         </div>

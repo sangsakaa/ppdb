@@ -76,9 +76,11 @@
                         <span>Kembali</span>
                     </x-button>
                     <x-button>simpan</x-button>
+                    @if($form3 ?? '')
                     <x-button href="/form-riwayat-pendidikan/{{$formulir_ppdb_1}}">
                         Lanjutkan
                     </x-button>
+                    @endif
                 </div>
         </div>
         </form>
