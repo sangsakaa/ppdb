@@ -50,29 +50,30 @@
                     </div>
 
                     <!-- Kode Pos -->
-                    <div class="mb-2">
+                    <!-- <div class="mb-2">
                         <label for="kode_pos" class="block text-sm font-medium text-gray-700">Kode Pos</label>
                         <input value="{{ old('kode_pos', $form2->kode_pos ?? '') }}" type="number" name="kode_pos" id="kode_pos" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                </div>
-
-                <!-- Jenis Tinggal -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    </div> -->
                     <div class="mb-2">
 
                         <label for="jenis_tinggal" class="block text-gray-700 font-medium">Jenis Tinggal</label>
                         <select id="jenis_tinggal" name="jenis_tinggal" class="w-full border border-gray-300 rounded-lg p-2 mt-1 capitalize">
-                            <option value="">Pilih</option>
+
                             <option value="orang_tua" {{ ($form2->jenis_tinggal ?? '') == 'orang_tua' ? 'selected' : '' }}>orang tua</option>
                             <option value="wali" {{ ($form2->jenis_tinggal ?? '') == 'wali' ? 'selected' : '' }}>wali</option>
                             <option value="kos" {{ ($form2->jenis_tinggal ?? '') == 'kos' ? 'selected' : '' }}>kos</option>
                             <option value="asrama" {{ ($form2->jenis_tinggal ?? '') == 'asrama' ? 'selected' : '' }}>asrama</option>
                         </select>
                     </div>
+                </div>
+
+                <!-- Jenis Tinggal -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
                     <!-- Province ID -->
                     <div class="mb-2">
                         <label for="province_id" class="block text-sm font-medium text-gray-700">Provinsi</label>
-                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="provinces" name="province_id">
+                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="provinces" name="province_id" required>
                             <option value="">-- Pilih Provinsi --</option>
                             @foreach ($provinces as $province)
                             <option value="{{ $province->id }}" {{ (isset($form2->province_id) && $form2->province_id == $province->id) ? 'selected' : '' }}>
@@ -81,11 +82,9 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div class="mb-2">
                         <label for="regency_id" class="block text-gray-700 font-medium">Kabupaten</label>
-                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="regencies" name="regency_id">
+                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="regencies" name="regency_id" required>
                             <option value="">-- Pilih Kabupaten --</option>
                             @if(isset($form2->province_id))
                             @foreach ($regencies as $regency)
@@ -96,10 +95,13 @@
                             @endif
                         </select>
                     </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
 
                     <div class="mb-2">
                         <label for="district_id" class="block text-gray-700 font-medium">Kecamatan</label>
-                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="districts" name="district_id">
+                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="districts" name="district_id" required>
                             <option value="">-- Pilih Kecamatan --</option>
                             @if(isset($form2->regency_id))
                             @foreach ($districts as $district)
@@ -110,20 +112,23 @@
                             @endif
                         </select>
                     </div>
+                    <div class="mb-2">
+                        <label for="village_id" class="block text-gray-700 font-medium">Desa</label>
+                        <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="villages" name="village_id" required>
+                            <option value="">-- Pilih Desa --</option>
+                            @if(isset($form2->district_id))
+                            @foreach ($villages as $village)
+                            <option value="{{ $village->id }}" {{ (isset($form2->village_id) && $form2->village_id == $village->id) ? 'selected' : '' }}>
+                                {{ $village->name }}
+                            </option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
                 </div>
 
                 <div class="mb-2">
-                    <label for="village_id" class="block text-gray-700 font-medium">Desa</label>
-                    <select class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="villages" name="village_id">
-                        <option value="">-- Pilih Desa --</option>
-                        @if(isset($form2->district_id))
-                        @foreach ($villages as $village)
-                        <option value="{{ $village->id }}" {{ (isset($form2->village_id) && $form2->village_id == $village->id) ? 'selected' : '' }}>
-                            {{ $village->name }}
-                        </option>
-                        @endforeach
-                        @endif
-                    </select>
+
                     @role('administrator')
                     <div class="mb-2">
                         <label for="status_pendaftaran" class="block text-gray-700 font-medium">Status Pendaftaran</label>

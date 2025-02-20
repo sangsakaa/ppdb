@@ -40,11 +40,11 @@
                     <div class=" grid grid-cols-2 gap-1">
                         <div class="mb-2">
                             <label for="npsn_sekolah" class="block text-gray-700 font-medium">NPSN Sekolah</label>
-                            <input oninput="limitDigitsNPSN(this)" type="text" id="npsn_sekolah" value="{{ old('npsn_sekolah', $form4->npsn_sekolah ?? '') }}" name="npsn_sekolah" placeholder="Nama Sekolah sesuai ijazah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                            <input oninput="limitDigitsNPSN(this)" type="text" id="npsn_sekolah" value="{{ old('npsn_sekolah', $form4->npsn_sekolah ?? '') }}" name="npsn_sekolah" placeholder="Nama Sekolah sesuai ijazah" class="w-full border border-gray-300 rounded-lg p-2 mt-1" required>
                         </div>
                         <div class="mb-2">
                             <label for="nisn" class="block text-gray-700 font-medium">NISN</label>
-                            <input oninput="limitDigits(this)" type="text" id="nisn" value="{{ old('nisn', $form4->nisn ?? '') }}" name="nisn" placeholder="Nama Sekolah sesuai ijazah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                            <input oninput="limitDigits(this)" type="text" id="nisn" value="{{ old('nisn', $form4->nisn ?? '') }}" name="nisn" placeholder="Nama Sekolah sesuai ijazah" class="w-full border border-gray-300 rounded-lg p-2 mt-1" required>
                         </div>
                         <script>
                             function limitDigits(input) {
@@ -68,19 +68,21 @@
                     </div>
                     <div class="mb-2">
                         <label for="nama_sekolah" class="block text-gray-700 font-medium">Nama Sekolah</label>
-                        <input type="text" id="nama_sekolah" value="{{ old('nama_sekolah', $form4->nama_sekolah ?? '') }}" name="nama_sekolah" placeholder="Nama Sekolah sesuai ijazah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input type="text" id="nama_sekolah" value="{{ old('nama_sekolah', $form4->nama_sekolah ?? '') }}" name="nama_sekolah" placeholder="Nama Sekolah sesuai ijazah" class="w-full border border-gray-300 rounded-lg p-2 mt-1" required>
                     </div>
                     <div class=" grid grid-cols-2 gap-1">
                         <div class="mb-2">
                             <label for="jenjang_sekolah" class="block text-gray-700 font-medium">Jenjang Sekolah</label>
-                            <select id="jenjang_sekolah" name="jenjang_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                            <select id="jenjang_sekolah" name="jenjang_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1" required>
+                                <option value="">--Pilih Jenjang Sekolah--</option>
                                 <option value="sd" {{ ($form4->jenjang_sekolah ?? '') == 'sd' ? 'selected' : '' }}>SD/MI</option>
                                 <option value="smp" {{ ($form4->jenjang_sekolah ?? '') == 'smp' ? 'selected' : '' }}>SMP/MTS</option>
                             </select>
                         </div>
                         <div class="mb-2">
                             <label for="status_sekolah" class="block text-gray-700 font-medium">Status Sekolah</label>
-                            <select id="status_sekolah" name="status_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                            <select id="status_sekolah" name="status_sekolah" class="w-full border border-gray-300 rounded-lg p-2 mt-1" required>
+                                <option value="">--Pilih Status Sekolah--</option>
                                 <option value="negeri" {{ ($form4->status_sekolah ?? '') == 'negeri' ? 'selected' : '' }}>Negeri</option>
                                 <option value="swasta" {{ ($form4->status_sekolah ?? '') == 'swasta' ? 'selected' : '' }}>Swasta</option>
                             </select>
@@ -89,7 +91,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="tahun_lulus" class="block text-gray-700 font-medium">Tahun Lulus</label>
-                        <input type="text" id="tahun_lulus" value="{{ old('tahun_lulus', $form4->tahun_lulus ?? '') }}" name="tahun_lulus" placeholder="2025" class="w-full border border-gray-300 rounded-lg p-2 mt-1" oninput="tahunLulus(this)">
+                        <input type="text" id="tahun_lulus" value="{{ old('tahun_lulus', $form4->tahun_lulus ?? '') }}" name="tahun_lulus" placeholder="2025" class="w-full border border-gray-300 rounded-lg p-2 mt-1" oninput="tahunLulus(this)" required>
                     </div>
                 </div>
                 <div class="mb-2">
@@ -121,6 +123,7 @@
                     <x-button href="/form-keterangan-orang-tua/{{$formulir_ppdb_1}}">
                         Lanjutkan
                     </x-button>
+                    @endif
 
                 </div>
         </div>

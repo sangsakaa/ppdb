@@ -236,7 +236,7 @@
     </style>
     <div>
       <p style="text-align: center; margin:0; text-transform: uppercase;" class="text-h1"> Daftar Calon Peserta Valid <br>
-        TAHUN PELAJARAN {{$periode_pendidikan_id->periode}} {{$periode_pendidikan_id->semester}}
+        TAHUN PELAJARAN {{$periode_pendidikan_id->periode ??'-'}} {{$periode_pendidikan_id->semester ??'-'}}
       </p>
       <hr class="thin-line-cover">
     </div>
