@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         @section('title', ' | Form PPDB' )
-        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between ">
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Formulir Pendaftaran') }}
             </h2>
         </div>
     </x-slot>
     <div class=" grid grid-cols-1  gap-3">
-        <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+        <div class="p-2  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
             @role('administrator')
             <x-button
                 href="/daftar-calon-peserta"
@@ -22,9 +22,12 @@
                 <span> |1.Data Diri</span>
             </x-button>
             @elserole('calon_peserta')
-            <x-button>
-                <x-icons.user-circle class="w-6 h-6" aria-hidden="true" />
-                <span> |1.Data Diri</span>
+            <x-button
+                href="/dashboard"
+                variant="purple"
+                class="items-center max-w-xs gap-2">
+                <x-icons.arrow-back class="w-6 h-6" aria-hidden="true" />
+                <span>Kembali</span>
             </x-button>
             @endrole
         </div>
@@ -43,18 +46,18 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div class="mb-2">
                         <label for="nomor_identitas_kependudukan" class="block text-gray-700 font-medium">NIK</label>
-                        <input type="number" id="nomor_identitas_kependudukan" value="{{ old('nomor_identitas_kependudukan', $formulir_ppdb_1->nomor_identitas_kependudukan ?? '') }}" name="nomor_identitas_kependudukan" placeholder="NIK diisi sesui KTP" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input type="number" id="nomor_identitas_kependudukan" value="{{ old('nomor_identitas_kependudukan', $formulir_ppdb_1->nomor_identitas_kependudukan ?? '') }}" name="nomor_identitas_kependudukan" placeholder="Masukan Nomor Induk Kependudukan" class="w-full border border-gray-300 rounded-lg p-2 mt-1" required>
                     </div>
                     <div class="mb-2">
                         <label for="nama_lengkap" class="block text-gray-700 font-medium">Nama Lengkap</label>
-                        <input type="text" id="nama_lengkap" value="{{ old('nama_lengkap', $formulir_ppdb_1->nama_lengkap ?? '') }}" name="nama_lengkap" class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="Nama Lengkap diisi sesui KTP">
+                        <input required type="text" id="nama_lengkap" value="{{ old('nama_lengkap', $formulir_ppdb_1->nama_lengkap ?? '') }}" name="nama_lengkap" class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="Nama Lengkap diisi sesui Kartu Identitas">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div class="mb-2">
                         <label for="jenis_kelamin" class="block text-gray-700 font-medium">Jenis Kelamin</label>
-                        <select id="jenis_kelamin" name="jenis_kelamin" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                            <option value="">Pilih</option>
+                        <select required id="jenis_kelamin" name="jenis_kelamin" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                            <option value="">--Pilih Jenis Kelamin--</option>
                             <option value="laki-laki" {{ old('jenis_kelamin',$formulir_ppdb_1->jenis_kelamin ?? '') == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                             <option value="perempuan" {{ old('jenis_kelamin',$formulir_ppdb_1->jenis_kelamin ?? '') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
@@ -62,7 +65,7 @@
                     <div class="mb-2">
                         <label for="agama" class="block text-gray-700 font-medium capitalize">Agama</label>
                         <select id="agama" name="agama" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                            <option value="">Pilih</option>
+                            <option value="">---Pilih Agama---</option>
                             <option value="islam" {{ old('agama',$formulir_ppdb_1->agama ?? '') == 'islam' ? 'selected' : '' }}>Islam</option>
                             <option value="kristen" {{ old('agama',$formulir_ppdb_1->agama ?? '') == 'kristen' ? 'selected' : '' }}>Kristen</option>
                         </select>
@@ -72,23 +75,22 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div class="mb-2">
                         <label for="tempat_lahir" class="block text-gray-700 font-medium">Tempat Lahir</label>
-                        <input type="text" id="tempat_lahir" value="{{ old('tempat_lahir', $formulir_ppdb_1->tempat_lahir ?? '') }}" name="tempat_lahir" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input placeholder="Masuk Tempat Lahir Sesui Akte Lahir" required type="text" id="tempat_lahir" value="{{ old('tempat_lahir', $formulir_ppdb_1->tempat_lahir ?? '') }}" name="tempat_lahir" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                     </div>
                     <div class="mb-2">
                         <label for="tanggal_lahir" class="block text-gray-700 font-medium">Tanggal Lahir</label>
-                        <input type="date" id="tanggal_lahir" value="{{ old('tanggal_lahir', $formulir_ppdb_1->tanggal_lahir ?? '') }}" name="tanggal_lahir" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input required type="date" id="tanggal_lahir" value="{{ old('tanggal_lahir', $formulir_ppdb_1->tanggal_lahir ?? '') }}" name="tanggal_lahir" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
                     <div class="mb-2">
                         <label for="nomor_telepon" class="block text-gray-700 font-medium">Nomor Telepon</label>
-                        <input type="number" id="nomor_telepon" value="{{ old('nomor_telepon', $formulir_ppdb_1->nomor_telepon ?? '') }}" name="nomor_telepon" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+                        <input placeholder="Masukan Nomor WhatsApss Aktif" required type="number" id="nomor_telepon" value="{{ old('nomor_telepon', $formulir_ppdb_1->nomor_telepon ?? '') }}" name="nomor_telepon" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
                     </div>
                     <div class="mb-2">
                         <label for="kewarganegaraan" class="block text-gray-700 font-medium capitalize">Kewarganegaraan</label>
                         <select id="kewarganegaraan" name="kewarganegaraan" class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                            <option value="">Pilih kewarganegaraan</option>
                             <option value="indonesia" {{old('kewarganegaraan',$formulir_ppdb_1->kewarganegaraan ?? '') == 'indonesia' ? 'selected' : '' }}>Indonesia</option>
                             <option value="WNA" {{old('kewarganegaraan',$formulir_ppdb_1->kewarganegaraan ?? '') == 'WNA' ? 'selected' : '' }}>Warga Negara Asing </option>
                         </select>

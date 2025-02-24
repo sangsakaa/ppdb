@@ -37,7 +37,7 @@
                 <tbody>
                     @foreach ($periodePendidikan as $periode)
                     <tr class="border py-1 hover:bg-purple-100">
-                        <td class=" py-1 px-1 text-center">
+                        <td class=" py-1 px-1 text-center capitalize">
                             {{ $periode->periode }} {{ $periode->semester }}
                         </td>
                         <td class=" py-1 px-1 text-center">

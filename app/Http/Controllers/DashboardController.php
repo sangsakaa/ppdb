@@ -44,11 +44,7 @@ class DashboardController extends Controller
                 'formulir_ppdb_5.status_pendaftaran as status_5',
             ])
 
-            ->get()
-            // ->dd()
-        ;
-
-
+            ->get();
         return view(
             'dashboard',
             [

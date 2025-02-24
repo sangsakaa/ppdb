@@ -23,37 +23,64 @@
             </x-button>
 
         </div>
-        <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <form action="/add-periode-pendidikan" method="post">
-                @csrf
-                <div class=" grid grid-cols-1 gap-1 ">
-                    <div>
-                        <input type="text" name="periode" @error('periode') is invalid @enderror value="{{old('periode')}}" class=" w-1/4 px-1 py-1  bg-transparent" placeholder="2024/2025">
-                    </div>
+    </div>
+    <div class="p-4  overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
+        <form action="/add-periode-pendidikan" method="post">
+            @csrf
+            <div class=" grid grid-cols-1 sm:grid-cols-2 sm gap-2">
+                <div>
+                    <label for="">Tahun Periode</label>
+                    <input type="text" name="periode" @error('periode') is invalid @enderror value="{{old('periode')}}" class="  px-1 py-1  bg-transparent w-full" placeholder="2024/2025" required>
                     @error('periode')
-                    <small class=" text-sm  flex text-red-500">{{ $message }}</small>
+                    <small class="text-sm flex text-red-500">{{ $message }}</small>
+                    @else
+                    <small class="text-sm flex text-gray-500">Masukkan periode dalam format YYYY</small>
                     @enderror
-                    <input type="date" name="tanggal_mulai" required class=" w-1/4 px-1 py-1  bg-transparent" placeholder="2024/2025">
-
-                    <div class=" py-4">
-                        <input type="date" name="tanggal_akhir" required class=" w-1/4 px-1 py-1  bg-transparent" placeholder="2024/2025">
-                    </div>
-                    <select name="semester" id="" class=" w-1/4 py-1">
+                </div>
+                <div>
+                    <label for="">Periode</label>
+                    <select name="semester" id="" class=" w-full  py-1">
+                        <option value="">Pilih Periode</option>
                         <option value="ganjil">Ganjil</option>
                         <option value="genap">Genap</option>
                     </select>
-                    <x-button
-                        target="_blank"
-                        type="submit"
-                        variant="purple"
-                        class="items-center max-w-xs gap-2 w-1/4">
-                        <x-icons.add class="w-6 h-6" aria-hidden="true" />
-                        <span>Periode</span>
-                    </x-button>
+                    @error('periode')
+                    <small class="text-sm flex text-red-500">{{ $message }}</small>
+                    @else
+                    <small class="text-sm flex text-gray-500">Masukkan periode dalam format YYYY</small>
+                    @enderror
                 </div>
-            </form>
+                <div class=" w-full">
+                    <label for="">Tanggal Mulai</label>
+                    <input type="date" name="tanggal_mulai" required class=" w-full  px-1 py-1  bg-transparent" placeholder="2024/2025">
+                    @error('periode')
+                    <small class="text-sm flex text-red-500">{{ $message }}</small>
+                    @else
+                    <small class="text-sm flex text-gray-500">Masukkan periode dalam format YYYY</small>
+                    @enderror
+                </div>
+                <div>
+                    <label for="">Tanggal Berakhir</label>
+                    <input type="date" name="tanggal_akhir" required class=" w-full  px-1 py-1  bg-transparent" placeholder="2024/2025">
+                    @error('periode')
+                    <small class="text-sm flex text-red-500">{{ $message }}</small>
+                    @else
+                    <small class="text-sm flex text-gray-500">Masukkan periode dalam format YYYY</small>
+                    @enderror
+                </div>
 
-        </div>
+            </div>
+            <div class=" py-2">
+                <x-button
+                    target="_blank"
+                    type="submit"
+                    variant="purple"
+                    class="items-center max-w-xs gap-2 ">
+                    <x-icons.add class="w-6 h-6" aria-hidden="true" />
+                    <span>Periode</span>
+                </x-button>
+            </div>
 
+        </form>
     </div>
 </x-app-layout>

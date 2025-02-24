@@ -163,13 +163,15 @@
                                             <x-icons.arrow-circle class="h-4 w-4"></x-icons.arrow-circle>
                                         </button>
                                     </form>
-                                    <form action="/delete-file/{{$file->id}}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="bg-red-700 text-white px-2 py-1 rounded-md" type="submit">
-                                            <x-icons.trash class="h-4 w-4"></x-icons.trash>
-                                        </button>
-                                    </form>
+                                    <div class=" px-1">
+                                        <form action="/delete-file/{{$file->id}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="bg-red-700 text-white px-2 py-1 rounded-md" type="submit">
+                                                <x-icons.trash class="h-4 w-4"></x-icons.trash>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                                 @elserole('calon_peserta')
                                 <form action="/delete-file/{{$file->id}}" method="post">

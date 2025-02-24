@@ -12,10 +12,9 @@
         </div>
     </x-slot>
 
-    <div class=" grid grid-cols-2 sm:grid-cols-1 gap-2">
+    <div class=" ">
         <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-            <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
-
+            <div class=" grid grid-cols-1 sm:grid-cols-1 gap-2">
                 <div>
                     <x-button
                         href="form-pendaftaran/{{$user_id}}"

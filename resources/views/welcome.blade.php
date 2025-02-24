@@ -67,10 +67,10 @@
                 <a href="{{ url('/dashboard') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Dashboard</a>
 
                 @else
-                <a href="{{ route('login') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Log in</a>
+                <a href="{{ route('login') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Masuk</a>
 
                 @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Register</a>
+                <a href="{{ route('register') }}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Daftar</a>
 
                 @endif
                 @endauth
