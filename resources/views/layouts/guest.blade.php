@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <title>DAPOMEET @yield('title')</title>
 
     <!-- Fonts -->
     <link

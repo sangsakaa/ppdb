@@ -19,7 +19,6 @@
                                 variant="purple"
                                 class="items-center max-w-xs gap-2">
                                 <x-icons.arrow-back class="w-6 h-6" aria-hidden="true" />
-                                <span>Back</span>
                             </x-button>
                             <x-button>
                                 <!-- <x-icons.sarjana class="w-6 h-6 text-xs" aria-hidden="true" /> -->
@@ -109,7 +108,7 @@
     </div>
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         <div class=" grid grid-cols-1 sm:grid-cols-1 gap-2">
-            <div>
+            <div class=" overflow-auto">
                 <table class="w-full table-auto border-collapse text-xs">
                     <thead>
                         <tr class="bg-gray-100">
@@ -148,7 +147,7 @@
                             </td>
                             <td class="">
                                 @role('administrator')
-                                <div class=" flex ">
+                                <div class=" flex grid-cols-1 gap-2">
                                     <form action="/uploud-file-status/{{$formulir_ppdb_1}}" method="POST" enctype="multipart/form-data" class="">
                                         @csrf
                                         <input type="hidden" name="user_id" value="{{ $file->user_id }}">

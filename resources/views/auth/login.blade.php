@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @section('title', ' | Masuk' )
     <x-auth-card>
         <center>
             <img src="{{asset('images/logo.png')}}" width="120" alt="">

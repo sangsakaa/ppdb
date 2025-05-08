@@ -491,12 +491,19 @@ class FormulirController extends Controller
         ->select('user_id', 'file_type', 'status_pendaftaran', 'catatan', 'file_path')
             ->where('file_type', 'foto')
         ->first(); // Use first() if only one result is expected
-        $imagePath = storage_path('app/public/' . $filefoto->file_path);
+        // $imagePath = storage_path('app/public/' . $filefoto->file_path);
+        if ($filefoto && $filefoto->file_path) {
+            $imagePath = storage_path('app/public/' . $filefoto->file_path);
+        } else {
+            $imagePath = public_path('app/images/check.png'); // Path ke gambar default
+        }
+
+
 
         // Ensure that the file was found
-        if (!$filefoto) {
-            return response()->json(['error' => 'File not found'], 404);
-        }
+        // if (!$filefoto) {
+        //     return response()->json(['error' => 'File not found'], 404);
+        // }
 
         // Get the image path from the file's file_path column
         $imagePath = storage_path('app/public/' . $filefoto->file_path);

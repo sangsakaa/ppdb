@@ -134,13 +134,9 @@
                                             @else
                                             {{ $key }}
                                             @endif
-
                                         </button>
-
-
                                     </div>
                                     @endforeach
-
                                     @if (!$user->status_1 && !$user->status_2 && !$user->status_3 && !$user->status_4)
                                     <button class="bg-gray-200 px-1 py-1 rounded-md text-white" title="Belum Mendaftar">
                                         Belum Mendaftar

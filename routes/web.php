@@ -2,18 +2,19 @@
 
 use App\Models\PeriodePendidikan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\LocationSelector;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FormulirController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UploudFileController;
+use App\Http\Controllers\TemplateSuratController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\PeriodePendidikanController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FormulirController;
-use App\Http\Controllers\TemplateSuratController;
-use App\Http\Controllers\UploudFileController;
-use App\Http\Livewire\LocationSelector;
+use App\Http\Controllers\DapodikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ use App\Http\Livewire\LocationSelector;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// dapodik
+Route::get('/dapodik/siswa', [DapodikController::class, 'getDapodikData']);
+
 
 Route::get('/', function () {
     return view('welcome');

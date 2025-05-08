@@ -27,8 +27,8 @@
     <!-- akhir header -->
     <div>
       <div class="p-4 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        <h6 class="text-center  font-semibold">Tahan Pengisian Formulir</h6>
         @foreach ($StatusPendaftaran as $user)
+        <h6 class="text-center  font-semibold">Tahan Pengisian Formulir</h6>
         @php
         $statuses = [
         1 => 'form-pendaftaran',
@@ -94,6 +94,8 @@
 <div class=" mt-2">
   <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
     <p>keterangan</p>
-    <p class=" capitalize text-xs sm:text-sm">1. jika ada formulir yang kurang dimengerti bisa join dan follow hubungi nomor yang tertera di saluran </p>
+    <p class=" capitalize text-xs sm:text-sm">1. untuk melakukan tahab pendaftaran <br><span class=" pl-4"> hubungi nomor Bisa hubungi <span class=" underline font-bold">+62 821-4801-2621 (ADMIN PKBM)</span></span> </p>
+    <p class=" capitalize text-xs sm:text-sm">2. jika ada formulir yang kurang dimengerti hubungi <span class=" font-bold">ADMIN PKBM</span> </p>
+    <p class=" capitalize text-xs sm:text-sm">3. jika ada formulir yang kurang dimengerti bisa join dan follow hubungi nomor Bisa hubungi +62 821-4801-2621(ADMINPKBM) </p>
   </div>
 </div>
